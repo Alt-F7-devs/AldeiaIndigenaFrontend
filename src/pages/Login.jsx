@@ -1,4 +1,6 @@
+
 import { useState } from "react";
+import Header from "../components/Header";  // ← ADICIONE ESTA LINHA
 
 function Login() {
   const [usuario, setUsuario] = useState("");
@@ -9,32 +11,39 @@ function Login() {
       alert("Preencha todos os campos!");
       return;
     }
-
     alert("Login realizado!");
   }
 
   return (
-    <div>
-      <h2>Login</h2>
+    <>
+      <Header /> 
+      
+      <div className="container">
+        <div className="left">
+          <h2>Entrar como Professor</h2>
+          <input
+            type="text"
+            placeholder="Usuário"
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          <button onClick={entrar}>Entrar</button>
+        </div>
 
-      <input
-        type="text"
-        placeholder="Usuário"
-        value={usuario}
-        onChange={(e) => setUsuario(e.target.value)}
-      />
-      <br /><br />
-
-      <input
-        type="password"
-        placeholder="Senha"
-        value={senha}
-        onChange={(e) => setSenha(e.target.value)}
-      />
-      <br /><br />
-
-      <button onClick={entrar}>Entrar</button>
-    </div>
+        <div className="right">
+          <h2>Entrar como Aluno</h2>
+          <input type="text" placeholder="Usuário" />
+          <input type="password" placeholder="Senha" />
+          <button>Entrar</button>
+        </div>
+      </div>
+    </>
   );
 }
 
