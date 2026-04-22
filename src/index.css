@@ -1,32 +1,36 @@
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+/*Fonte utilizada(é preciso ter link no html e o codigo no css)*/
 
-  /*Paleta-De-Cores*/
-  --cor-Verde: #3B7113;
-  --cor-Vermelho: #740000;
-  --cor-Marrom: #712A13;
-  --cor-Azul: #135971;
-  --cor-Bege: #E3C9A5;
+  /*--fonte-padrao:*/ 
 
-  /*Fonte utilizada(é preciso ter link no html e o codigo no css)*/
-  --fonte-padrao: @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
-  body { font-family: 'Itim', cursive;} 
+  :root {
 
-  /*especificações de tamanhos*/
-  --padding-padrao: 10px;
-  --border-radius: 15px;
+    /*Paleta-De-Cores*/
+    --cor-Verde: #3B7113;
+    --cor-Vermelho: #740000;
+    --cor-Marrom: #712A13;
+    --cor-Azul: #135971;
+    --cor-Bege: #E3C9A5;
+  }    
+  body { font-family: 'Itim', cursive; 
 
-  /*body padrão*/
-  background-color: #E3C9A5;
+    /*especificações de tamanhos*/
+    --padding-padrao: 10px;
+    --border-radius: 15px;
 
-  /* reset das atribuições padrão*/
-  margin: 0;
-  padding: 0
+    /*body padrão*/
+    background-color: #E3C9A5;
+    }
+  * {
+    /* reset das atribuições padrão*/
+    margin: 0;
+    padding: 0;
+    }
+
+    /*transparencia da imagem do header*/
+    /*20%;*/
   
+    /*icones
+  usuario: <a href="https://www.flaticon.com/br/icones-gratis/do-utilizador" title="do utilizador ícones">Do utilizador ícones criados por Mutualism - Flaticon</a>
+  home: <a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button icons created by Freepik - Flaticon</a> */
 
-  /*transparencia da imagem do header*/
-  20%
- 
-  /*icones
- usuario: <a href="https://www.flaticon.com/br/icones-gratis/do-utilizador" title="do utilizador ícones">Do utilizador ícones criados por Mutualism - Flaticon</a>
- home: <a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button icons created by Freepik - Flaticon</a> */
-}
