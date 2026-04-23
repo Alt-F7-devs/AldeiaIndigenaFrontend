@@ -6,7 +6,7 @@
 }
 
 body {
-  background: #d9c3a3;
+  background: #E3C9A5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,20 +15,25 @@ body {
 
 
 .container {
-  display: flex;
-  width: 700px;
+  display:flex;
+  width: 800px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  margin-top: 60px;
+  
 
-  margin: 80px auto 0 auto;
+  background: white; /* fundo branco */
 }
+
 
 /* Lados */
 .left, .right {
   width: 50%;
-  padding: 40px 30px;
+
+  padding: 60px 60px 90px 60px;
 }
+
 
 .left {
   background: #3b6f13;
@@ -36,7 +41,7 @@ body {
 }
 
 .right {
-  background: #eee;
+  background: #ffffff;
   color: #5a2b15;
 }
 
@@ -45,20 +50,24 @@ h2 {
   text-align: center;
   margin-bottom: 30px;
   font-weight: normal;
+  font-family:  'Itim', cursive;
 }
 
 /* Inputs */
 .input-group {
   margin-bottom: 15px;
+  
 }
 
 input {
   width: 100%;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   outline: none;
-  background: #ccc;
+  background: #dddddd;
+  margin-bottom: 15px;
+  font-family:  'Itim', cursive;
 }
 
 /* Link */
@@ -70,24 +79,76 @@ input {
   cursor: pointer;
 }
 
-/* Botões */
-.btn {
-  display: block;
-  width: 120px;
-  margin: 20px auto 0;
-  padding: 10px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
+.link-professor{
+  color: #dddddd;
+  font-family: 'Itim', cursive; 
+  font-size: small;
+  display: block;              /* permite centralizar */
+  text-align: center;
+  text-decoration: none;
+}
+.link-professor:hover{
+  color: #712A13;
 }
 
-.btn-prof {
-  background: #8b2d1b;
-  color: white;
+.link-aluno{
+  color: #712A13;
+  font-family: 'Itim', cursive; 
+  font-size: small;
+  display: block;              /* permite centralizar */
+  text-align: center;
+  text-decoration: none;
+}
+.link-aluno:hover{
+  color: #3b6f13;
+}
+
+.btn-professor {
+  background-color: #712A13;
+  color: #E3C9A5;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+  font-family:  'Itim', cursive;
+  font-size: medium;
+  transition: all 0.3s ease;
+}
+.btn-professor:hover{
+  color: #712A13;
+  background-color: #E3C9A5;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+
 }
 
 .btn-aluno {
-  background: #3b6f13;
-  color: white;
+  background-color: #3b6f13;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+  font-family:  'Itim', cursive;
+  font-size: medium;
+  transition: all 0.3s ease;
+
+}
+
+.btn-aluno:hover{
+  color: #3b6f13;
+  background-color: #80cd45;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.btn-professor:active,
+.btn-aluno:active {
+  transform: scale(0.95);
 }

@@ -1,6 +1,7 @@
 
 import { useState } from "react";
-import Header from "../components/Header";  // ← ADICIONE ESTA LINHA
+import Header from "../components/Header";  
+import './Login.css';
 
 function Login() {
   const [usuario, setUsuario] = useState("");
@@ -33,14 +34,18 @@ function Login() {
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
           />
-          <button onClick={entrar}>Entrar</button>
+            <a href="#" className="link-professor">Esqueci minha senha</a>
+        <button className="btn-professor" onClick={entrar}>Entrar</button>
+            
+
         </div>
 
         <div className="right">
           <h2>Entrar como Aluno</h2>
           <input type="text" placeholder="Usuário" />
           <input type="password" placeholder="Senha" />
-          <button>Entrar</button>
+            <a href="#" className="link-aluno">Esqueci minha senha</a>
+            <button className="btn-aluno" onClick={entrar}>Entrar</button>
         </div>
       </div>
     </>
