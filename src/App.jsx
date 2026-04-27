@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import HomeAluno from "./pages/HomeAluno";
 import HomeProfessor from "./pages/HomeProfessor";
-import BlibliotecaJogos from "./pages/BlibliotecaJogos";
+import BibliotecaJogos from "./pages/BibliotecaJogos";
 import ConquistasAluno from "./pages/ConquistasAluno";
 import GerenciaSala from "./pages/GerenciaSala";
 import Historico from "./pages/HistoricoAtv";  
@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/aluno" element={<HomeAluno />} />
         <Route path="/professor" element={<HomeProfessor />} />
-        <Route path="/jogos" element={<BlibliotecaJogos />} />
+        <Route path="/jogos" element={<BibliotecaJogos />} />
         <Route path="/conquistas" element={<ConquistasAluno />} />
         <Route path="/gerencia" element={<GerenciaSala />} />
         <Route path="/historico" element={<Historico />} /> 
