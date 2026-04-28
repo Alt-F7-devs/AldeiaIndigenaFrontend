@@ -1,0 +1,86 @@
+.conquistaspage {
+  min-height: 100vh;
+  background-color: #E3C9A5;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Itim', cursive;
+}
+
+.faixa-tribal {
+  width: 100%;
+  height: 30px;
+  background-image: url('../img/grafismo.svg');
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.conquistas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  flex: 1;
+}
+
+.conquistas-box {
+  background: #f5e9d6;
+  border: 2.5px solid var(--cor-Verde);
+  border-radius: 18px;
+  width: 100%;
+  padding: 1.2rem 1.2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.conquistas-titulo {
+  text-align: center;
+  font-size: 1.15rem;
+  color: var(--cor-Verde);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+.conquistas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.conquista-item {
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 16px;
+  min-height: 52px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.conquista-nome {
+  font-size: 0.95rem;
+}
+
+.conquista-data {
+  border-radius: 10px;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.conquista-vermelho { background: var(--cor-Vermelho); }
+.conquista-vermelho .conquista-nome { color: #f5d0d0; }
+.conquista-vermelho .conquista-data { background: #f5a5a5; color: var(--cor-Vermelho); }
+
+.conquista-azul { background: var(--cor-Azul); }
+.conquista-azul .conquista-nome { color: #c5e8f5; }
+.conquista-azul .conquista-data { background: #a5ddf5; color: var(--cor-Azul); }
+
+.conquista-marrom { background: var(--cor-Marrom); }
+.conquista-marrom .conquista-nome { color: #f5d8c8; }
+.conquista-marrom .conquista-data { background: #d4b89a; color: var(--cor-Marrom); }
+
+.conquista-verde { background: var(--cor-Verde); }
+.conquista-verde .conquista-nome { color: #d6f0b8; }
+.conquista-verde .conquista-data { background: #b0d97a; color: var(--cor-Verde); }
