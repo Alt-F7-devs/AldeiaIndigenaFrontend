@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #E3C9A5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.container {
+  display:flex;
+  width: 800px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  margin-top: 60px;
+  
+
+  background: white; /* fundo branco */
+}
+
+
+/* Lados */
+.left, .right {
+  width: 50%;
+
+  padding: 60px 60px 90px 60px;
+}
+
+
+.left {
+  background: #3b6f13;
+  color: white;
+}
+
+.right {
+  background: #ffffff;
+  color: #5a2b15;
+}
+
+/* Título */
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: normal;
+  font-family:  'Itim', cursive;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 15px;
+  
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: #dddddd;
+  margin-bottom: 15px;
+  font-family:  'Itim', cursive;
+}
+
+/* Link */
+.link {
+  font-size: 12px;
+  margin: 10px 0;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.link-professor{
+  color: #dddddd;
+  font-family: 'Itim', cursive; 
+  font-size: small;
+  display: block;              /* permite centralizar */
+  text-align: center;
+  text-decoration: none;
+}
+.link-professor:hover{
+  color: #712A13;
+}
+
+.link-aluno{
+  color: #712A13;
+  font-family: 'Itim', cursive; 
+  font-size: small;
+  display: block;              /* permite centralizar */
+  text-align: center;
+  text-decoration: none;
+}
+.link-aluno:hover{
+  color: #3b6f13;
+}
+
+.btn-professor {
+  background-color: #712A13;
+  color: #E3C9A5;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+  font-family:  'Itim', cursive;
+  font-size: medium;
+  transition: all 0.3s ease;
+}
+.btn-professor:hover{
+  color: #712A13;
+  background-color: #E3C9A5;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+
+}
+
+.btn-aluno {
+  background-color: #3b6f13;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+  font-family:  'Itim', cursive;
+  font-size: medium;
+  transition: all 0.3s ease;
+
+}
+
+.btn-aluno:hover{
+  color: #3b6f13;
+  background-color: #80cd45;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.btn-professor:active,
+.btn-aluno:active {
+  transform: scale(0.95);
+}

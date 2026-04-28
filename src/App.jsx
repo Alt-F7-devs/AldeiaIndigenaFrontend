@@ -5,7 +5,7 @@ import HomeProfessor from "./pages/HomeProfessor";
 import BlibliotecaJogos from "./pages/BlibliotecaJogos";
 import ConquistasAluno from "./pages/ConquistasAluno";
 import GerenciaSala from "./pages/GerenciaSala";
-import Historico from "./pages/HistoricoAtv";
+import Historico from "./pages/HistoricoAtv";  
 import ListaAluno from "./pages/ListaAluno";
 import SalaAluno from "./pages/SalaAluno";
 import SalaProfessor from "./pages/SalaProfessor";
@@ -14,15 +14,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/" element={<HomeAluno />} />
-        <Route path="/" element={<HomeProfessor />} />
-        <Route path="/" element={<BlibliotecaJogos />} />
-        <Route path="/" element={<ConquistasAluno />} />
-        <Route path="/" element={<GerenciaSala />} />
-        <Route path="/" element={<HistoricoAtv />} />
-        <Route path="/" element={<listaAluno />} />
-        <Route path="/" element={<SalaAluno />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/aluno" element={<HomeAluno />} />
+        <Route path="/professor" element={<HomeProfessor />} />
+        <Route path="/jogos" element={<BlibliotecaJogos />} />
+        <Route path="/conquistas" element={<ConquistasAluno />} />
+        <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
+        <Route path="/historico" element={<Historico />} /> 
+        <Route path="/lista-aluno" element={<ListaAluno />} />
+        <Route path="/sala-aluno" element={<SalaAluno />} />
         <Route path="/" element={<SalaProfessor />} />
       </Routes>
     </BrowserRouter>

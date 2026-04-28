@@ -1,0 +1,131 @@
+/* CONTAINER */
+.gerencia-container {
+  background: #E3C9A5;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 600px; /* 🔥 resolve problema com header */
+  padding-bottom: 40px;
+}
+
+/* LABEL */
+.sala-label {
+  align-self: flex-start;
+  background: #3b6e1f;
+  color: white;
+  padding: 20px 60px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* CARD */
+.card {
+  margin-top: 20px;
+  background: #f3f3f3;
+  width: 150%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* HEADER DO CARD */
+.card-header {
+  background: #3b6e1f;
+  color: white;
+  padding: 12px;
+  border-radius: 15px 15px 0 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* BODY */
+.card-body {
+  padding: 20px;
+}
+
+/* ATIVIDADE */
+.atividade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.atividade input {
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #d9d9d9;
+}
+
+/* UPLOAD */
+.upload-box {
+  width: 200px;
+  height: 120px;
+  background: #cfcfcf;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BOTÕES */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+/* CORES */
+.adicionar {
+  background: #3b6e1f;
+}
+
+.excluir {
+  background: #8b0000;
+}
+
+.historico,
+.listar {
+  background: #2f6f7f;
+  margin-bottom: 25px;
+  margin-left: 80%;
+  padding: 15 20 0 0px;
+}
+
+/* ALUNOS */
+.alunos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.full {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #d9d9d9;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #d9d9d9;
+}
