@@ -14,16 +14,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/aluno" element={<HomeAluno />} />
         <Route path="/professor" element={<HomeProfessor />} />
         <Route path="/jogos" element={<BlibliotecaJogos />} />
         <Route path="/conquistas" element={<ConquistasAluno />} />
-        <Route path="/gerencia" element={<GerenciaSala />} />
+        <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
         <Route path="/historico" element={<Historico />} /> 
         <Route path="/lista-aluno" element={<ListaAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
-        <Route path="/sala-professor" element={<SalaProfessor />} />
+        <Route path="/" element={<SalaProfessor />} />
       </Routes>
     </BrowserRouter>
   );
