@@ -84,3 +84,8 @@
 .conquista-verde { background: var(--cor-Verde); }
 .conquista-verde .conquista-nome { color: #d6f0b8; }
 .conquista-verde .conquista-data { background: #b0d97a; color: var(--cor-Verde); }
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
