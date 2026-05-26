@@ -18,12 +18,12 @@ function App() {
         <Route path="/aluno" element={<HomeAluno />} />
         <Route path="/professor" element={<HomeProfessor />} />
         <Route path="/jogos" element={<BibliotecaJogos />} />
-        <Route path="/conquistas" element={<ConquistasAluno />} />
+        <Route path="/" element={<ConquistasAluno />} />
         <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
         <Route path="/historico" element={<Historico />} /> 
         <Route path="/lista-aluno" element={<ListaAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
-        <Route path="/" element={<SalaProfessor />} />
+        <Route path="/sala-professor" element={<SalaProfessor />} />
       </Routes>
     </BrowserRouter>
   );
