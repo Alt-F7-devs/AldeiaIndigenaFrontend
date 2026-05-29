@@ -1,14 +1,11 @@
 /* CONTAINER */
 .gerencia-container {
   background: #E3C9A5;
-  min-height: 100vh;
-
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-top: 600px; /* 🔥 resolve problema com header */
-  padding-bottom: 40px;
+  padding: 100px 40px 40px 40px;
 }
 
 /* LABEL */
@@ -16,21 +13,21 @@
   align-self: flex-start;
   background: #3b6e1f;
   color: white;
-  padding: 20px 60px;
+  padding: 8px 2px;
   border-radius: 8px;
   margin-bottom: 20px;
-  font-weight: bold;
+  font-family: 'Itim', cursive;
+  font-size: 16px;
 }
 
 /* CARD */
 .card {
-  margin-top: 20px;
   background: #f3f3f3;
-  width: 150%;
-  border-radius: 8px;
+  width: 500px;
+  border-radius: 15px;
   margin-bottom: 10px;
-  padding-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
 /* HEADER DO CARD */
@@ -38,54 +35,103 @@
   background: #3b6e1f;
   color: white;
   padding: 12px;
-  border-radius: 15px 15px 0 0;
   text-align: center;
-  font-weight: bold;
+  font-family: 'Itim', cursive;
+  font-size: 16px;
 }
 
 /* BODY */
 .card-body {
-  padding: 20px;
+  padding: 15px;
+  display: flex;
+  gap: 10px;
 }
 
-/* ATIVIDADE */
-.atividade {
+/* COLUNA ESQUERDA (inputs) */
+.card-inputs {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
+  gap: 10px;
+  flex: 1;
 }
 
-.atividade input {
-  width: 60%;
-  padding: 10px;
+/* COLUNA DIREITA (upload + descartar) */
+.card-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* INPUT */
+input {
+  padding: 8px 12px;
   border-radius: 10px;
   border: none;
   background: #d9d9d9;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* INPUT FULL */
+.full {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  background: #d9d9d9;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+}
+
+/* ROW */
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.row input {
+  flex: 1;
 }
 
 /* UPLOAD */
 .upload-box {
-  width: 200px;
-  height: 120px;
+  width: 130px;
+  height: 90px;
   background: #cfcfcf;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Itim', cursive;
+  color: #5e5e5e;
+  font-size: 13px;
+  text-align: center;
 }
 
 /* BOTÕES */
 .btn {
   border: none;
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 8px 18px;
   cursor: pointer;
   color: white;
-  font-weight: bold;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
-/* CORES */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
 .adicionar {
   background: #3b6e1f;
 }
@@ -97,35 +143,26 @@
 .historico,
 .listar {
   background: #2f6f7f;
-  margin-bottom: 25px;
-  margin-left: 80%;
-  padding: 15 20 0 0px;
-}
-
-/* ALUNOS */
-.alunos {
+  margin-bottom: 15px;
+  align-self: flex-end;
+  width: 500px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: flex-end;
 }
 
-.full {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
+.btn-right {
+  background: #2f6f7f;
   border: none;
-  background: #d9d9d9;
-}
-
-.row {
-  display: flex;
-  gap: 10px;
-}
-
-.row input {
-  flex: 1;
-  padding: 10px;
   border-radius: 10px;
-  border: none;
-  background: #d9d9d9;
+  padding: 8px 18px;
+  cursor: pointer;
+  color: white;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn-right:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }

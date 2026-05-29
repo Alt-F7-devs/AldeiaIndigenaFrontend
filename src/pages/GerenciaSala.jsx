@@ -22,30 +22,31 @@ function GerenciaSala() {
           </div>
 
           <div className="card-body">
-            <input className="full" placeholder="Título da atividade" />
-            <input className="full" placeholder="Data da criação" />
-
-            <div className="row">
+            {/* Coluna esquerda: inputs */}
+            <div className="card-inputs">
+              <input placeholder="Título da atividade" />
+              <input placeholder="Data da criação" />
               <input placeholder="Número da atividade" />
+            </div>
 
+            {/* Coluna direita: upload + descartar */}
+            <div className="card-side">
               <div className="upload-box">
                 Selecionar Jogo
               </div>
-            </div>
-
-            <div className="row">
-              <div></div> {/* espaço vazio */}
               <button className="btn excluir">
-                Descartar
+                Descartar 🗑
               </button>
             </div>
           </div>
-
-          
         </div>
-        <button className="btn historico">
+
+        {/* Botão histórico alinhado à direita */}
+        <div style={{ width: "500px", display: "flex", justifyContent: "flex-end", marginBottom: "15px" }}>
+          <button className="btn-right">
             Histórico de atividades
           </button>
+        </div>
 
         {/* GERENCIAMENTO DE ALUNOS */}
         <div className="card">
@@ -53,26 +54,28 @@ function GerenciaSala() {
             Gerenciamento de alunos
           </div>
 
-          <div className="card-body">
+          <div className="card-body" style={{ flexDirection: "column" }}>
             <input className="full" placeholder="Nome do aluno" />
 
             <div className="row">
               <input placeholder="Identificador" />
-
               <button className="btn adicionar">
                 Adicionar
               </button>
-
               <button className="btn excluir">
                 Excluir
               </button>
             </div>
           </div>
-
         </div>
-          <button className="btn listar">
+
+        {/* Botão listar alinhado à direita */}
+        <div style={{ width: "500px", display: "flex", justifyContent: "flex-end", marginBottom: "15px" }}>
+          <button className="btn-right">
             Listar alunos
           </button>
+        </div>
+
       </div>
     </>
   );
