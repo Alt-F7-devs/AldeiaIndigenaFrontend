@@ -1,0 +1,112 @@
+/* Fundo da página */
+.sala-container {
+  background: #E3C9A5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+/* Caixa branca menor */
+.sala-content {
+  background: #eee;
+  width: 600px; 
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+
+/* Retângulo verde */
+.sala-titulo {
+  background: #3b6f13;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  height: 60px;
+  
+}
+
+.sala-titulo h3 {
+  font-family: 'Itim', cursive;
+  font-weight: normal;
+}
+
+/* Área interna */
+.sala-content > .sala-card {
+  margin: 20px;
+}
+
+/* Card */
+.sala-card {
+  border: 6px solid #3b6f13;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Info */
+.sala-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  
+}
+
+/* Sala */
+.tag-sala {
+  background: #c7c7c7;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  color:#5e5e5e ;
+  font-family: 'Itim', cursive;
+}
+
+/* Alunos */
+.tag-alunos {
+  background: #c7c7c7;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 14px; 
+  color:#5e5e5e ;
+  font-family: 'Itim', cursive;
+}
+
+/* Matéria */
+.tag-materia {
+  background: #c7c7c7;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  color:#5e5e5e ;
+  font-family: 'Itim', cursive;
+}
+
+
+/* Botão */
+.sala-btn {
+  background: #135971;
+  color: #83e0ff;
+  border: none;
+  padding: 20px 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: 'Itim', cursive;
+  transition: all 0.3s ease;
+}
+
+.sala-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  color: #135971;
+  background-color: #83e0ff;
+}
+
+.sala-btn:active {
+  transform: scale(0.95);
+}
