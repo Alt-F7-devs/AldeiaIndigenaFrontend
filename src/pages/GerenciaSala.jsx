@@ -22,30 +22,34 @@ function GerenciaSala() {
           </div>
 
           <div className="card-body">
-            <input className="full" placeholder="Título da atividade" />
-            <input className="full" placeholder="Data da criação" />
 
             <div className="row">
-              <input placeholder="Número da atividade" />
 
-              <div className="upload-box">
-                Selecionar Jogo
+              {/* ESQUERDA */}
+              <div className="coluna-inputs">
+                <input placeholder="Título da atividade" />
+                <input type="date" />
               </div>
+
+              {/* DIREITA */}
+              <div className="jogo-container">
+                <div className="upload-box">
+                  Selecionar Jogo
+                </div>
+
+                <button className="btn excluir">
+                  Descartar
+                </button>
+              </div>
+
             </div>
 
-            <div className="row">
-              <div></div> {/* espaço vazio */}
-              <button className="btn excluir">
-                Descartar
-              </button>
-            </div>
           </div>
-
-          
         </div>
+
         <button className="btn historico">
-            Histórico de atividades
-          </button>
+          Histórico de atividades
+        </button>
 
         {/* GERENCIAMENTO DE ALUNOS */}
         <div className="card">
@@ -68,11 +72,12 @@ function GerenciaSala() {
               </button>
             </div>
           </div>
-
         </div>
-          <button className="btn listar">
-            Listar alunos
-          </button>
+
+        <button className="btn listar">
+          Listar alunos
+        </button>
+
       </div>
     </>
   );
