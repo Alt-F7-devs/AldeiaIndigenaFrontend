@@ -21,7 +21,8 @@ function Login() {
       localStorage.setItem("tipo", data.tipo);
       navigate("/professor");
     } catch (err) {
-      alert("CPF ou senha inválidos!");
+      const mensagem = err.response?.data?.message || "Erro ao realizar login!";
+      alert(mensagem);
     }
   }
 
@@ -35,7 +36,8 @@ function Login() {
       localStorage.setItem("tipo", data.tipo);
       navigate("/aluno");
     } catch (err) {
-      alert("CGM ou senha inválidos!");
+      const mensagem = err.response?.data?.message || "Erro ao realizar login!";
+      alert(mensagem);
     }
   }
 
