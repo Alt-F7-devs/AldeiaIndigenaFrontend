@@ -1,0 +1,146 @@
+.gerencia-container {
+  background: #E3C9A5;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centraliza horizontal */
+  justify-content: flex-start; /* mantém no topo */
+
+  
+  padding-top: 500px; 
+  padding-bottom: 40px;
+}
+
+/* LABEL */
+.sala-label {
+  position: fixed;
+  top: 110px;
+  left: 0;
+  z-index: 9999;
+
+  background: #3b6e1f;
+  color: white;
+  padding: 20px 60px;
+  border-radius: 1px 15px 15px 1px;
+  font-weight: bold;
+
+  background-image: url("/img/folhagem.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: right center;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* CARD */
+.card {
+  margin-top: 20px;
+  background: #f3f3f3;
+  width: 150%;
+  height: 320px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+}
+
+/* HEADER */
+.card-header {
+  background: #3b6e1f;
+  color: white;
+  padding: 18px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* BODY */
+.card-body {
+  padding: 40px;
+}
+
+/* LINHA PRINCIPAL */
+.row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* COLUNA ESQUERDA (TÍTULO + DATA) */
+.coluna-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.coluna-inputs input {
+  width: 90%;
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  background: #d9d9d9;
+}
+
+/* DIREITA (JOGO + BOTÃO) */
+.jogo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* BOX DO JOGO */
+.upload-box {
+  width: 250px;
+  height: 150px;
+  background: #cfcfcf;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BOTÕES */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+/* CORES */
+.adicionar {
+  background: #3b6e1f;
+}
+
+.excluir {
+  background: #8b0000;
+}
+
+.historico,
+.listar {
+  background: #2f6f7f;
+  margin-bottom: 25px;
+  margin-left: 80%;
+  padding: 15px 20px 0 0;
+}
+
+/* INPUT FULL (OUTROS) */
+.full {
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  background: #d9d9d9;
+}
+
+/* ALUNOS */
+.alunos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
