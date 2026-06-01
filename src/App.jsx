@@ -17,13 +17,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/aluno" element={<HomeAluno />} />
         <Route path="/professor" element={<HomeProfessor />} />
-        <Route path="/" element={<BibliotecaJogos />} />
+        <Route path="/bliblioteca" element={<BibliotecaJogos />} />
         <Route path="/conquistas" element={<ConquistasAluno />} />
         <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
         <Route path="/historico" element={<Historico />} />
         <Route path="/lista-aluno" element={<ListaAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
-        <Route path="/sala" element={<SalaProfessor />} />
+        <Route path="/" element={<SalaProfessor />} />
       </Routes> 
     </BrowserRouter>
   );

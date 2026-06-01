@@ -1,146 +1,152 @@
 .gerencia-container {
   background: #E3C9A5;
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
-  align-items: center;     /* centraliza horizontal */
-  justify-content: flex-start; /* mantém no topo */
-
-  
-  padding-top: 500px; 
+  align-items: center;
+  padding-top: 150px;
   padding-bottom: 40px;
+  position: relative;
 }
 
-/* LABEL */
 .sala-label {
-  position: fixed;
-  top: 110px;
-  left: 0;
-  z-index: 9999;
-
+  position: fixed;        /* ← fixo na borda da tela */
+  top: 90px;              /* ← ajuste conforme altura do seu Header */
+  left: 0;                /* ← colado na borda esquerda */
   background: #3b6e1f;
   color: white;
-  padding: 20px 60px;
-  border-radius: 1px 15px 15px 1px;
   font-weight: bold;
-
-  background-image: url("/img/folhagem.png");
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: right center;
-
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-size: 15px;
+  padding: 14px 40px 14px 20px;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  z-index: 10;
 }
 
-/* CARD */
+.cards-wrapper {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 28px;              /* ← espaço entre os cards e btn-rows */
+}
+
 .card {
-  margin-top: 20px;
-  background: #f3f3f3;
-  width: 150%;
-  height: 320px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  padding-bottom: 20px;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+  background: #f0f0f0;
+  width: 480px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
-/* HEADER */
 .card-header {
   background: #3b6e1f;
   color: white;
-  padding: 18px;
-  border-radius: 10px 10px 0 0;
   text-align: center;
+  padding: 13px;
   font-weight: bold;
+  font-size: 14px;
 }
 
-/* BODY */
 .card-body {
-  padding: 40px;
+  padding: 20px 22px;
 }
 
-/* LINHA PRINCIPAL */
-.row {
+.two-col {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  gap: 14px;
 }
 
-/* COLUNA ESQUERDA (TÍTULO + DATA) */
-.coluna-inputs {
+.left-col {
   display: flex;
   flex-direction: column;
   gap: 10px;
   flex: 1;
 }
 
-.coluna-inputs input {
-  width: 90%;
-  padding: 15px;
-  border-radius: 15px;
-  border: none;
-  background: #d9d9d9;
-}
-
-/* DIREITA (JOGO + BOTÃO) */
-.jogo-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* BOX DO JOGO */
-.upload-box {
-  width: 250px;
-  height: 150px;
-  background: #cfcfcf;
-  border-radius: 15px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* BOTÕES */
-.btn {
-  border: none;
-  border-radius: 10px;
-  padding: 8px 15px;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-}
-
-/* CORES */
-.adicionar {
-  background: #3b6e1f;
-}
-
-.excluir {
-  background: #8b0000;
-}
-
-.historico,
-.listar {
-  background: #2f6f7f;
-  margin-bottom: 25px;
-  margin-left: 80%;
-  padding: 15px 20px 0 0;
-}
-
-/* INPUT FULL (OUTROS) */
-.full {
-  width: 100%;
-  padding: 10px;
-  border-radius: 15px;
-  border: none;
-  background: #d9d9d9;
-}
-
-/* ALUNOS */
-.alunos {
+.right-col {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.inp {
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #d9d9d9;
+  font-size: 13px;
+  color: #555;
+  outline: none;
+  width: 100%;
+}
+
+.inp-full {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.upload-box {
+  width: 165px;
+  height: 115px;
+  background: #cfcfcf;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #666;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.btn-descartar {
+  background: #8b0000;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-adicionar {
+  background: #3b6e1f;
+  white-space: nowrap;
+}
+
+.btn-excluir {
+  background: #8b0000;
+  white-space: nowrap;
+}
+
+.btn-historico,
+.btn-listar {
+  background: #2f7486;
+}
+
+.btn-row {
+  width: 480px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -16px;      /* ← aproxima o botão do card acima */
+}
+
+.aluno-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.aluno-row .inp {
+  flex: 1;
+  min-width: 0;
 }
