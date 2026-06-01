@@ -15,7 +15,6 @@ const avisos = [
   { id: 3, titulo: "Avaliação de Língua", descricao: "A avaliação de língua indígena será realizada na semana que vem." },
 ];
 
-// ── Faixa Tribal ──
 const TribalDivider = () => (
   <div className="ha-tribal" aria-hidden="true">
     <img src="/src/img/grafismo.svg" alt="" className="ha-tribal-img" />
@@ -46,25 +45,21 @@ export default function HomeAluno() {
   ];
 
   const handleProfessorClick = (prof) => {
-    // Futura integração: abrir chat ou modal
     console.log("Professor selecionado:", prof);
   };
 
   return (
     <div className="ha-page">
 
-      {/* ══ HEADER ══ */}
       <header className="ha-header">
         <button className="ha-btn-icon" onClick={() => navigate("/")} aria-label="Início">
-          <img src="/src/img/casa.png" alt="Home" className="ha-icon-img" />
+          <img src="/src/img/caasa.png" alt="Home" className="ha-icon-img" />
         </button>
-
         <div className="ha-logo-wrap">
           <div className="ha-logo-circle">
             <img src="/src/img/logo.svg" alt="Logo" className="ha-logo-img" />
           </div>
         </div>
-
         <div className="ha-header-right">
           <button className="ha-btn-sair" onClick={() => navigate("/Login")}>Sair</button>
           <button className="ha-btn-icon" aria-label="Perfil">
@@ -73,14 +68,11 @@ export default function HomeAluno() {
         </div>
       </header>
 
-      {/* ══ CURIOSIDADES ══ */}
       <section className="ha-curiosidades">
         <TribalDivider />
-
         <div className="ha-curio-label-wrap">
           <span className="ha-curio-label">Curiosidades</span>
         </div>
-
         <div className="ha-curio-body">
           <div className="ha-curio-cards">
             <div className="ha-curio-card ha-curio-card--esq" aria-hidden="true" />
@@ -90,11 +82,9 @@ export default function HomeAluno() {
             texto esclarecendo dúvidas e curiosidades sobre temas relevantes ou sobre o uso do sistema.
           </p>
         </div>
-
         <TribalDivider />
       </section>
 
-      {/* ══ MENU PRINCIPAL ══ */}
       <section className="ha-menu">
         <button className="ha-menu-btn ha-menu-btn--salas" onClick={() => navigate("/sala-aluno")}>
           Minhas Salas
@@ -105,7 +95,6 @@ export default function HomeAluno() {
         <TribalDivider />
       </section>
 
-      {/* ══ PROFESSORES ══ */}
       <section className="ha-professores">
         <div className="ha-prof-header">
           <span className="ha-prof-label">Dúvidas? Fale com um professor</span>
@@ -113,7 +102,6 @@ export default function HomeAluno() {
             <img src="/src/img/logo.svg" alt="Logo" className="ha-prof-logo-img" />
           </div>
         </div>
-
         <div className="ha-prof-lista">
           {professores.map((prof) => (
             <button
@@ -136,19 +124,15 @@ export default function HomeAluno() {
         </div>
       </section>
 
-      {/* ══ MURAL DE AVISOS ══ */}
       <section className="ha-mural">
         <TribalDivider />
-
         <div className="ha-mural-container">
           <div className="ha-mural-painel">
             <div className="ha-mural-aba">Mural de avisos</div>
-
             <div className="ha-mural-carrossel">
               <button className="ha-mural-seta" onClick={() => trocarAviso("prev")} aria-label="Aviso anterior">
                 &#8592;
               </button>
-
               <div className="ha-mural-cards">
                 {indicesCarrossel.map((idx, pos) => (
                   <div
@@ -160,7 +144,6 @@ export default function HomeAluno() {
                   </div>
                 ))}
               </div>
-
               <button className="ha-mural-seta" onClick={() => trocarAviso("next")} aria-label="Próximo aviso">
                 &#8594;
               </button>
@@ -169,7 +152,6 @@ export default function HomeAluno() {
         </div>
       </section>
 
-      {/* ══ FOOTER ══ */}
       <footer className="ha-footer" aria-hidden="true">
         <img src="/src/img/grafismo.svg" alt="" className="ha-tribal-img" />
       </footer>

@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdicionarAviso.css";
-
-// Substitua pelo caminho real da logo do projeto
 import logoImg from "../img/logo.svg";
 
 const TribalBorder = () => (
@@ -27,27 +25,18 @@ export default function AdicionarAviso() {
 
   const handleImagemChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setImagemPreview(URL.createObjectURL(file));
-    }
+    if (file) setImagemPreview(URL.createObjectURL(file));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Integrar com API / backend aqui
     console.log({ professor, descricao, data, imagemPreview });
   };
 
   return (
     <div className="ca-page">
-      {/* ── HEADER ── */}
       <header className="ca-header">
-        <button
-          className="ca-btn-icon"
-          onClick={() => navigate("/")}
-          aria-label="Ir para início"
-        >
-          {/* Ícone casa */}
+        <button className="ca-btn-icon" onClick={() => navigate("/")} aria-label="Ir para início">
           <svg viewBox="0 0 24 24" fill="white" width="20" height="20">
             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
           </svg>
@@ -60,9 +49,7 @@ export default function AdicionarAviso() {
         </div>
 
         <div className="ca-header-right">
-          <button className="ca-btn-sair" onClick={() => navigate("/login")}>
-            Sair
-          </button>
+          <button className="ca-btn-sair" onClick={() => navigate("/login")}>Sair</button>
           <button className="ca-btn-icon" aria-label="Perfil do usuário">
             <svg viewBox="0 0 24 24" fill="white" width="20" height="20">
               <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
@@ -71,68 +58,26 @@ export default function AdicionarAviso() {
         </div>
       </header>
 
-      {/* ── FAIXA TRIBAL SUPERIOR ── */}
       <TribalBorder />
 
-      {/* ── CONTEÚDO PRINCIPAL ── */}
       <main className="ca-main">
         <form className="ca-card" onSubmit={handleSubmit} noValidate>
-          {/* Cabeçalho do card */}
           <div className="ca-card-header">
             <h1 className="ca-card-title">Avisos</h1>
           </div>
 
-          {/* Corpo do card */}
           <div className="ca-card-body">
-            {/* Coluna esquerda — campos */}
             <div className="ca-col-left">
-              <input
-                className="ca-input"
-                type="text"
-                placeholder="Professor:"
-                value={professor}
-                onChange={(e) => setProfessor(e.target.value)}
-                required
-              />
-
-              <textarea
-                className="ca-textarea"
-                placeholder="Descrição"
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
-                required
-              />
-
-              <input
-                className="ca-input"
-                type="date"
-                placeholder="Data:"
-                value={data}
-                onChange={(e) => setData(e.target.value)}
-                required
-              />
-
-              <button type="submit" className="ca-btn-publicar">
-                Publicar Aviso
-              </button>
+              <input className="ca-input" type="text" placeholder="Professor:" value={professor} onChange={(e) => setProfessor(e.target.value)} required />
+              <textarea className="ca-textarea" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} required />
+              <input className="ca-input" type="date" value={data} onChange={(e) => setData(e.target.value)} required />
+              <button type="submit" className="ca-btn-publicar">Publicar Aviso</button>
             </div>
 
-            {/* Coluna direita — imagem */}
             <div className="ca-col-right">
-              <div
-                className="ca-image-frame"
-                onClick={() => fileInputRef.current.click()}
-                role="button"
-                tabIndex={0}
-                aria-label="Clique para adicionar imagem"
-                onKeyDown={(e) => e.key === "Enter" && fileInputRef.current.click()}
-              >
+              <div className="ca-image-frame" onClick={() => fileInputRef.current.click()} role="button" tabIndex={0} aria-label="Clique para adicionar imagem" onKeyDown={(e) => e.key === "Enter" && fileInputRef.current.click()}>
                 {imagemPreview ? (
-                  <img
-                    src={imagemPreview}
-                    alt="Preview"
-                    className="ca-image-preview"
-                  />
+                  <img src={imagemPreview} alt="Preview" className="ca-image-preview" />
                 ) : (
                   <div className="ca-image-placeholder">
                     <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
@@ -144,28 +89,13 @@ export default function AdicionarAviso() {
                 )}
               </div>
 
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleImagemChange}
-                className="ca-file-input"
-                aria-hidden="true"
-              />
-
-              <button
-                type="button"
-                className="ca-btn-imagem"
-                onClick={() => fileInputRef.current.click()}
-              >
-                Adicionar Imagem
-              </button>
+              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImagemChange} className="ca-file-input" aria-hidden="true" />
+              <button type="button" className="ca-btn-imagem" onClick={() => fileInputRef.current.click()}>Adicionar Imagem</button>
             </div>
           </div>
         </form>
       </main>
 
-      {/* ── FAIXA TRIBAL INFERIOR ── */}
       <div className="ca-footer-tribal">
         <TribalBorder />
       </div>
