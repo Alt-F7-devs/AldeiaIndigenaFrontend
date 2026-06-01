@@ -15,69 +15,48 @@ function GerenciaSala() {
           Sala {salaId?.toUpperCase()}
         </div>
 
-        {/* ANEXAR ATIVIDADE */}
-        <div className="card">
-          <div className="card-header">
-            Anexar atividade
-          </div>
+        <div className="cards-wrapper">
 
-          <div className="card-body">
-
-            <div className="row">
-
-              {/* ESQUERDA */}
-              <div className="coluna-inputs">
-                <input placeholder="Título da atividade" />
-                <input type="date" />
-              </div>
-
-              {/* DIREITA */}
-              <div className="jogo-container">
-                <div className="upload-box">
-                  Selecionar Jogo
+          {/* ANEXAR ATIVIDADE */}
+          <div className="card">
+            <div className="card-header">Anexar atividade</div>
+            <div className="card-body">
+              <div className="two-col">
+                <div className="left-col">
+                  <input className="inp" placeholder="Título da atividade" />
+                  <input className="inp" placeholder="Data da criação" />
+                  <input className="inp" placeholder="Numero da atividade" />
                 </div>
-
-                <button className="btn excluir">
-                  Descartar
-                </button>
+                <div className="right-col">
+                  <div className="upload-box">Selecionar Jogo</div>
+                  <button className="btn btn-descartar">Descartar 🗑</button>
+                </div>
               </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <button className="btn historico">
-          Histórico de atividades
-        </button>
-
-        {/* GERENCIAMENTO DE ALUNOS */}
-        <div className="card">
-          <div className="card-header">
-            Gerenciamento de alunos
-          </div>
-
-          <div className="card-body">
-            <input className="full" placeholder="Nome do aluno" />
-
-            <div className="row">
-              <input placeholder="Identificador" />
-
-              <button className="btn adicionar">
-                Adicionar
-              </button>
-
-              <button className="btn excluir">
-                Excluir
-              </button>
             </div>
           </div>
+
+          <div className="btn-row">
+            <button className="btn btn-historico">Histórico de atividades</button>
+          </div>
+
+          {/* GERENCIAMENTO DE ALUNOS */}
+          <div className="card">
+            <div className="card-header">Gerenciamento de alunos</div>
+            <div className="card-body">
+              <input className="inp inp-full" placeholder="Nome do aluno" />
+              <div className="aluno-row">
+                <input className="inp" placeholder="identificador" />
+                <button className="btn btn-adicionar">Adicionar</button>
+                <button className="btn btn-excluir">Excluir</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="btn-row">
+            <button className="btn btn-listar">Listar alunos</button>
+          </div>
+
         </div>
-
-        <button className="btn listar">
-          Listar alunos
-        </button>
-
       </div>
     </>
   );
