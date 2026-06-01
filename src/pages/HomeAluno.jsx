@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 import "./HomeAluno.css";
+
+
 
 // ── Dados mockados ──
 const professores = [
@@ -51,27 +54,10 @@ export default function HomeAluno() {
   };
 
   return (
+    <>
+    <Header />
+  
     <div className="ha-page">
-
-      {/* ══ HEADER ══ */}
-      <header className="ha-header">
-        <button className="ha-btn-icon" onClick={() => navigate("/")} aria-label="Início">
-          <img src="/src/img/casa.png" alt="Home" className="ha-icon-img" />
-        </button>
-
-        <div className="ha-logo-wrap">
-          <div className="ha-logo-circle">
-            <img src="/src/img/logo.svg" alt="Logo" className="ha-logo-img" />
-          </div>
-        </div>
-
-        <div className="ha-header-right">
-          <button className="ha-btn-sair" onClick={() => navigate("/Login")}>Sair</button>
-          <button className="ha-btn-icon" aria-label="Perfil">
-            <img src="/src/img/do-utilizador.png" alt="Perfil" className="ha-icon-img" />
-          </button>
-        </div>
-      </header>
 
       {/* ══ CURIOSIDADES ══ */}
       <section className="ha-curiosidades">
@@ -175,5 +161,8 @@ export default function HomeAluno() {
       </footer>
 
     </div>
+    </>
   );
 }
+  
+    

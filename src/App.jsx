@@ -17,7 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/aluno" element={<HomeAluno />} />
+        <Route path="/homeAluno" element={<HomeAluno />} />
         <Route path="/professor" element={<HomeProfessor />} />
         <Route path="/" element={<BibliotecaJogos />} />
         <Route path="/conquistas" element={<ConquistasAluno />} />
@@ -27,7 +27,6 @@ function App() {
         <Route path="/sala-aluno" element={<SalaAluno />} />
         <Route path="/sala" element={<SalaProfessor />} />
         <Route path="/adicionar-aviso" element={<AdicionarAviso />} /> 
-        <Route path="/aluno" element={<HomeAluno />} />
       </Routes>
     </BrowserRouter>
   );
