@@ -27,6 +27,8 @@ function App() {
         <Route path="/" element={<SalaProfessor />} />
         <Route path="/adicionar-aviso" element={<AdicionarAviso />} />
       </Routes>
+        <Route path="/" element={<SalaProfessor />} />
+      </Routes> 
     </BrowserRouter>
   );
 }
