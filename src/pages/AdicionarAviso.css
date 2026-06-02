@@ -1,0 +1,427 @@
+/* ═══════════════════════════════════════
+   CriarAviso.css
+   Plataforma Educacional Indígena Gamificada
+   ═══════════════════════════════════════ */
+
+/* ── Variáveis ── */
+:root {
+  --verde-escuro: #3E7A08;
+  --verde-claro: #6BAA28;
+  --bege: #DCC8A7;
+  --marrom: #8B2F12;
+  --areia: #F4E8D0;
+  --input-bg: #D9D9D9;
+  --card-radius: 22px;
+  --transition: 0.25s ease;
+}
+
+/* ── Reset básico ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Página ── */
+.ca-page {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--bege);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', 'Nunito', sans-serif;
+  position: relative;
+}
+
+/* ════════════════════════════════
+   HEADER
+   ════════════════════════════════ */
+.ca-header {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  /* Folhagem verde — degradê como fallback se não houver imagem */
+  background:
+    linear-gradient(
+      to bottom,
+      #2d6a04 0%,
+      #3E7A08 40%,
+      #4a9a10 70%,
+      #3E7A08 100%
+    ); 
+  background-image: url("../img/folhagem.png");
+  background-size: cover;
+  background-position: center;
+  overflow: visible;
+  z-index: 10;
+}
+
+/* ── Botão ícone (casa / usuário) ── */
+.ca-btn-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--marrom);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.ca-btn-icon:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.ca-btn-icon:focus-visible {
+  outline: 3px solid var(--areia);
+  outline-offset: 2px;
+}
+
+/* ── Logo flutuante central ── */
+.ca-logo-wrap {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+}
+
+.ca-logo-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #F0D9A0;
+  border: 5px solid var(--verde-claro);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ca-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ca-logo-img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+/* ── Área direita do header ── */
+.ca-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Botão Sair ── */
+.ca-btn-sair {
+  background-color: var(--marrom);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+
+.ca-btn-sair:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  background-color: #a03515;
+}
+
+.ca-btn-sair:focus-visible {
+  outline: 3px solid var(--areia);
+  outline-offset: 2px;
+}
+
+/* ════════════════════════════════
+   FAIXA TRIBAL
+   ════════════════════════════════ */
+.tribal-border img {
+  width: 20000%;
+  height: 60px;
+  object-fit: fill;
+}
+
+.tribal-border svg {
+  display: block;
+  width: 100%;
+}
+
+/* ════════════════════════════════
+   MAIN / CARD
+   ════════════════════════════════ */
+.ca-main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px 32px;
+}
+
+/* ── Card principal ── */
+.ca-card {
+  width: 80%;
+  max-width: 1000px;
+  background: white;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Cabeçalho do card ── */
+.ca-card-header {
+  background-color: var(--verde-escuro);
+  padding: 18px 28px;
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.ca-card-title {
+  color: var(--areia);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ── Corpo do card ── */
+.ca-card-body {
+  display: flex;
+  gap: 32px;
+  padding: 28px 32px 32px;
+  align-items: flex-start;
+}
+
+/* ════════════════════════════════
+   COLUNA ESQUERDA — INPUTS
+   ════════════════════════════════ */
+.ca-col-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Input e Textarea base ── */
+.ca-input,
+.ca-textarea {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: none;
+  border-radius: 15px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  color: #444;
+  font-family: inherit;
+  transition: box-shadow var(--transition);
+  resize: none;
+}
+
+.ca-input {
+  height: 42px;
+}
+
+.ca-textarea {
+  height: 120px;
+}
+
+.ca-input::placeholder,
+.ca-textarea::placeholder {
+  color: #888;
+}
+
+.ca-input:focus,
+.ca-textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(62, 122, 8, 0.3);
+}
+
+/* ── Input date ── */
+.ca-input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+/* ── Botão publicar ── */
+.ca-btn-publicar {
+  margin-top: 8px;
+  align-self: flex-start;
+  background-color: var(--verde-escuro);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 28px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+
+.ca-btn-publicar:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(62, 122, 8, 0.4);
+  background-color: #4a8f0a;
+}
+
+.ca-btn-publicar:focus-visible {
+  outline: 3px solid var(--verde-claro);
+  outline-offset: 2px;
+}
+
+/* ════════════════════════════════
+   COLUNA DIREITA — IMAGEM
+   ════════════════════════════════ */
+.ca-col-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+/* ── Moldura de imagem ── */
+.ca-image-frame {
+  width: 280px;
+  height: 240px;
+  border: 5px solid var(--verde-claro);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.ca-image-frame:hover {
+  border-color: var(--verde-escuro);
+  box-shadow: 0 0 0 3px rgba(107, 170, 40, 0.25);
+}
+
+.ca-image-frame:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(62, 122, 8, 0.4);
+}
+
+.ca-image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ca-image-placeholder {
+  opacity: 0.5;
+}
+
+/* ── Input file (oculto) ── */
+.ca-file-input {
+  display: none;
+}
+
+/* ── Botão Adicionar Imagem ── */
+.ca-btn-imagem {
+  background-color: #4A8A12;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+
+.ca-btn-imagem:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 12px rgba(74, 138, 18, 0.4);
+  background-color: #3E7A08;
+}
+
+.ca-btn-imagem:focus-visible {
+  outline: 3px solid var(--verde-claro);
+  outline-offset: 2px;
+}
+
+/* ════════════════════════════════
+   FOOTER TRIBAL
+   ════════════════════════════════ */
+.ca-footer-tribal {
+  margin-top: auto;
+}
+
+/* ════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════ */
+@media (max-width: 768px) {
+  .ca-card {
+    width: 96%;
+  }
+
+  .ca-card-body {
+    flex-direction: column;
+    padding: 20px 18px 24px;
+    gap: 20px;
+  }
+
+  .ca-col-right {
+    width: 100%;
+  }
+
+  .ca-image-frame {
+    width: 100%;
+    height: 200px;
+  }
+
+  .ca-logo-circle {
+    width: 88px;
+    height: 88px;
+  }
+
+  .ca-logo-wrap {
+    top: 14px;
+  }
+
+  .ca-btn-sair {
+    padding: 7px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ca-header {
+    height: 68px;
+  }
+
+  .ca-card-title {
+    font-size: 1.3rem;
+  }
+
+  .ca-main {
+    padding: 28px 8px 24px;
+  }
+}
+
+

@@ -9,6 +9,7 @@ import Historico from "./pages/HistoricoAtv";
 import ListaAluno from "./pages/ListaAluno";
 import SalaAluno from "./pages/SalaAluno";
 import SalaProfessor from "./pages/SalaProfessor";
+import AdicionarAviso from "./pages/AdicionarAviso";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
         <Route path="/historico" element={<Historico />} />
         <Route path="/lista-aluno" element={<ListaAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
+        <Route path="/sala" element={<SalaProfessor />} />
+        <Route path="/adicionar-aviso" element={<AdicionarAviso />} />
+      </Routes>
         <Route path="/" element={<SalaProfessor />} />
       </Routes> 
     </BrowserRouter>
