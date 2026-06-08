@@ -28,7 +28,7 @@ function App() {
         <Route path="/professor" element={<RotaProtegida tipo="PROFESSOR"><HomeProfessor /></RotaProtegida>} />
         <Route path="/gerencia/:salaId" element={<RotaProtegida tipo="PROFESSOR"><GerenciaSala /></RotaProtegida>} />
         <Route path="/historico" element={<RotaProtegida tipo="PROFESSOR"><Historico /></RotaProtegida>} />
-        <Route path="/lista-aluno" element={<RotaProtegida tipo="PROFESSOR"><ListaAluno /></RotaProtegida>} />
+        <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo="PROFESSOR"><ListaAluno /></RotaProtegida>} />
         <Route path="/sala-professor" element={<RotaProtegida tipo="PROFESSOR"><SalaProfessor /></RotaProtegida>} />
         <Route path="/relatoriopresenca" element={<RotaProtegida tipo="PROFESSOR"><RelatorioPresenca /></RotaProtegida>} />
       </Routes>
