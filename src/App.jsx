@@ -9,21 +9,23 @@ import Historico from "./pages/HistoricoAtv";
 import ListaAluno from "./pages/ListaAluno";
 import SalaAluno from "./pages/SalaAluno";
 import SalaProfessor from "./pages/SalaProfessor";
+import RelatorioPresenca from "./pages/RelatorioPresenca";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/relatoriopresenca" element={<RelatorioPresenca />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/aluno" element={<HomeAluno />} />
-        <Route path="/professor" element={<HomeProfessor />} />
+        <Route path="/home-aluno" element={<HomeAluno />} />
+        <Route path="/" element={<HomeProfessor />} />
         <Route path="/jogos" element={<BibliotecaJogos />} />
         <Route path="/conquistas" element={<ConquistasAluno />} />
         <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
         <Route path="/historico" element={<Historico />} /> 
         <Route path="/lista-aluno" element={<ListaAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
-        <Route path="/" element={<SalaProfessor />} />
+        <Route path="/sala-professor" element={<SalaProfessor />} />
       </Routes>
     </BrowserRouter>
   );
