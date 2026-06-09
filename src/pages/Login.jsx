@@ -34,6 +34,8 @@ function Login() {
     try {
       const data = await loginAluno(cgmAluno, senhaAluno);
       localStorage.setItem("tipo", data.tipo);
+      // Salva o CGM para que SalaAluno consiga recuperar o id_aluno
+      localStorage.setItem("cgm", cgmAluno);
       navigate("/aluno");
     } catch (err) {
       const mensagem = err.response?.data?.message || "Erro ao realizar login!";
