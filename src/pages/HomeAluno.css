@@ -1,0 +1,513 @@
+/* ═══════════════════════════════════════
+   HomeAluno.css
+   Plataforma Educacional Indígena Gamificada
+   ═══════════════════════════════════════ */
+
+:root {
+  --verde-escuro: #3E7A08;
+  --verde-claro: #6BAA28;
+  --verde-mural: #2E6B10;
+  --azul-petroleo: #1A5276;
+  --azul-curio: #1F618D;
+  --bege: #DCC8A7;
+  --areia: #F4E8D0;
+  --marrom: #8B2F12;
+  --marrom-escuro: #5D2B0A;
+  --vermelho: #8B1A1A;
+  --branco: #ffffff;
+  --sombra: 0 3px 10px rgba(0,0,0,0.18);
+  --transition: 0.25s ease;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ════════════════════════════════
+   PÁGINA
+   ════════════════════════════════ */
+.ha-page {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  background-color: var(--bege);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ════════════════════════════════
+   TRIBAL DIVIDER
+   ════════════════════════════════ */
+.ha-tribal {
+  width: 100%;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.ha-tribal-img {
+  width: 100%;
+  height: 36px;
+  display: block;
+  object-fit: fill;
+}
+
+/* ════════════════════════════════
+   HEADER
+   ════════════════════════════════ */
+.ha-header {
+  position: relative;
+  height: 72px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background-image: url("/src/img/folhagem.png");
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+  overflow: visible;
+}
+
+.ha-btn-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--marrom);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 8px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.ha-btn-icon:hover {
+  transform: scale(1.08);
+  box-shadow: var(--sombra);
+}
+
+.ha-icon-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: invert(1);
+}
+
+.ha-logo-wrap {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.ha-logo-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #F0D9A0;
+  border: 4px solid var(--verde-claro);
+  box-shadow: var(--sombra);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ha-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ha-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ha-btn-sair {
+  background-color: var(--marrom);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), background-color var(--transition);
+}
+
+.ha-btn-sair:hover {
+  transform: scale(1.04);
+  background-color: #a03515;
+}
+
+/* ════════════════════════════════
+   CURIOSIDADES
+   ════════════════════════════════ */
+.ha-curiosidades {
+  display: flex;
+  flex-direction: column;
+}
+
+.ha-curio-label-wrap {
+  display: flex;
+  justify-content: center;
+  background-color: var(--azul-petroleo);
+  padding: 6px 0;
+}
+
+.ha-curio-label {
+  background-color: var(--azul-curio);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 5px 24px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ha-curio-body {
+  background-color: var(--azul-petroleo);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 14px 20px;
+}
+
+.ha-curio-cards {
+  position: relative;
+  width: 130px;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+.ha-curio-card {
+  width: 75px;
+  height: 80px;
+  background: var(--branco);
+  border-radius: 6px;
+  box-shadow: var(--sombra);
+  position: absolute;
+}
+
+.ha-curio-card--esq {
+  left: 0;
+  top: 5px;
+  transform: rotate(-6deg);
+  z-index: 1;
+}
+
+.ha-curio-card--dir {
+  left: 44px;
+  top: 0;
+  transform: rotate(5deg);
+  z-index: 2;
+}
+
+.ha-curio-texto {
+  color: white;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* ════════════════════════════════
+   MENU PRINCIPAL
+   ════════════════════════════════ */
+.ha-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0;
+  gap: 10px;
+}
+
+.ha-menu-btn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+  transition: transform var(--transition), filter var(--transition);
+}
+
+.ha-menu-btn:hover {
+  transform: scale(1.02);
+  filter: brightness(1.12);
+}
+
+.ha-menu-btn--salas {
+  background-color: var(--vermelho);
+}
+
+.ha-menu-btn--conquistas {
+  background-color: var(--marrom-escuro);
+  margin-bottom: 20px;
+}
+
+/* ════════════════════════════════
+   PROFESSORES
+   ════════════════════════════════ */
+.ha-professores {
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ha-prof-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.ha-prof-label {
+  background-color: var(--verde-claro);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.ha-prof-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #F0D9A0;
+  border: 3px solid var(--verde-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ha-prof-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ha-prof-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ha-prof-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--verde-claro);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  gap: 8px;
+  transition: transform var(--transition), filter var(--transition);
+}
+
+.ha-prof-card:hover {
+  transform: scale(1.01);
+  filter: brightness(1.08);
+}
+
+.ha-prof-card-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.ha-prof-icon-wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ha-prof-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: invert(1);
+}
+
+.ha-prof-nome {
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.ha-prof-status {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 5px;
+  color: white;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ha-prof-status--disp {
+  background-color: var(--verde-escuro);
+}
+
+.ha-prof-status--indisp {
+  background-color: var(--vermelho);
+}
+
+/* ════════════════════════════════
+   MURAL DE AVISOS
+   ════════════════════════════════ */
+.ha-mural {
+  display: flex;
+  flex-direction: column;
+}
+
+.ha-mural-container {
+  background-image: url("/src/img/folhagem.png");
+  background-size: cover;
+  background-position: center;
+  padding: 16px 10px 24px;
+}
+
+.ha-mural-painel {
+  background-color: var(--bege);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+.ha-mural-aba {
+  background-color: var(--verde-mural);
+  color: white;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px;
+  letter-spacing: 0.04em;
+}
+
+.ha-mural-carrossel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 8px;
+  gap: 4px;
+}
+
+.ha-mural-seta {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--verde-escuro);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.ha-mural-seta:hover {
+  background-color: rgba(62,122,8,0.12);
+  transform: scale(1.15);
+}
+
+.ha-mural-cards {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+  align-items: stretch;
+  min-height: 120px;
+}
+
+.ha-mural-card {
+  background-color: var(--branco);
+  border-radius: 10px;
+  box-shadow: var(--sombra);
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.ha-mural-card--ativo {
+  flex: 1.2;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ha-mural-card--lateral {
+  flex: 0.9;
+  opacity: 0.65;
+  transform: scale(0.95);
+}
+
+.ha-mural-card--animando {
+  opacity: 0.3;
+  transform: scale(0.92);
+}
+
+.ha-mural-card-titulo {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--verde-escuro);
+}
+
+.ha-mural-card-desc {
+  font-size: 0.72rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* ════════════════════════════════
+   FOOTER
+   ════════════════════════════════ */
+.ha-footer {
+  width: 100%;
+  line-height: 0;
+  margin-top: auto;
+}
+
+.ha-footer .ha-tribal-img {
+  width: 100%;
+  height: 36px;
+  display: block;
+  object-fit: fill;
+}
+
+/* ════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════ */
+@media (min-width: 768px) {
+  .ha-page {
+    box-shadow: 0 0 40px rgba(0,0,0,0.15);
+  }
+}

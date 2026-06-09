@@ -1,0 +1,356 @@
+.hp-page {
+  background: #E3C9A5;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.hp-faixa {
+  width: 100%;
+  height: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+/* CURIOSIDADES */
+.hp-faixa-curiosidades {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.hp-grafismo {
+  flex: 1;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.hp-curio-tab {
+  background: #2a5a6a;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 8px 28px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+.hp-curio-box {
+  background: #2a6a7a;
+  width: 100%;
+  padding: 28px 30px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  min-height: 250px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.hp-curio-cards {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-shrink: 0;
+  padding-left: 80px;
+  overflow: visible;
+}
+
+.hp-curio-img {
+  background: #d9d9d9;
+  border-radius: 14px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.hp-curio-img--grande {
+  width: 200px;
+  height: 150px;
+  transform: perspective(600px) rotateY(15deg) rotateX(5deg);
+}
+
+.hp-curio-img--pequeno {
+  width: 160px;
+  height: 120px;
+  transform: perspective(600px) rotateY(-15deg) rotateX(5deg);
+}
+
+.hp-curio-img--grande:hover {
+  transform: perspective(600px) rotateY(-8deg) rotateX(-5deg) translateY(-8px);
+  box-shadow: 8px 16px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hp-curio-img--pequeno:hover {
+  transform: perspective(600px) rotateY(8deg) rotateX(-5deg) translateY(-8px);
+  box-shadow: -8px 16px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hp-curio-conteudo {
+  flex: 1;
+  position: relative;
+  min-height: 100px;
+  overflow: hidden;
+}
+
+.hp-curio-texto {
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: justify;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 4;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.hp-curio-texto--ativo {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.hp-curio-dots {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.hp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hp-dot--ativo {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+/* SALAS */
+.hp-salas-sec {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.hp-btn-salas {
+  background: #8b0000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 0;
+  width: 340px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* DISPONIBILIDADE */
+.hp-disp-sec {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 30px;
+  gap: 20px;
+}
+
+.hp-disp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hp-btn-disp {
+  background: #3b6e1f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 22px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hp-moeda {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  background-size: cover;
+  background-position: center;
+}
+
+.hp-sala-card {
+  width: 100%;
+  background: #f5ecd7;
+  border: 2.5px solid #3b6e1f;
+  border-radius: 14px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.hp-sala-esq {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  flex: 1;
+}
+
+.hp-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #3b6e1f;
+  background: #f5ecd7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b6e1f;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.hp-sala-nome {
+  font-size: 15px;
+  color: #555;
+  font-weight: 500;
+}
+
+.hp-sala-btns {
+  display: flex;
+  align-items: stretch;
+}
+
+.hp-btn-nao {
+  background: #8b0000;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 0 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  gap: 12px;
+}
+
+.hp-btn-sim {
+  background: #3b6e1f;
+  color: #fff;
+  border: none;
+  border-radius: 0 12px 12px 0;
+  padding: 0 28px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MURAL */
+.hp-mural-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.hp-mural-outer {
+  background: #3b6e1f;
+  border-radius: 14px;
+  padding: 14px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  background-image: url("/img/folhagem.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.hp-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 2px solid #c8902a;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  color: #c8902a;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hp-nav-left { left: 8px; }
+.hp-nav-right { right: 8px; }
+
+.hp-mural-inner {
+  background: #c8a87a;
+  border-radius: 10px;
+  padding: 14px 40px;
+}
+
+.hp-mural-titulo {
+  text-align: center;
+  color: #c8902a;
+  font-weight: bold;
+  font-size: 15px;
+  background: #3b6e1f;
+  border-radius: 20px;
+  padding: 7px 30px;
+  margin-bottom: 14px;
+}
+
+.hp-mural-cards {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.hp-mural-card {
+  width: 120px;
+  height: 140px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.hp-aviso-row {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.hp-btn-aviso {
+  background: #2a7a8a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}

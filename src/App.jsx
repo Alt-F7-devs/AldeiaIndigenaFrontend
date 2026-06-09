@@ -10,7 +10,7 @@ import Historico from "./pages/HistoricoAtv";
 import ListaAluno from "./pages/ListaAluno";
 import SalaAluno from "./pages/SalaAluno";
 import SalaProfessor from "./pages/SalaProfessor";
-import RelatorioPresenca from "./pages/RelatorioPresenca";
+import AdicionarAviso from "./pages/AdicionarAviso";
 
 function App() {
   return (

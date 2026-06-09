@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { loginProfessor, loginAluno } from "../services/api";
 import './Login.css';
+import Footer from "../components/Footer";  
 
 function Login() {
   const [cpfProf, setCpfProf] = useState("");
@@ -84,6 +85,8 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
+      
     </>
   );
 }
