@@ -30,6 +30,14 @@ export async function loginAluno(cgm, senha) {
   return res.data;
 }
 
+// ─── ALUNO ────────────────────────────────────────────────────────────────────
+
+/* GET /aluno — Lista todos os alunos */
+export async function listarAluno() {
+  const res = await api.get("/aluno");
+  return res.data;
+}
+
 // ─── SALA ────────────────────────────────────────────────────────────────────
 
 /* POST /sala — Cria uma nova sala */
@@ -90,13 +98,19 @@ export async function adicionarAlunoSala(id_sala, id_aluno) {
   return res.data;
 }
 
-/* GET /sala/aluno — Lista alunos da sala do aluno logado */
-export async function listarAlunosSala() {
-  const res = await api.get("/sala/aluno");
+/* GET /sala/:id_sala/alunos — Lista alunos de uma sala (visão do professor) */
+export async function listarAlunosDaSala(id_sala) {
+  const res = await api.get(`/sala/${id_sala}/alunos`);
   return res.data;
 }
 
-/* GET /sala/aluno/:id_aluno — Lista alunos por ID de aluno */
+/* GET /sala/aluno/:id_aluno — Lista salas de um aluno pelo ID do aluno (visão do aluno logado) */
+export async function listarAlunosSala(id_aluno) {
+  const res = await api.get(`/sala/aluno/${id_aluno}`);
+  return res.data;
+}
+
+/* GET /sala/aluno/:id_aluno — Alias mantido para compatibilidade */
 export async function listarAlunosPorId(id_aluno) {
   const res = await api.get(`/sala/aluno/${id_aluno}`);
   return res.data;
