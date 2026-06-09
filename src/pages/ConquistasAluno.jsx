@@ -10,25 +10,27 @@ function ConquistasAluno() {
     { atividade: "Mapa do Brasil", materia: "Geografia", data: "25/04/2025", cor: "verde" },
   ];
 
-    return (
-    <div className="conquistaspage">
+  return (
+    <>
       <Header />
-      <div className="faixa-tribal" />
-      <div className="conquistas-wrapper">
-        <div className="conquistas-box">
-          <h2 className="conquistas-titulo">Minhas conquistas</h2>
-          <div className="conquistas-lista">
-            {conquistas.map((c, i) => (
-              <div key={i} className={`conquista-item conquista-${c.cor}`}>
-                <span className="conquista-nome">{c.atividade} – {c.materia}</span>
-                <span className="conquista-data">{c.data}</span>
-              </div>
-            ))}
+
+      <div className="conquistaspage">
+        <div className="conquistas-wrapper">
+          <div className="conquistas-box">
+            <h2 className="conquistas-titulo">Minhas conquistas</h2>
+            <div className="conquistas-lista">
+              {conquistas.map((c, i) => (
+                <div key={i} className={`conquista-item conquista-${c.cor}`}>
+                  <span className="conquista-nome">{c.atividade} – {c.materia}</span>
+                  <span className="conquista-data">{c.data}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-      <div className="faixa-tribal" />
-    </div>
-    );
+    </>
+  );
 }
-export default ConquistasAluno;  
+
+export default ConquistasAluno;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../components/Header";  
 import './Login.css';
+import Footer from "../components/Footer";  
 
 function Login() {
   const [usuario, setUsuario] = useState("");
@@ -17,7 +18,7 @@ function Login() {
   return (
     <>
       <Header /> 
-      
+    
       <div className="wrapper">  {/* ← adicionado */}
         <div className="container">
           <div className="left">
@@ -45,6 +46,8 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
+      
     </>
   );
 }

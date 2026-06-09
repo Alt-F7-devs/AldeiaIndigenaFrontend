@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import logo from "../img/logo.svg";
+import Footer from "../components/Footer";
 
 const CURIOSIDADES = [
   {
@@ -30,7 +31,7 @@ function HomeProfessor() {
   return (
     <>
       <Header />
-
+      <Footer />
       <div className="hp-page">
 
         {/* FAIXA + CURIOSIDADES */}

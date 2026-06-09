@@ -5,27 +5,27 @@ import HomeProfessor from "./pages/HomeProfessor";
 import BibliotecaJogos from "./pages/BibliotecaJogos";
 import ConquistasAluno from "./pages/ConquistasAluno";
 import GerenciaSala from "./pages/GerenciaSala";
-import Historico from "./pages/HistoricoAtv";  
+import Historico from "./pages/HistoricoAtv";
 import ListaAluno from "./pages/ListaAluno";
 import SalaAluno from "./pages/SalaAluno";
 import SalaProfessor from "./pages/SalaProfessor";
-import RelatorioPresenca from "./pages/RelatorioPresenca";
+import AdicionarAviso from "./pages/AdicionarAviso";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/relatoriopresenca" element={<RelatorioPresenca />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home-aluno" element={<HomeAluno />} />
-        <Route path="/" element={<HomeProfessor />} />
-        <Route path="/jogos" element={<BibliotecaJogos />} />
+        <Route path="/aluno" element={<HomeAluno />} />
+        <Route path="/home-professor" element={<HomeProfessor />} />
+        <Route path="/biblioteca" element={<BibliotecaJogos />} />
         <Route path="/conquistas" element={<ConquistasAluno />} />
         <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
-        <Route path="/historico" element={<Historico />} /> 
+        <Route path="/historico" element={<Historico />} />
         <Route path="/lista-aluno" element={<ListaAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
-        <Route path="/sala-professor" element={<SalaProfessor />} />
+        <Route path="/sala" element={<SalaProfessor />} />
+        <Route path="/adicionar-aviso" element={<AdicionarAviso />} />
       </Routes>
     </BrowserRouter>
   );

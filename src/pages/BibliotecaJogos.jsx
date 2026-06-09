@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import "./BibliotecaJogos.css";
+import Footer from "../components/Footer";
 
 const jogosIniciais = [
   { id: 1, nome: "Nome do jogo", descricao: "descrição", imagem: null },
@@ -20,7 +21,7 @@ function BibliotecaJogos({ jogos = jogosIniciais, onAdicionar }) {
   return (
     <div className="jogospage">
       <Header />
-      <div className="faixa-tribal"></div>
+
       <div className="biblioteca-titulo">Biblioteca de jogos</div>
       <div className="biblioteca-container">
         <div className="biblioteca-grid">
@@ -54,6 +55,8 @@ function BibliotecaJogos({ jogos = jogosIniciais, onAdicionar }) {
           ))}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
