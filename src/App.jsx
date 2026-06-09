@@ -11,6 +11,7 @@ import ListaAluno from "./pages/ListaAluno";
 import SalaAluno from "./pages/SalaAluno";
 import SalaProfessor from "./pages/SalaProfessor";
 import AdicionarAviso from "./pages/AdicionarAviso";
+import RelatorioPresenca from "./pages/RelatorioPresenca";
 
 function App() {
   return (
