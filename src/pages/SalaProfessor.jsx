@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SalaProfessor.css";
 import Header from "../components/Header";
-import { listarSalas } from "../services/api";
+import { listarSalas, listarAlunosDaSala } from "../services/api";
 
 function SalaProfessor() {
   const navigate = useNavigate();
   const [salas, setSalas] = useState([]);
+  const [contagemAlunos, setContagemAlunos] = useState({});
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
 
@@ -15,7 +16,20 @@ function SalaProfessor() {
       try {
         const dados = await listarSalas();
         setSalas(dados);
-      } catch (e) {
+
+        // Busca a contagem de alunos para cada sala em paralelo
+        const contagens = await Promise.all(
+          dados.map(async (sala) => {
+            try {
+              const alunos = await listarAlunosDaSala(sala.id_sala);
+              return [sala.id_sala, alunos.length];
+            } catch {
+              return [sala.id_sala, 0];
+            }
+          })
+        );
+        setContagemAlunos(Object.fromEntries(contagens));
+      } catch {
         setErro("Não foi possível carregar as salas. Tente novamente.");
       } finally {
         setCarregando(false);
@@ -59,9 +73,7 @@ function SalaProfessor() {
               <div className="sala-info">
                 <span className="tag-sala">Sala {sala.num_sa}</span>
                 <span className="tag-alunos">
-                  {sala.alunos
-                    ? `${sala.alunos.length} Aluno(s) Cadastrado(s)`
-                    : "Alunos não informados"}
+                  {contagemAlunos[sala.id_sala] ?? "..."} Aluno(s)
                 </span>
                 <span className="tag-materia">
                   {sala.jogoNome ?? "Sem jogo vinculado"}
