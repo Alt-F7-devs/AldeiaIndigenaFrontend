@@ -73,7 +73,7 @@ function HomeProfessor() {
 
         {/* SALAS */}
         <div className="hp-salas-sec">
-          <button className="hp-btn-salas" onClick={() => navigate("/sala")}>
+          <button className="hp-btn-salas" onClick={() => navigate("/sala-professor")}>
             Salas de aula
           </button>
         </div>
