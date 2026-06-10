@@ -22,7 +22,7 @@ function App() {
         {/* Rotas do Aluno */}
         <Route path="/aluno" element={<RotaProtegida tipo="ALUNO"><HomeAluno /></RotaProtegida>} />
         <Route path="/jogos" element={<RotaProtegida tipo="ALUNO"><BibliotecaJogos /></RotaProtegida>} />
-        <Route path="/" element={<RotaProtegida tipo="ALUNO"><ConquistasAluno /></RotaProtegida>} />
+        <Route path="/conquistas" element={<RotaProtegida tipo="ALUNO"><ConquistasAluno /></RotaProtegida>} />
         <Route path="/sala-aluno" element={<RotaProtegida tipo="ALUNO"><SalaAluno /></RotaProtegida>} />
 
         {/* Rotas do Professor */}
