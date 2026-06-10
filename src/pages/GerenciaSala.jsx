@@ -7,10 +7,10 @@ function GerenciaSala() {
 
   return (
     <>
-      <Header />
-
+ <Header />
+    
       <div className="gerencia-container">
-
+ 
         <div className="sala-label">
           Sala {salaId?.toUpperCase()}
         </div>

@@ -1,3 +1,14 @@
+.faixa-tribal {
+  width: 100%;
+  height: 30px;
+  background-image: url('../img/grafismo.svg');
+  background-repeat: repeat-x;
+  background-size: 100%;
+  margin-top: 80px;
+  flex-shrink: 0;
+
+}
+
 .gerencia-container {
   background: #E3C9A5;
   min-height: 100vh;
@@ -11,7 +22,7 @@
 
 .sala-label {
   position: fixed;        /* ← fixo na borda da tela */
-  top: 90px;              /* ← ajuste conforme altura do seu Header */
+  top: 120px;              /* ← ajuste conforme altura do seu Header */
   left: 0;                /* ← colado na borda esquerda */
   background: #3b6e1f;
   color: white;

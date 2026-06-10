@@ -17,18 +17,16 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/aluno" element={<HomeAluno />} />
-        <Route path="/professor" element={<HomeProfessor />} />
-        <Route path="/bliblioteca" element={<BibliotecaJogos />} />
+        <Route path="/home-professor" element={<HomeProfessor />} />
+        <Route path="/biblioteca" element={<BibliotecaJogos />} />
         <Route path="/conquistas" element={<ConquistasAluno />} />
         <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
         <Route path="/historico" element={<Historico />} />
-        <Route path="/lista-aluno" element={<ListaAluno />} />
+        <Route path="/" element={<ListaAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
         <Route path="/sala" element={<SalaProfessor />} />
         <Route path="/adicionar-aviso" element={<AdicionarAviso />} />
       </Routes>
-        <Route path="/" element={<SalaProfessor />} />
-      </Routes> 
     </BrowserRouter>
   );
 }
