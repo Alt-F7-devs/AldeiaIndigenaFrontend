@@ -4,7 +4,17 @@
   left: 0;
   width: 100%;
   z-index: 999;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
+
+
+.footer--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 
 .footer-faixa {
   width: 100%;
