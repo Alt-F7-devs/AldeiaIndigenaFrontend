@@ -9,7 +9,6 @@
   position: relative;
 }
 
-
 .lista-label {
   position: fixed;
   top: 120px;
@@ -24,7 +23,6 @@
   z-index: 10;
 }
 
-
 .lista-card {
   background: #d4c9a0;
   border: 4px solid #3b6e1f;
@@ -36,13 +34,11 @@
   margin-top: 40px;
 }
 
-
 .lista-header-row {
   display: flex;
   gap: 10px;
   margin-bottom: 16px;
 }
-
 
 .lista-col {
   background: #f0f0f0;
@@ -55,16 +51,13 @@
   text-align: center;
 }
 
-
 .lista-col--nome {
   flex: 2;
 }
 
-
 .lista-col--id {
   flex: 1;
 }
-
 
 .lista-body {
   display: flex;
@@ -72,12 +65,10 @@
   gap: 8px;
 }
 
-
 .lista-row {
   display: flex;
   gap: 10px;
 }
-
 
 .lista-row .lista-col {
   font-weight: normal;

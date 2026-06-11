@@ -1,4 +1,3 @@
-
 import "./ListaAluno.css";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 function ListaAluno() {
   const alunos = []; // futuramente virá do backend
-
 
   return (
     <>
@@ -25,7 +23,6 @@ function ListaAluno() {
             <div className="lista-col lista-col--id">Identificador</div>
           </div>
 
-
           <div className="lista-body">
             {alunos.length === 0 ? null : alunos.map((aluno, i) => (
               <div key={i} className="lista-row">
@@ -35,7 +32,6 @@ function ListaAluno() {
             ))}
           </div>
         </div>
-
 
       </div>
     </>

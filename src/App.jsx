@@ -33,6 +33,7 @@ function App() {
         <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo="PROFESSOR"><ListaAluno /></RotaProtegida>} />
         <Route path="/sala-professor" element={<RotaProtegida tipo="PROFESSOR"><SalaProfessor /></RotaProtegida>} />
         <Route path="/relatoriopresenca" element={<RotaProtegida tipo="PROFESSOR"><RelatorioPresenca /></RotaProtegida>} />
+
       </Routes>
     </BrowserRouter>
   );
