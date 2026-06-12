@@ -1,9 +1,9 @@
 import "./ListaAluno.css";
 import Header from "../components/Header";
-import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function ListaAluno() {
-  const alunos = []; // futuramente virá do backend
+  const alunos = [];
 
   return (
     <>
@@ -30,6 +30,8 @@ function ListaAluno() {
         </div>
 
       </div>
+
+      <Footer />
     </>
   );
 }
