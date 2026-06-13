@@ -87,6 +87,14 @@ export async function desvincularProfessorSala(id_sala) {
   return res.data;
 }
 
+/* GET /sala/professor?id_professor=X — Listar salas do professor */
+export async function listarSalasPorProfessor(idProfessor) {
+  const res = await api.get("/sala/professor", {
+    params: { id_professor: idProfessor }
+  });
+  return res.data;
+}
+
 // ─── ALUNOS NA SALA ───────────────────────────────────────────────────────────
 
 /* POST /sala/:id_sala/aluno/:id_aluno — Adiciona aluno a uma sala */

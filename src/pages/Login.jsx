@@ -20,6 +20,7 @@ function Login() {
     try {
       const data = await loginProfessor(cpfProf, senhaProf);
       localStorage.setItem("tipo", data.tipo);
+      localStorage.setItem("id_professor", data.id); // ← Use 'data.id' agora
       navigate("/professor");
     } catch (err) {
       const mensagem = err.response?.data?.message || "Erro ao realizar login!";
@@ -35,8 +36,8 @@ function Login() {
     try {
       const data = await loginAluno(cgmAluno, senhaAluno);
       localStorage.setItem("tipo", data.tipo);
-      // Salva o CGM para que SalaAluno consiga recuperar o id_aluno
       localStorage.setItem("cgm", cgmAluno);
+      localStorage.setItem("id_aluno", data.id); // ← Adicione isso também
       navigate("/aluno");
     } catch (err) {
       const mensagem = err.response?.data?.message || "Erro ao realizar login!";
