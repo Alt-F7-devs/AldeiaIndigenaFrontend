@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SalaProfessor.css";
 import Header from "../components/Header";
-import { listarSalas, listarAlunosDaSala } from "../services/api";
+import { listarSalasPorProfessor, listarAlunosDaSala } from "../services/api";
 
 function SalaProfessor() {
   const navigate = useNavigate();
@@ -14,7 +14,16 @@ function SalaProfessor() {
   useEffect(() => {
     async function buscarSalas() {
       try {
-        const dados = await listarSalas();
+        const idProfessor = localStorage.getItem("id_professor");
+        
+        if (!idProfessor) {
+          setErro("Professor não autenticado. Faça login novamente.");
+          setCarregando(false);
+          return;
+        }
+
+        // Busca apenas as salas do professor logado (já vem ordenadas por ID)
+        const dados = await listarSalasPorProfessor(idProfessor);
         setSalas(dados);
 
         // Busca a contagem de alunos para cada sala em paralelo
