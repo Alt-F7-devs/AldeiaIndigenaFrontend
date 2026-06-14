@@ -5,8 +5,10 @@ import "./Header.css";
 import home from "../img/casa.png";
 import user from "../img/do-utilizador.png";
 
+
 function Header() {
   const navigate = useNavigate();
+
 
   return (
     <>
@@ -14,13 +16,16 @@ function Header() {
         {/* imagem de fundo */}
         <img src={bg} alt="Fundo" className="header-bg" />
 
+
         {/* botão home */}
         <button className="header-btn header-home" onClick={() => navigate("/aluno")}>
           <img src={home} alt="home" className="header-icon" />
         </button>
 
+
         {/* logo principal */}
         <img src={logo} alt="Logo" className="header-logo" />
+
 
         {/* botões direita */}
         <div className="header-direita">
@@ -33,6 +38,7 @@ function Header() {
         </div>
       </header>
 
+
       {/* faixa tribal fora do header */}
       <div className="header-faixa-wrapper">
         <img src="/img/grafismo.svg" alt="" className="faixa-tribal" />
@@ -40,5 +46,6 @@ function Header() {
     </>
   );
 }
+
 
 export default Header;

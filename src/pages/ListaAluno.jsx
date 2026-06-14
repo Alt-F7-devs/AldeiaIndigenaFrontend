@@ -2,6 +2,7 @@ import "./ListaAluno.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+
 function ListaAluno() {
   const alunos = [];
 
@@ -9,9 +10,12 @@ function ListaAluno() {
     <>
       <Header />
 
+
       <div className="lista-page">
 
+
         <div className="lista-label">Lista de alunos</div>
+
 
         <div className="lista-card">
           <div className="lista-header-row">
@@ -36,4 +40,6 @@ function ListaAluno() {
   );
 }
 
+
 export default ListaAluno;
+
