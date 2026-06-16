@@ -30,6 +30,21 @@ export async function loginAluno(cgm, senha) {
   return res.data;
 }
 
+/* POST /auth/logout — Faz logout do usuário */
+export async function logout() {
+  try {
+    const csrfToken = await getCsrfToken();
+    await api.post("/auth/logout", {}, {
+      headers: { "X-XSRF-TOKEN": csrfToken }
+    });
+  } catch (error) {
+    console.error("Erro ao fazer logout no backend:", error);
+  } finally {
+    // Limpa dados locais independentemente de sucesso no backend
+    localStorage.clear();
+  }
+}
+
 // ─── ALUNO ────────────────────────────────────────────────────────────────────
 
 /* GET /aluno — Lista todos os alunos */

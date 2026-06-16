@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { logout } from "../services/api";
 import logo from "../img/logo.svg";
 import bg from "../img/folhagem.png";
 import "./Header.css";
@@ -9,6 +10,10 @@ import user from "../img/do-utilizador.png";
 function Header() {
   const navigate = useNavigate();
 
+  async function handleLogout() {
+    await logout();
+    navigate("/login");
+  }
 
   return (
     <>
@@ -29,7 +34,7 @@ function Header() {
 
         {/* botões direita */}
         <div className="header-direita">
-          <button className="header-btn header-sair" onClick={() => navigate("/login")}>
+          <button className="header-btn header-sair" onClick={handleLogout}>
             Sair
           </button>
           <button className="header-btn header-usuario" onClick={() => navigate("/aluno")}>

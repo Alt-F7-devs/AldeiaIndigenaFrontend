@@ -1,68 +1,75 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./ListaAluno.css";
 import Header from "../components/Header";
-import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import Footer from "../components/Footer";
 import { listarAlunosDaSala } from "../services/api";
 
 function ListaAluno() {
-  const { salaId } = useParams(); // Usar o parâmetro correto
+  const { salaId } = useParams();
   const [alunos, setAlunos] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (salaId) {
-      buscarAlunos();
-    }
-  }, [salaId]);
+    async function buscarAlunos() {
+      try {
+        if (!salaId) {
+          setErro("Sala não identificada. Volte e selecione uma sala.");
+          setCarregando(false);
+          return;
+        }
 
-  const buscarAlunos = async () => {
-  try {
-    setCarregando(true);
-    setErro(null);
-    
-    const dados = await listarAlunosDaSala(salaId);
-    console.log("Estrutura do aluno:", dados[0]); // Ver o primeiro aluno
-    setAlunos(Array.isArray(dados) ? dados : []);
-    
-  } catch (erro) {
-    console.error("Erro:", erro);
-    setErro(`Erro: ${erro.response?.status || erro.message}`);
-  } finally {
-    setCarregando(false);
-  }
-};
+        const data = await listarAlunosDaSala(salaId);
+        setAlunos(Array.isArray(data) ? data : []);
+      } catch (err) {
+        const mensagem = err.response?.data?.message || "Erro ao carregar alunos";
+        setErro(mensagem);
+        console.error("Erro:", err);
+      } finally {
+        setCarregando(false);
+      }
+    }
+
+    buscarAlunos();
+  }, [salaId]);
 
   return (
     <>
       <Header />
+
       <div className="lista-page">
-        <div className="lista-label">Lista de alunos - Sala {salaId}</div>
+        <div className="lista-label">Lista de alunos</div>
 
-        <div className="lista-card">
-          <div className="lista-header-row">
-            <div className="lista-col lista-col--nome">Nome do aluno</div>
-            <div className="lista-col lista-col--cgm">CGM</div>
+        {carregando ? (
+          <div className="lista-card">
+            <p style={{ textAlign: "center", padding: "20px" }}>Carregando...</p>
           </div>
+        ) : erro ? (
+          <div className="lista-card">
+            <p style={{ textAlign: "center", padding: "20px", color: "red" }}>Erro: {erro}</p>
+          </div>
+        ) : (
+          <div className="lista-card">
+            <div className="lista-header-row">
+              <div className="lista-col lista-col--nome">Nome do aluno</div>
+              <div className="lista-col lista-col--id">CGM</div>
+            </div>
 
-          <div className="lista-body">
-            {carregando && <p className="lista-loading">⏳ Carregando alunos...</p>}
-            
-            {erro && <p className="lista-erro">❌ {erro}</p>}
-            
-            {!carregando && alunos.length === 0 && !erro && (
-              <p className="lista-vazio">📭 Nenhum aluno encontrado</p>
-            )}
-            
-            {alunos.map((aluno) => (
-              <div key={aluno.id} className="lista-row">
-                <div className="lista-col lista-col--nome">{aluno.nome}</div>
-                <div className="lista-col lista-col--cgm">{aluno.cgm}</div>
-              </div>
-            ))}
+            <div className="lista-body">
+              {alunos.length === 0 ? (
+                <p style={{ textAlign: "center", padding: "20px" }}>Nenhum aluno nesta sala.</p>
+              ) : (
+                alunos.map((aluno, i) => (
+                  <div key={aluno.id || i} className="lista-row">
+                    <div className="lista-col lista-col--nome">{aluno.nome || "Sem nome"}</div>
+                    <div className="lista-col lista-col--id">{aluno.id || aluno.cgm || "-"}</div>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
