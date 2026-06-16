@@ -71,6 +71,8 @@ function ListaAluno() {
           </div>
         )}
       </div>
+
+      <Footer />
     </>
   );
 }
