@@ -30,6 +30,21 @@ export async function loginAluno(cgm, senha) {
   return res.data;
 }
 
+/* POST /auth/logout — Faz logout do usuário */
+export async function logout() {
+  try {
+    const csrfToken = await getCsrfToken();
+    await api.post("/auth/logout", {}, {
+      headers: { "X-XSRF-TOKEN": csrfToken }
+    });
+  } catch (error) {
+    console.error("Erro ao fazer logout no backend:", error);
+  } finally {
+    // Limpa dados locais independentemente de sucesso no backend
+    localStorage.clear();
+  }
+}
+
 // ─── ALUNO ────────────────────────────────────────────────────────────────────
 
 /* GET /aluno — Lista todos os alunos */
@@ -83,6 +98,14 @@ export async function desvincularProfessorSala(id_sala) {
   const csrfToken = await getCsrfToken();
   const res = await api.delete(`/sala/${id_sala}/professor`, {
     headers: { "X-XSRF-TOKEN": csrfToken }
+  });
+  return res.data;
+}
+
+/* GET /sala/professor?id_professor=X — Listar salas do professor */
+export async function listarSalasPorProfessor(idProfessor) {
+  const res = await api.get("/sala/professor", {
+    params: { id_professor: idProfessor }
   });
   return res.data;
 }

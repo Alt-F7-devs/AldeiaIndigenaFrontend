@@ -34,7 +34,7 @@ function GerenciaSala() {
     setJogoErro(null);
     try {
       const res = await adicionarJogoSala(Number(salaId), Number(idJogo));
-      setJogoMsg(`Jogo "${res.jogoNome}" vinculado com sucesso!`);
+      setJogoMsg(`Jogo "${res.nome}" vinculado com sucesso!`);
       setIdJogo("");
     } catch {
       setJogoErro("Erro ao vincular jogo. Verifique o ID e tente novamente.");

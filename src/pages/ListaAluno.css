@@ -74,5 +74,9 @@
 .lista-row .lista-col {
   font-weight: normal;
   color: #333;
-  background: #f8f4e8;
+  background: #f8f8f8;
+}
+
+.lista-col--cgm {
+  flex: 1;
 }
