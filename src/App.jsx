@@ -24,7 +24,7 @@ function App() {
         <Route path="/historico" element={<Historico />} />
         <Route path="/lista" element={<ListaAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
-        <Route path="/sala" element={<SalaProfessor />} />
+        <Route path="/" element={<SalaProfessor />} />
         <Route path="/adicionar-aviso" element={<AdicionarAviso />} />
       </Routes>
     </BrowserRouter>
