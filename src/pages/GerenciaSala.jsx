@@ -11,40 +11,47 @@ function GerenciaSala() {
   const { salaId } = useParams();
   const navigate = useNavigate();
 
-  // ── Estado: Jogo ──────────────────────────────────────────
-  const [idJogo, setIdJogo] = useState("");
+  // ── Estado: Jogo ────────────────────────────────
+  const [tituloJogo, setTituloJogo] = useState("");
+  const [dataJogo, setDataJogo] = useState("");
+  const [numeroJogo, setNumeroJogo] = useState("");
   const [jogoMsg, setJogoMsg] = useState(null);
   const [jogoErro, setJogoErro] = useState(null);
   const [jogoCarregando, setJogoCarregando] = useState(false);
 
   // ── Estado: Aluno ─────────────────────────────────────────
+  const [nomeAluno, setNomeAluno] = useState("");
   const [idAluno, setIdAluno] = useState("");
   const [alunoMsg, setAlunoMsg] = useState(null);
   const [alunoErro, setAlunoErro] = useState(null);
   const [alunoCarregando, setAlunoCarregando] = useState(false);
 
-  // ── Handlers: Jogo ────────────────────────────────────────
+  // ── Handlers: Jogo ───────────────────────────────────
   async function handleAdicionarJogo() {
-    if (!idJogo.trim()) {
-      setJogoErro("Informe o ID do jogo.");
+    if (!numeroJogo.trim()) {
+      setJogoErro("Informe o número da Jogo.");
       return;
     }
     setJogoCarregando(true);
     setJogoMsg(null);
     setJogoErro(null);
     try {
-      const res = await adicionarJogoSala(Number(salaId), Number(idJogo));
+      const res = await adicionarJogoSala(Number(salaId), Number(numeroJogo));
       setJogoMsg(`Jogo "${res.nome}" vinculado com sucesso!`);
-      setIdJogo("");
+      setTituloJogo("");
+      setDataJogo("");
+      setNumeroJogo("");
     } catch {
-      setJogoErro("Erro ao vincular jogo. Verifique o ID e tente novamente.");
+      setJogoErro("Erro ao vincular jogo. Verifique o número e tente novamente.");
     } finally {
       setJogoCarregando(false);
     }
   }
 
   function handleDescartarJogo() {
-    setIdJogo("");
+    setTituloJogo("");
+    setDataJogo("");
+    setNumeroJogo("");
     setJogoMsg(null);
     setJogoErro(null);
   }
@@ -52,7 +59,7 @@ function GerenciaSala() {
   // ── Handlers: Aluno ───────────────────────────────────────
   async function handleAdicionarAluno() {
     if (!idAluno.trim()) {
-      setAlunoErro("Informe o ID do aluno.");
+      setAlunoErro("Informe o CGM do aluno.");
       return;
     }
     setAlunoCarregando(true);
@@ -61,6 +68,7 @@ function GerenciaSala() {
     try {
       const res = await adicionarAlunoSala(Number(salaId), Number(idAluno));
       setAlunoMsg(`Aluno "${res.nome}" adicionado com sucesso!`);
+      setNomeAluno("");
       setIdAluno("");
     } catch {
       setAlunoErro("Erro ao adicionar aluno. Verifique o ID e tente novamente.");
@@ -69,96 +77,130 @@ function GerenciaSala() {
     }
   }
 
+  function handleExcluirAluno() {
+    setNomeAluno("");
+    setIdAluno("");
+    setAlunoMsg(null);
+    setAlunoErro(null);
+  }
+
   function handleListarAlunos() {
     navigate(`/lista-aluno/${salaId}`);
+  }
+  function handleHistoricoJogos() {
+    navigate("/historico");
   }
 
   return (
     <>
       <Header />
-
+    
       <div className="gerencia-container">
-        <div className="sala-label">Sala {salaId}</div>
+ 
+        <div className="sala-label">
+          Sala {salaId?.toUpperCase()}
+        </div>
 
         <div className="cards-wrapper">
 
-          {/* VINCULAR JOGO */}
+          {/* ANEXAR JOGO */}
           <div className="card">
-            <div className="card-header">Vincular Jogo à Sala</div>
+            <div className="card-header">Anexar Jogo</div>
             <div className="card-body">
-              <div className="row">
-                <input
-                  className="full"
-                  placeholder="ID do jogo"
-                  value={idJogo}
-                  onChange={(e) => setIdJogo(e.target.value)}
-                  type="number"
-                  min="1"
-                />
+              <div className="two-col">
+                <div className="left-col">
+                  <input 
+                    className="inp" 
+                    placeholder="Título da Jogo"
+                    value={tituloJogo}
+                    onChange={(e) => setTituloJogo(e.target.value)}
+                  />
+                  <input 
+                    className="inp" 
+                    placeholder="Data da criação"
+                    type="date"
+                    value={dataJogo}
+                    onChange={(e) => setDataJogo(e.target.value)}
+                  />
+                  <input 
+                    className="inp" 
+                    placeholder="Numero do Jogo"
+                    type="number"
+                    min="1"
+                    value={numeroJogo}
+                    onChange={(e) => setNumeroJogo(e.target.value)}
+                  />
+                </div>
+                <div className="right-col">
+                  <button 
+                    className="upload-box"
+                    onClick={handleAdicionarJogo}
+                    disabled={jogoCarregando}
+                    style={{ cursor: jogoCarregando ? 'not-allowed' : 'pointer' }}
+                  >
+                    {jogoCarregando ? "Vinculando..." : "Selecionar Jogo"}
+                  </button>
+                  <button 
+                    className="btn btn-descartar"
+                    onClick={handleDescartarJogo}
+                  >
+                    Descartar 🗑
+                  </button>
+                </div>
               </div>
-
               {jogoMsg && (
-                <p style={{ color: "#3b6e1f", marginTop: "8px" }}>{jogoMsg}</p>
+                <p style={{ color: "#3b6e1f", marginTop: "8px", fontSize: "13px" }}>{jogoMsg}</p>
               )}
               {jogoErro && (
-                <p style={{ color: "#8b0000", marginTop: "8px" }}>{jogoErro}</p>
+                <p style={{ color: "#8b0000", marginTop: "8px", fontSize: "13px" }}>{jogoErro}</p>
               )}
-
-              <div className="row" style={{ marginTop: "12px", justifyContent: "flex-end" }}>
-                <button className="btn excluir" onClick={handleDescartarJogo}>
-                  Descartar
-                </button>
-                <button
-                  className="btn adicionar"
-                  onClick={handleAdicionarJogo}
-                  disabled={jogoCarregando}
-                >
-                  {jogoCarregando ? "Vinculando..." : "Vincular Jogo"}
-                </button>
-              </div>
             </div>
           </div>
 
           <div className="btn-row">
-            <button className="btn btn-historico">Histórico de atividades</button>
+            <button className="btn btn-historico" onClick={handleHistoricoJogos}>
+              Histórico de jogos
+            </button>
           </div>
 
           {/* GERENCIAMENTO DE ALUNOS */}
           <div className="card">
             <div className="card-header">Gerenciamento de alunos</div>
             <div className="card-body">
-              <div className="row">
-                <input
-                  className="full"
-                  placeholder="ID do aluno"
-                  value={idAluno}
-                  onChange={(e) => setIdAluno(e.target.value)}
+              <div className="aluno-row">
+                <input 
+                  className="inp" 
+                  placeholder="CGM"
                   type="number"
                   min="1"
+                  value={idAluno}
+                  onChange={(e) => setIdAluno(e.target.value)}
                 />
-              </div>
-
-              {alunoMsg && (
-                <p style={{ color: "#3b6e1f", marginTop: "8px" }}>{alunoMsg}</p>
-              )}
-              {alunoErro && (
-                <p style={{ color: "#8b0000", marginTop: "8px" }}>{alunoErro}</p>
-              )}
-
-              <div className="row" style={{ marginTop: "12px", justifyContent: "flex-end" }}>
-                <button
-                  className="btn adicionar"
+                <button 
+                  className="btn btn-adicionar"
                   onClick={handleAdicionarAluno}
                   disabled={alunoCarregando}
                 >
                   {alunoCarregando ? "Adicionando..." : "Adicionar"}
                 </button>
+                <button 
+                  className="btn btn-excluir"
+                  onClick={handleExcluirAluno}
+                >
+                  Excluir
+                </button>
               </div>
+              {alunoMsg && (
+                <p style={{ color: "#3b6e1f", marginTop: "8px", fontSize: "13px" }}>{alunoMsg}</p>
+              )}
+              {alunoErro && (
+                <p style={{ color: "#8b0000", marginTop: "8px", fontSize: "13px" }}>{alunoErro}</p>
+              )}
             </div>
           </div>
 
           <div className="btn-row">
-            <button className="btn listar" onClick={handleListarAlunos}>
+            <button className="btn btn-listar" onClick={handleListarAlunos}>
               Listar alunos
             </button>
           </div>
