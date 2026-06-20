@@ -28,25 +28,30 @@ function GerenciaSala() {
 
   // ── Handlers: Jogo ───────────────────────────────────
   async function handleAdicionarJogo() {
-    if (!numeroJogo.trim()) {
-      setJogoErro("Informe o número da Jogo.");
-      return;
-    }
-    setJogoCarregando(true);
-    setJogoMsg(null);
-    setJogoErro(null);
-    try {
-      const res = await adicionarJogoSala(Number(salaId), Number(numeroJogo));
-      setJogoMsg(`Jogo "${res.nome}" vinculado com sucesso!`);
-      setTituloJogo("");
-      setDataJogo("");
-      setNumeroJogo("");
-    } catch {
-      setJogoErro("Erro ao vincular jogo. Verifique o número e tente novamente.");
-    } finally {
-      setJogoCarregando(false);
-    }
+  if (!numeroJogo.trim()) {
+    setJogoErro("Informe o número do jogo.");
+    return;
   }
+  
+  setJogoCarregando(true);
+  setJogoMsg(null);
+  setJogoErro(null);
+  
+  try {
+    console.log("Enviando jogo:", numeroJogo);
+    // ← Inverta a ordem aqui
+    const res = await adicionarJogoSala(Number(numeroJogo), Number(salaId));
+    setJogoMsg(`Jogo "${res.nome}" vinculado com sucesso!`);
+    setTituloJogo("");
+    setDataJogo("");
+    setNumeroJogo("");
+  } catch (error) {
+    console.error("Erro ao adicionar jogo:", error.response?.data);
+    setJogoErro("Erro ao vincular jogo. Verifique o número e tente novamente.");
+  } finally {
+    setJogoCarregando(false);
+  }
+}
 
   function handleDescartarJogo() {
     setTituloJogo("");
@@ -132,19 +137,17 @@ function GerenciaSala() {
                   />
                 </div>
                 <div className="right-col">
-                  <button 
-                    className="upload-box"
+                  <button
+                    className="btn btn-adicionarJogo"
                     onClick={handleAdicionarJogo}
-                    disabled={jogoCarregando}
-                    style={{ cursor: jogoCarregando ? 'not-allowed' : 'pointer' }}
                   >
-                    {jogoCarregando ? "Vinculando..." : "Selecionar Jogo"}
+                    Adicionar
                   </button>
                   <button 
                     className="btn btn-descartar"
                     onClick={handleDescartarJogo}
                   >
-                    Descartar 🗑
+                    Descartar
                   </button>
                 </div>
               </div>

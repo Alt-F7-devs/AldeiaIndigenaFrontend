@@ -129,6 +129,15 @@
   gap: 6px;
 }
 
+.btn-adicionarJogo {
+  background: #3b6e1f;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
 .btn-adicionar {
   background: #3b6e1f;
   white-space: nowrap;
