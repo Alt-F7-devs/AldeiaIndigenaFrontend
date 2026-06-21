@@ -12,6 +12,10 @@ import SalaAluno from "./pages/SalaAluno";
 import SalaProfessor from "./pages/SalaProfessor";
 import AdicionarAviso from "./pages/AdicionarAviso";
 import RelatorioPresenca from "./pages/RelatorioPresenca";
+import CadastroAdmin from "./pages/CadastroAdmin";
+import CadastroAluno from "./pages/CadastroAluno";
+import CadastroProfessor from "./pages/CadastroProfessor";
+import SelecaoCadastro from "./pages/SelecaoCadastro";
 
 function App() {
   return (
@@ -20,6 +24,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
 
+        {/* Rotas de Cadastro de usuários */}
+        <Route path="/cadastro" element={<RotaProtegida tipo="ADMIN"><SelecaoCadastro /></RotaProtegida>} />
+        <Route path="/cadastro/admin" element={<RotaProtegida tipo="ADMIN"><CadastroAdmin /></RotaProtegida>} />
+        <Route path="/cadastro/aluno" element={<RotaProtegida tipo = "ADMIN"><CadastroAluno /></RotaProtegida>} />
+        <Route path="/cadastro/professor" element={<RotaProtegida tipo= "ADMIN"><CadastroProfessor /></RotaProtegida>} />
+
         {/* Rotas do Aluno */}
         <Route path="/aluno" element={<RotaProtegida tipo="ALUNO"><HomeAluno /></RotaProtegida>} />
         <Route path="/jogos" element={<RotaProtegida tipo="ALUNO"><BibliotecaJogos /></RotaProtegida>} />
@@ -27,12 +37,12 @@ function App() {
         <Route path="/sala-aluno" element={<RotaProtegida tipo="ALUNO"><SalaAluno /></RotaProtegida>} />
 
         {/* Rotas do Professor */}
-        <Route path="/professor" element={<RotaProtegida tipo="PROFESSOR"><HomeProfessor /></RotaProtegida>} />
-        <Route path="/gerencia/:salaId" element={<RotaProtegida tipo="PROFESSOR"><GerenciaSala /></RotaProtegida>} />
-        <Route path="/historico" element={<RotaProtegida tipo="PROFESSOR"><Historico /></RotaProtegida>} />
-        <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo="PROFESSOR"><ListaAluno /></RotaProtegida>} />
-        <Route path="/sala-professor" element={<RotaProtegida tipo="PROFESSOR"><SalaProfessor /></RotaProtegida>} />
-        <Route path="/relatoriopresenca" element={<RotaProtegida tipo="PROFESSOR"><RelatorioPresenca /></RotaProtegida>} />
+        <Route path="/professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><HomeProfessor /></RotaProtegida>} />
+        <Route path="/gerencia/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><GerenciaSala /></RotaProtegida>} />
+        <Route path="/historico" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><Historico /></RotaProtegida>} />
+        <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><ListaAluno /></RotaProtegida>} />
+        <Route path="/sala-professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><SalaProfessor /></RotaProtegida>} />
+        <Route path="/relatoriopresenca" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><RelatorioPresenca /></RotaProtegida>} />
 
       </Routes>
     </BrowserRouter>

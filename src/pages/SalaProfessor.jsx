@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SalaProfessor.css";
 import Header from "../components/Header";
-import { listarSalasPorProfessor, listarAlunosDaSala } from "../services/api";
+import { listarSalas, listarSalasPorProfessor, listarAlunosDaSala } from "../services/api";
 
 function SalaProfessor() {
   const navigate = useNavigate();
+  const ehAdmin = localStorage.getItem("tipo") === "ADMIN";
   const [salas, setSalas] = useState([]);
   const [contagemAlunos, setContagemAlunos] = useState({});
   const [carregando, setCarregando] = useState(true);
@@ -14,21 +15,26 @@ function SalaProfessor() {
   useEffect(() => {
     async function buscarSalas() {
       try {
-        const idProfessor = localStorage.getItem("id_professor");
-        
-        if (!idProfessor) {
-          setErro("Professor não autenticado. Faça login novamente.");
-          setCarregando(false);
-          return;
+        // Admin vê todas as salas; professor vê apenas as suas
+        let dados;
+        if (ehAdmin) {
+          dados = await listarSalas();
+        } else {
+          const idProfessor = localStorage.getItem("id_professor");
+          if (!idProfessor) {
+            setErro("Professor não autenticado. Faça login novamente.");
+            setCarregando(false);
+            return;
+          }
+          dados = await listarSalasPorProfessor(idProfessor);
         }
 
-        // Busca apenas as salas do professor logado (já vem ordenadas por ID)
-        const dados = await listarSalasPorProfessor(idProfessor);
-        setSalas(dados);
+        const lista = Array.isArray(dados) ? dados : [];
+        setSalas(lista);
 
         // Busca a contagem de alunos para cada sala em paralelo
         const contagens = await Promise.all(
-          dados.map(async (sala) => {
+          lista.map(async (sala) => {
             try {
               const alunos = await listarAlunosDaSala(sala.id_sala);
               return [sala.id_sala, alunos.length];
@@ -56,7 +62,7 @@ function SalaProfessor() {
         <div className="sala-content">
 
           <div className="sala-titulo">
-            <h2>Minhas Salas</h2>
+            <h2>{ehAdmin ? "Todas as Salas" : "Minhas Salas"}</h2>
           </div>
 
           {carregando && (

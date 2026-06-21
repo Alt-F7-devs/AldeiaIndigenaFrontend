@@ -1,0 +1,37 @@
+/* ═══════════════════════════════════════
+   SelecaoCadastro.css
+   Tela de escolha do tipo de usuário a cadastrar
+   Reaproveita as variáveis e o card de Cadastro.css
+   ═══════════════════════════════════════ */
+
+.sel-subtitulo {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 0 8px;
+}
+
+.sel-btn {
+  width: 100%;
+  background: var(--cad-verde-escuro);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: transform var(--cad-transition), box-shadow var(--cad-transition),
+    background-color var(--cad-transition);
+}
+
+.sel-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 14px rgba(62, 122, 8, 0.4);
+  background: #4a8f0a;
+}
+
+.sel-btn:active {
+  transform: scale(0.98);
+}

@@ -161,6 +161,8 @@
 .hp-salas-sec {
   display: flex;
   justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
   padding: 20px;
 }
 
@@ -176,6 +178,11 @@
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+
+.hp-btn-cadastro {
+  background: #3E7A08;
 }
 
 

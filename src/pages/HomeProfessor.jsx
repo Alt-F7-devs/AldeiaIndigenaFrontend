@@ -22,6 +22,7 @@ const CURIOSIDADES = [
 
 function HomeProfessor() {
   const navigate = useNavigate();
+  const ehAdmin = localStorage.getItem("tipo") === "ADMIN";
   const [slide, setSlide] = useState(0);
   const [disponivel, setDisponivel] = useState(null);
   const [avisos, setAvisos] = useState([1, 2, 3]);
@@ -107,6 +108,14 @@ function HomeProfessor() {
           <button className="hp-btn-salas" onClick={() => navigate("/sala-professor")}>
             Salas de aula
           </button>
+          {ehAdmin && (
+            <button
+              className="hp-btn-salas hp-btn-cadastro"
+              onClick={() => navigate("/cadastro")}
+            >
+              Cadastrar usuários
+            </button>
+          )}
         </div>
 
 
