@@ -40,7 +40,7 @@ function GerenciaSala() {
   try {
     console.log("Enviando jogo:", numeroJogo);
     // ← Inverta a ordem aqui
-    const res = await adicionarJogoSala(Number(numeroJogo), Number(salaId));
+    const res = await adicionarJogoSala(Number(salaId), Number(numeroJogo));
     setJogoMsg(`Jogo "${res.nome}" vinculado com sucesso!`);
     setTituloJogo("");
     setDataJogo("");
@@ -93,7 +93,10 @@ function GerenciaSala() {
     navigate(`/lista-aluno/${salaId}`);
   }
   function handleHistoricoJogos() {
-    navigate("/historico");
+    navigate(`/historico?salaId=${salaId}`);
+  }
+  function handleCriarJogo() {
+    navigate(`/criar-jogo/${salaId}`);
   }
 
   return (
@@ -109,58 +112,12 @@ function GerenciaSala() {
         <div className="cards-wrapper">
 
           {/* ANEXAR JOGO */}
-          <div className="card">
-            <div className="card-header">Anexar Jogo</div>
-            <div className="card-body">
-              <div className="two-col">
-                <div className="left-col">
-                  <input 
-                    className="inp" 
-                    placeholder="Título da Jogo"
-                    value={tituloJogo}
-                    onChange={(e) => setTituloJogo(e.target.value)}
-                  />
-                  <input 
-                    className="inp" 
-                    placeholder="Data da criação"
-                    type="date"
-                    value={dataJogo}
-                    onChange={(e) => setDataJogo(e.target.value)}
-                  />
-                  <input 
-                    className="inp" 
-                    placeholder="Numero do Jogo"
-                    type="number"
-                    min="1"
-                    value={numeroJogo}
-                    onChange={(e) => setNumeroJogo(e.target.value)}
-                  />
-                </div>
-                <div className="right-col">
-                  <button
-                    className="btn btn-adicionarJogo"
-                    onClick={handleAdicionarJogo}
-                  >
-                    Adicionar
-                  </button>
-                  <button 
-                    className="btn btn-descartar"
-                    onClick={handleDescartarJogo}
-                  >
-                    Descartar
-                  </button>
-                </div>
-              </div>
-              {jogoMsg && (
-                <p style={{ color: "#3b6e1f", marginTop: "8px", fontSize: "13px" }}>{jogoMsg}</p>
-              )}
-              {jogoErro && (
-                <p style={{ color: "#8b0000", marginTop: "8px", fontSize: "13px" }}>{jogoErro}</p>
-              )}
-            </div>
-          </div>
+          
 
           <div className="btn-row">
+            <button className="btn btn-criar-jogo" onClick={handleCriarJogo}>
+              Criar Jogo
+            </button>
             <button className="btn btn-historico" onClick={handleHistoricoJogos}>
               Histórico de jogos
             </button>

@@ -153,10 +153,15 @@
   background: #2f7486;
 }
 
+.btn-criar-jogo {
+  background: #3b6e1f;
+}
+
 .btn-row {
   width: 480px;
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
   margin-top: -16px;      /* ← aproxima o botão do card acima */
 }
 
