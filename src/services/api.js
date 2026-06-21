@@ -190,3 +190,11 @@ export async function buscarJogoPorIdSala(id) {
   const res = await api.get(`/sala/jogos/${id}`);
   return res.data;
 }
+
+// ─── PRESENÇA / CONQUISTAS ─────────────────────────────────────────────────────
+
+/* GET /presencas/aluno/:cgm — Lista presenças (conquistas) de um aluno */
+export async function listarPresencasDoAluno(cgm) {
+  const res = await api.get(`/presencas/aluno/${cgm}`);
+  return res.data;
+}
