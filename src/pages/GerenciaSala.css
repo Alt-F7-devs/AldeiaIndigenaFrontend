@@ -129,6 +129,15 @@
   gap: 6px;
 }
 
+.btn-adicionarJogo {
+  background: #3b6e1f;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
 .btn-adicionar {
   background: #3b6e1f;
   white-space: nowrap;
@@ -144,10 +153,15 @@
   background: #2f7486;
 }
 
+.btn-criar-jogo {
+  background: #3b6e1f;
+}
+
 .btn-row {
   width: 480px;
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
   margin-top: -16px;      /* ← aproxima o botão do card acima */
 }
 

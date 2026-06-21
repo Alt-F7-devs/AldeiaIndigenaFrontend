@@ -161,3 +161,88 @@ export async function buscarJogoPorIdSala(id) {
   const res = await api.get(`/sala/jogos/${id}`);
   return res.data;
 }
+
+// ─── JOGOS ─────────────────────────────────────────
+
+export async function criarJogo(data) {
+  const csrfToken = await getCsrfToken();
+
+  const res = await api.post("/jogos", data, {
+    headers: { "X-XSRF-TOKEN": csrfToken }
+  });
+
+  return res.data;
+}
+
+export async function listarJogos() {
+  const res = await api.get("/jogos");
+  return res.data;
+}
+
+export async function buscarJogoPorId(id) {
+  const res = await api.get(`/jogos/${id}`);
+  return res.data;
+}
+
+export async function editarJogo(id, data) {
+  const csrfToken = await getCsrfToken();
+
+  const res = await api.put(`/jogos/${id}`, data, {
+    headers: { "X-XSRF-TOKEN": csrfToken }
+  });
+
+  return res.data;
+}
+
+export async function deletarJogo(id) {
+  const csrfToken = await getCsrfToken();
+
+  await api.delete(`/jogos/${id}`, {
+    headers: { "X-XSRF-TOKEN": csrfToken }
+  });
+}
+
+// ─── PRESENÇAS ────────────────────────────────────────────────────────────────
+
+/* POST /presenca — Registra presença de um aluno em um jogo específico */
+export async function registrarPresenca(cgm, idJogo) {
+  const csrfToken = await getCsrfToken();
+
+  await api.post(
+    `/presencas/${cgm}/jogo/${idJogo}`,
+    {},
+    {
+      headers: { "X-XSRF-TOKEN": csrfToken }
+    }
+  );
+}
+
+/* GET /presencas/jogo/:idJogo — Lista os IDs dos alunos presentes em um jogo */
+export async function listarPresencasJogo(idJogo) {
+  const res = await api.get(`/presencas/jogo/${idJogo}`);
+  return res.data;
+}
+
+/* DELETE /presenca/:id — Remove a presença de um aluno em um jogo específico */
+export async function deletarPresenca(cgm, idJogo) {
+  const csrfToken = await getCsrfToken();
+
+  await api.delete(
+    `/presencas/${cgm}/jogo/${idJogo}`,
+    {
+      headers: {
+        "X-XSRF-TOKEN": csrfToken
+      }
+    }
+  );
+}
+
+export async function listarJogosResumo() {
+  const res = await api.get("/jogos/resumo");
+  return res.data;
+}
+
+export async function listarJogosResumoPorSala(idSala) {
+  const res = await api.get(`/jogos/resumo/sala/${idSala}`);
+  return res.data;
+}

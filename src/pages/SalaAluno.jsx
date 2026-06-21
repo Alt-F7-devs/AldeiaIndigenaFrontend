@@ -10,7 +10,7 @@ function SalaAluno() {
     materia: "",
     data: "",
     capaJogo: null,
-    atividadeRota: "/atividade",
+    atividadeRota: "/conquistas",
   };
 
   function handleAcessarAtividade() {

@@ -85,7 +85,9 @@ function SalaProfessor() {
                   {contagemAlunos[sala.id_sala] ?? "..."} Aluno(s)
                 </span>
                 <span className="tag-materia">
-                  {sala.jogoNome ?? "Sem jogo vinculado"}
+                  {sala.jogosNomes && sala.jogosNomes.length > 0
+                    ? sala.jogosNomes.join(", ")
+                    : "Sem jogo vinculado"}
                 </span>
               </div>
 
