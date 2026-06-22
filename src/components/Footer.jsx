@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Footer.css";
+import grafismo from "../img/grafismo.svg";
 
 
 function Footer() {
@@ -21,7 +22,7 @@ function Footer() {
 
   return (
     <div className={`footer-faixa-wrapper ${visible ? "footer--visible" : ""}`}>
-      <img src="/img/grafismo.png" alt="" className="faixa-tribal" />
+    <img src={grafismo} alt="" className="faixa-tribal" />
     </div>
   );
 }

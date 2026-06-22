@@ -1,177 +1,162 @@
-.faixa-tribal {
-  width: 100%;
-  height: 30px;
-  background-image: url('../img/grafismo.svg');
-  background-repeat: repeat-x;
-  background-size: 100%;
-  margin-top: 80px;
-  flex-shrink: 0;
-
-}
-
 .gerencia-container {
   background: #E3C9A5;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 150px;
-  padding-bottom: 40px;
+  justify-content: center;
+  padding: 40px 20px 60px;
   position: relative;
 }
 
 .sala-label {
-  position: fixed;        /* ← fixo na borda da tela */
-  top: 120px;              /* ← ajuste conforme altura do seu Header */
-  left: 0;                /* ← colado na borda esquerda */
+  position: fixed;
+  top: 120px;
+  left: 0;
   background: #3b6e1f;
   color: white;
+  font-family: 'Itim', cursive;
+  font-size: 16px;
   font-weight: bold;
-  font-size: 15px;
-  padding: 14px 40px 14px 20px;
-  border-radius: 0 12px 12px 0;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  padding: 14px 44px 14px 22px;
+  border-radius: 0 14px 14px 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
   z-index: 10;
 }
 
-.cards-wrapper {
-  margin-top: 70px;
+.gerencia-wrapper {
+  margin-top: 120px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.g-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.g-card-header {
+  background: #3b6e1f;
+  color: #ffffff;
+  font-family: 'Itim', cursive;
+  font-size: 18px;
+  text-align: center;
+  padding: 12px;
+}
+
+.g-card-body {
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  gap: 28px;              /* ← espaço entre os cards e btn-rows */
-}
-
-.card {
-  background: #f0f0f0;
-  width: 480px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-}
-
-.card-header {
-  background: #3b6e1f;
-  color: white;
-  text-align: center;
-  padding: 13px;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.card-body {
-  padding: 20px 22px;
-}
-
-.two-col {
-  display: flex;
   gap: 14px;
 }
 
-.left-col {
+.g-jogo-box {
+  width: 100%;
+  height: 100px;
+  background: #d0cfc9;
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  color: #777;
+  cursor: pointer;
 }
 
-.right-col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.inp {
-  padding: 10px 14px;
-  border-radius: 20px;
+.g-inp {
+  padding: 10px 16px;
+  border-radius: 10px;
   border: none;
-  background: #d9d9d9;
-  font-size: 13px;
+  background: #d0cfc9;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
   color: #555;
   outline: none;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.inp-full {
-  display: block;
-  margin-bottom: 10px;
-}
+.g-inp::placeholder { color: #888; }
 
-.upload-box {
-  width: 165px;
-  height: 115px;
-  background: #cfcfcf;
-  border-radius: 12px;
+.g-btn-row {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  color: #666;
+  gap: 10px;
+  width: 100%;
 }
 
-.btn {
+.g-btn {
   border: none;
-  border-radius: 8px;
-  padding: 9px 16px;
+  border-radius: 10px;
+  padding: 11px 20px;
   cursor: pointer;
-  color: white;
-  font-weight: bold;
-  font-size: 13px;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  flex: 1;
 }
+
+.g-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.g-btn:active { transform: scale(0.96); }
+
+.btn-adicionar-jogo {
+  background: #3b6e1f;
+  color: #ffffff;
+}
+
+.btn-adicionar-jogo:hover { background: #2d5433; }
 
 .btn-descartar {
-  background: #8b0000;
-  width: 100%;
+  background: #8b1a1a;
+  color: #ffb3b3;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
 }
 
-.btn-adicionarJogo {
-  background: #3b6e1f;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+.btn-descartar:hover {
+  background: #ffb3b3;
+  color: #8b1a1a;
 }
 
-.btn-adicionar {
-  background: #3b6e1f;
-  white-space: nowrap;
-}
-
-.btn-excluir {
-  background: #8b0000;
-  white-space: nowrap;
-}
-
-.btn-historico,
-.btn-listar {
+.btn-acao {
   background: #2f7486;
+  color: #83e0ff;
+  flex: none;
 }
 
-.btn-criar-jogo {
-  background: #3b6e1f;
+.btn-acao:hover {
+  background: #83e0ff;
+  color: #2f7486;
 }
 
-.btn-row {
-  width: 480px;
+.g-action-row {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: -16px;      /* ← aproxima o botão do card acima */
 }
 
-.aluno-row {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+.msg-sucesso {
+  color: #3b6e1f;
+  font-family: 'Itim', cursive;
+  font-size: 13px;
+  margin: 0;
+  text-align: center;
 }
 
-.aluno-row .inp {
-  flex: 1;
-  min-width: 0;
+.msg-erro {
+  color: #8b0000;
+  font-family: 'Itim', cursive;
+  font-size: 13px;
+  margin: 0;
+  text-align: center;
 }

@@ -3,31 +3,26 @@ import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
-
-
-
+import logo from "../img/logo.svg";
+import { listarAvisos } from "../services/api";
 
 const CURIOSIDADES = [
-  {
-    texto: "texto esclarecendo duvidas e curiosidades sobre temas relevantes ou sobre o uso do sistema",
-  },
-  {
-    texto: "outra curiosidade interessante sobre o sistema ou sobre temas educacionais relevantes",
-  },
-  {
-    texto: "mais uma curiosidade para enriquecer o conhecimento dos professores e alunos",
-  },
+  { texto: "texto esclarecendo duvidas e curiosidades sobre temas relevantes ou sobre o uso do sistema" },
+  { texto: "outra curiosidade interessante sobre o sistema ou sobre temas educacionais relevantes" },
+  { texto: "mais uma curiosidade para enriquecer o conhecimento dos professores e alunos" },
 ];
-
 
 function HomeProfessor() {
   const navigate = useNavigate();
   const ehAdmin = localStorage.getItem("tipo") === "ADMIN";
   const [slide, setSlide] = useState(0);
   const [disponivel, setDisponivel] = useState(null);
-  const [avisos, setAvisos] = useState([1, 2, 3]);
+  const [avisos, setAvisos] = useState([]);
   const [muralIndex, setMuralIndex] = useState(0);
 
+  useEffect(() => {
+    setAvisos(listarAvisos());
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,30 +31,20 @@ function HomeProfessor() {
     return () => clearInterval(timer);
   }, []);
 
-
-  const handleAdicionarAviso = () => {
-    setAvisos((prev) => [...prev, prev.length + 1]);
-  };
-
-
   const handleMuralPrev = () => {
     setMuralIndex((prev) => Math.max(0, prev - 1));
   };
 
-
   const handleMuralNext = () => {
-    setMuralIndex((prev) => Math.min(avisos.length - 3, prev + 1));
+    setMuralIndex((prev) => Math.min(Math.max(avisos.length - 3, 0), prev + 1));
   };
 
-
   const avisosVisiveis = avisos.slice(muralIndex, muralIndex + 3);
-
 
   return (
     <>
       <Header />
       <div className="hp-page">
-
 
         {/* FAIXA + CURIOSIDADES */}
         <div className="hp-faixa-curiosidades">
@@ -68,40 +53,26 @@ function HomeProfessor() {
           <img className="hp-grafismo" src="/img/grafismo.svg" alt="" />
         </div>
 
-
         <div className="hp-curio-box">
           <div className="hp-curio-cards">
             <div className="hp-curio-img hp-curio-img--grande" />
             <div className="hp-curio-img hp-curio-img--pequeno" />
           </div>
 
-
           <div className="hp-curio-conteudo">
             {CURIOSIDADES.map((item, i) => (
-              <p
-                key={i}
-                className={`hp-curio-texto ${i === slide ? "hp-curio-texto--ativo" : ""}`}
-              >
+              <p key={i} className={`hp-curio-texto ${i === slide ? "hp-curio-texto--ativo" : ""}`}>
                 {item.texto}
               </p>
             ))}
           </div>
 
-
           <div className="hp-curio-dots">
             {CURIOSIDADES.map((_, i) => (
-              <button
-                key={i}
-                className={`hp-dot ${i === slide ? "hp-dot--ativo" : ""}`}
-                onClick={() => setSlide(i)}
-              />
+              <button key={i} className={`hp-dot ${i === slide ? "hp-dot--ativo" : ""}`} onClick={() => setSlide(i)} />
             ))}
           </div>
         </div>
-
-
-        <img className="hp-faixa" src="/img/grafismo.svg" alt="" />
-
 
         {/* SALAS */}
         <div className="hp-salas-sec">
@@ -118,17 +89,12 @@ function HomeProfessor() {
           )}
         </div>
 
-
-        <img className="hp-faixa" src="/img/grafismo.svg" alt="" />
-
-
         {/* DISPONIBILIDADE */}
         <div className="hp-disp-sec">
           <div className="hp-disp-top">
             <button className="hp-btn-disp">Estou disponível?</button>
-            <img className="hp-moeda" src="/img/logo.svg" alt="" />
+            <img className="hp-moeda" src={logo} alt="Logo" />
           </div>
-
 
           <div className="hp-sala-card">
             <div className="hp-sala-esq">
@@ -156,10 +122,6 @@ function HomeProfessor() {
           </div>
         </div>
 
-
-        <img className="hp-faixa" src="/img/grafismo.svg" alt="" />
-
-
         {/* MURAL DE AVISOS */}
         <div className="hp-mural-sec">
           <div className="hp-mural-outer">
@@ -180,28 +142,36 @@ function HomeProfessor() {
             <div className="hp-mural-inner">
               <div className="hp-mural-titulo">Mural de avisos</div>
               <div className="hp-mural-cards">
-                {avisosVisiveis.map((id) => (
-                  <div key={id} className="hp-mural-card" />
+                {avisosVisiveis.length === 0 && (
+                  <p style={{ color: "#fff", textAlign: "center", width: "100%" }}>
+                    Nenhum aviso publicado ainda.
+                  </p>
+                )}
+                {avisosVisiveis.map((aviso) => (
+                  <div key={aviso.id} className="hp-mural-card">
+                    <h3>{aviso.titulo}</h3>
+                    <p>{aviso.descricao}</p>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
+
           <div className="hp-aviso-row">
-            <button className="hp-btn-aviso" onClick={handleAdicionarAviso}>
+            <button
+              className="hp-btn-aviso"
+              onClick={() => navigate("/adicionar-aviso")}
+            >
               Adicionar Aviso
             </button>
           </div>
         </div>
 
-
-        <img className="hp-faixa" src="/img/grafismo.svg" alt="" />
-
-
       </div>
+
       <Footer />
     </>
   );
 }
-
 
 export default HomeProfessor;

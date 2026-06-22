@@ -1,42 +1,43 @@
 .hp-page {
   background: #E3C9A5;
   min-height: 100vh;
-  padding-top: 140px;
+  padding-top: 120px;
 }
-
 
 .hp-faixa {
   width: 100%;
-  height: 12px;
+  height: 15px;
   object-fit: cover;
   display: block;
 }
 
-
 /* CURIOSIDADES */
 .hp-faixa-curiosidades {
   display: flex;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
-  height: 40px;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -20px; /* faz entrar no card */
 }
 
+.hp-grafismo {
+  flex: 1;
+  height: 40px;
+  object-fit: cover;
+  display: block;
+}
 
 .hp-curio-tab {
-  background: #2a5a6a;
+  background: #2a6a7a;
   color: #fff;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 25px;
   padding: 8px 28px;
   white-space: nowrap;
   flex-shrink: 0;
-  border-radius: 10px;
-  margin-top: 0px;
-
-
+  border-radius:  10px;
+  margin-top: 40px;
 }
-
 
 .hp-curio-box {
   background: #2a6a7a;
@@ -49,9 +50,8 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  margin-top: 10px;
+  
 }
-
 
 .hp-curio-cards {
   display: flex;
@@ -62,7 +62,6 @@
   overflow: visible;
 }
 
-
 .hp-curio-img {
   background: #d9d9d9;
   border-radius: 14px;
@@ -72,13 +71,11 @@
   transform-style: preserve-3d;
 }
 
-
 .hp-curio-img--grande {
   width: 250px;
   height: 180px;
   transform: perspective(600px) rotateY(15deg) rotateX(5deg);
 }
-
 
 .hp-curio-img--pequeno {
   width: 180px;
@@ -86,18 +83,15 @@
   transform: perspective(600px) rotateY(-15deg) rotateX(5deg);
 }
 
-
 .hp-curio-img--grande:hover {
   transform: perspective(600px) rotateY(-8deg) rotateX(-5deg) translateY(-8px);
   box-shadow: 8px 16px 30px rgba(0, 0, 0, 0.3);
 }
 
-
 .hp-curio-img--pequeno:hover {
   transform: perspective(600px) rotateY(8deg) rotateX(-5deg) translateY(-8px);
   box-shadow: -8px 16px 30px rgba(0, 0, 0, 0.3);
 }
-
 
 .hp-curio-conteudo {
   flex: 1;
@@ -105,7 +99,6 @@
   min-height: 100px;
   overflow: hidden;
 }
-
 
 .hp-curio-texto {
   color: #fff;
@@ -122,13 +115,11 @@
   pointer-events: none;
 }
 
-
 .hp-curio-texto--ativo {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
 }
-
 
 .hp-curio-dots {
   position: absolute;
@@ -137,7 +128,6 @@
   display: flex;
   gap: 10px;
 }
-
 
 .hp-dot {
   width: 8px;
@@ -150,12 +140,10 @@
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-
 .hp-dot--ativo {
   background: #fff;
   transform: scale(1.3);
 }
-
 
 /* SALAS */
 .hp-salas-sec {
@@ -165,7 +153,6 @@
   flex-wrap: wrap;
   padding: 20px;
 }
-
 
 .hp-btn-salas {
   background: #8b0000;
@@ -178,6 +165,7 @@
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  margin-top: 20px;
 }
 
 
@@ -190,233 +178,243 @@
 .hp-disp-sec {
   display: flex;
   flex-direction: column;
-  padding: 24px 30px;
+  padding: 24px 15px;
   gap: 20px;
 }
-
 
 .hp-disp-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
-
 
 .hp-btn-disp {
   background: #3b6e1f;
   color: #fff;
   border: none;
-  border-radius: 12px;
-  padding: 14px 28px;
-  font-size: 15px;
+  border-radius: 0 15px 15px 0;
+  padding: 14px 35px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+
   background-image: url("/img/folhagem.png");
-  background-blend-mode: multiply;
   background-size: cover;
+  background-position: center;
+
+  margin-left: -15px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.25);
 }
 
-
 .hp-moeda {
-  width: 64px;
-  height: 64px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   border: 4px solid #3b6e1f;
   background-color: #e8c97a;
-  padding: 4px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
-
+/* CARD */
 .hp-sala-card {
   width: 100%;
-  background: #f5ecd7;
-  border: 3px solid #3b6e1f;
-  border-radius: 50px;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  overflow: hidden;
-}
+  background: #DCC7A4;
+  border: 4px solid #3E7C1F;
+  border-radius: 18px;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  overflow: hidden;
+
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.25);
+}
 
 .hp-sala-esq {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 10px 20px;
+  gap: 18px;
+  padding: 14px 22px;
   flex: 1;
 }
-
 
 .hp-avatar {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #3b6e1f;
+  background: #3E7C1F;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
-
 .hp-sala-nome {
-  font-size: 15px;
-  color: #3b6e1f;
+  color: #3E7C1F;
+  font-size: 18px;
   font-weight: 600;
 }
 
-
 .hp-sala-btns {
   display: flex;
-  align-items: stretch;
-  gap: 6px;
-  padding: 8px 10px;
+  gap: 0;
+  padding: 0;
 }
 
+.hp-btn-nao,
+.hp-btn-sim {
+  width: 95px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  min-height: 70px;
+}
 
 .hp-btn-nao {
-  background: #8b0000;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 0 24px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
+  background: #980000;
+  border-radius: 12px 0 0 12px;
 }
-
-
-.hp-btn-nao.hp-btn--ativo {
-  background: #6e0000;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
-}
-
 
 .hp-btn-sim {
-  background: #3b6e1f;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 0 24px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
+  background: #4C8E22;
+  border-radius: 0 12px 12px 0;
 }
 
+.hp-btn-nao.hp-btn--ativo {
+  background: #6d0000;
+}
 
 .hp-btn-sim.hp-btn--ativo {
-  background: #2a5015;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+  background: #356418;
 }
-
 
 /* MURAL */
 .hp-mural-sec {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 20px;
+  padding: 40px 20px;
 }
-
 
 .hp-mural-outer {
-  background: #3b6e1f;
-  border-radius: 14px;
-  padding: 14px;
-  width: 100%;
-  max-width: 480px;
+  width: 90%;
+  max-width: 900px;
+
+  background-image: url("../img/folhagem.png");
+  background-size: 1500px auto;
+  background-repeat: repeat;
+
+
+  border-radius: 20px;
+  padding: 25px;
   position: relative;
-  background-image: url("/img/folhagem.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: multiply;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
 }
 
+.hp-mural-inner {
+  background: #d7be98;
+  border-radius: 18px;
+  padding: 30px;
+  position: relative;
+}
+
+.hp-mural-titulo {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d7be98;
+  color: #7a3d1f;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 15px 40px;
+  border-radius: 18px 18px 0 0;
+}
+
+.hp-mural-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.hp-mural-card {
+  width: 180px;
+  height: 280px;
+  background: #f5f5f5;
+  border-radius: 15px;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.25);
+  padding: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.hp-mural-card:hover {
+  transform: translateY(-5px);
+}
 
 .hp-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
-  border: 2px solid #c8902a;
+  width: 55px;
+  height: 55px;
+
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  color: #c8902a;
-  font-size: 14px;
+  border: 4px solid #4d8a2b;
+
+  background: #f5ecd7;
+  color: #4d8a2b;
+
+  font-size: 30px;
   font-weight: bold;
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
-  transition: opacity 0.2s;
+
+  z-index: 10;
+  transition: 0.2s;
 }
 
+.hp-nav-btn:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.hp-nav-left {
+  left: 50px;
+}
+
+.hp-nav-right {
+  right: 50px;
+}
 
 .hp-nav-btn:disabled {
-  opacity: 0.3;
-  cursor: default;
+  opacity: 0.4;
+  cursor: not-allowed;
 }
-
-
-.hp-nav-left { left: 8px; }
-.hp-nav-right { right: 8px; }
-
-
-.hp-mural-inner {
-  background: #c8a87a;
-  border-radius: 10px;
-  padding: 14px 40px;
-}
-
-
-.hp-mural-titulo {
-  text-align: center;
-  color: #c8902a;
-  font-weight: bold;
-  font-size: 15px;
-  background: #3b6e1f;
-  border-radius: 20px;
-  padding: 7px 30px;
-  margin-bottom: 14px;
-}
-
-
-.hp-mural-cards {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
-
-
-.hp-mural-card {
-  width: 120px;
-  height: 140px;
-  background: #fff;
-  border-radius: 10px;
-}
-
 
 .hp-aviso-row {
-  width: 100%;
-  max-width: 480px;
+  width: 90%;
+  max-width: 900px;
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
-
 .hp-btn-aviso {
-  background: #2a7a8a;
-  color: #fff;
+  background: #145f78;
+  color: white;
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 13px;
-  font-weight: bold;
+  border-radius: 12px;
+  padding: 15px 25px;
+  font-size:16px;
   cursor: pointer;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.25);
 }
