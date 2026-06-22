@@ -46,6 +46,74 @@
   font-size: 20px;
 }
 
+/* ── Toolbar com Botões ────────────────────────────────────────────── */
+
+.historico-toolbar {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-criar {
+  background: linear-gradient(135deg, #3B7113 0%, #2d5610 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: 'Itim', cursive;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-criar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.btn-criar:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Mensagens de Erro ────────────────────────────────────────────── */
+
+.historico-erro {
+  background-color: #ffe6e6;
+  border: 2px solid #cc0000;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  color: #8b0000;
+  font-family: 'Itim', cursive;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-recarregar {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn-recarregar:hover {
+  background: #8b0000;
+  transform: translateY(-2px);
+}
+
+/* ── Card da Tabela ────────────────────────────────────────────────── */
+
 .historico-card {
   flex: 1;
   background-color: #D4B48A;
@@ -58,7 +126,7 @@
 
 .tabela-header {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.5fr;
+  grid-template-columns: 2fr 1fr 1.5fr auto;
   gap: 12px;
   margin-bottom: 12px;
   border: 2px solid #3B7113;
@@ -80,6 +148,7 @@
 .col-nome   { flex: 2; }
 .col-data   { flex: 1; }
 .col-alunos { flex: 1.5; }
+.col-acoes  { flex: 0.8; }
 
 .tabela-corpo {
   display: flex;
@@ -89,8 +158,9 @@
 
 .tabela-linha {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.5fr;
+  grid-template-columns: 2fr 1fr 1.5fr auto;
   gap: 12px;
+  align-items: center;
 }
 
 .tabela-linha .tabela-col {
@@ -99,6 +169,37 @@
   font-size: 16px;
 }
 
+/* ── Botão Editar ────────────────────────────────────────────────── */
+
+.btn-editar {
+  background: #c17d3a;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-editar:hover {
+  background: #a56a2f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-editar:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Estados de Carregamento ────────────────────────────────────────── */
+
+.tabela-carregando,
 .tabela-vazia {
   color: #3B7113;
   font-family: 'Itim', cursive;
@@ -106,6 +207,19 @@
   text-align: center;
   padding: 40px 0;
   opacity: 0.7;
+}
+
+/* ── Responsividade ────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .tabela-header,
+  .tabela-linha {
+    grid-template-columns: 1.5fr 1fr 1fr auto;
+  }
+  
+  .col-nome { flex: 1.5; }
+  .col-data { flex: 1; }
+  .col-alunos { flex: 1; }
 }
 
 @media (max-width: 600px) {
@@ -116,5 +230,40 @@
   .tabela-col {
     font-size: 13px;
     padding: 8px 6px;
+  }
+
+  .tabela-header,
+  .tabela-linha {
+    grid-template-columns: 1fr auto;
+  }
+
+  .col-nome,
+  .col-data,
+  .col-alunos {
+    display: none;
+  }
+
+  .tabela-linha {
+    align-items: start;
+    gap: 8px;
+  }
+
+  .tabela-linha .tabela-col:first-child {
+    display: block;
+    grid-column: 1;
+  }
+
+  .btn-editar {
+    grid-column: 2;
+    width: 100%;
+  }
+
+  .historico-toolbar {
+    flex-direction: column;
+  }
+
+  .btn-criar {
+    width: 100%;
+    text-align: center;
   }
 }

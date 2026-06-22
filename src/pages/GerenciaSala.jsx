@@ -28,25 +28,30 @@ function GerenciaSala() {
 
   // ── Handlers: Jogo ───────────────────────────────────
   async function handleAdicionarJogo() {
-    if (!numeroJogo.trim()) {
-      setJogoErro("Informe o número da Jogo.");
-      return;
-    }
-    setJogoCarregando(true);
-    setJogoMsg(null);
-    setJogoErro(null);
-    try {
-      const res = await adicionarJogoSala(Number(salaId), Number(numeroJogo));
-      setJogoMsg(`Jogo "${res.nome}" vinculado com sucesso!`);
-      setTituloJogo("");
-      setDataJogo("");
-      setNumeroJogo("");
-    } catch {
-      setJogoErro("Erro ao vincular jogo. Verifique o número e tente novamente.");
-    } finally {
-      setJogoCarregando(false);
-    }
+  if (!numeroJogo.trim()) {
+    setJogoErro("Informe o número do jogo.");
+    return;
   }
+  
+  setJogoCarregando(true);
+  setJogoMsg(null);
+  setJogoErro(null);
+  
+  try {
+    console.log("Enviando jogo:", numeroJogo);
+    // ← Inverta a ordem aqui
+    const res = await adicionarJogoSala(Number(salaId), Number(numeroJogo));
+    setJogoMsg(`Jogo "${res.nome}" vinculado com sucesso!`);
+    setTituloJogo("");
+    setDataJogo("");
+    setNumeroJogo("");
+  } catch (error) {
+    console.error("Erro ao adicionar jogo:", error.response?.data);
+    setJogoErro("Erro ao vincular jogo. Verifique o número e tente novamente.");
+  } finally {
+    setJogoCarregando(false);
+  }
+}
 
   function handleDescartarJogo() {
     setTituloJogo("");
@@ -88,7 +93,10 @@ function GerenciaSala() {
     navigate(`/lista-aluno/${salaId}`);
   }
   function handleHistoricoJogos() {
-    navigate("/historico");
+    navigate(`/historico?salaId=${salaId}`);
+  }
+  function handleCriarJogo() {
+    navigate(`/criar-jogo/${salaId}`);
   }
 
   return (
@@ -104,60 +112,12 @@ function GerenciaSala() {
         <div className="cards-wrapper">
 
           {/* ANEXAR JOGO */}
-          <div className="card">
-            <div className="card-header">Anexar Jogo</div>
-            <div className="card-body">
-              <div className="two-col">
-                <div className="left-col">
-                  <input 
-                    className="inp" 
-                    placeholder="Título da Jogo"
-                    value={tituloJogo}
-                    onChange={(e) => setTituloJogo(e.target.value)}
-                  />
-                  <input 
-                    className="inp" 
-                    placeholder="Data da criação"
-                    type="date"
-                    value={dataJogo}
-                    onChange={(e) => setDataJogo(e.target.value)}
-                  />
-                  <input 
-                    className="inp" 
-                    placeholder="Numero do Jogo"
-                    type="number"
-                    min="1"
-                    value={numeroJogo}
-                    onChange={(e) => setNumeroJogo(e.target.value)}
-                  />
-                </div>
-                <div className="right-col">
-                  <button 
-                    className="upload-box"
-                    onClick={handleAdicionarJogo}
-                    disabled={jogoCarregando}
-                    style={{ cursor: jogoCarregando ? 'not-allowed' : 'pointer' }}
-                  >
-                    {jogoCarregando ? "Vinculando..." : "Selecionar Jogo"}
-                  </button>
-                  <button 
-                    className="btn btn-descartar"
-                    onClick={handleDescartarJogo}
-                  >
-                    Descartar 🗑
-                  </button>
-                </div>
-              </div>
-              {jogoMsg && (
-                <p style={{ color: "#3b6e1f", marginTop: "8px", fontSize: "13px" }}>{jogoMsg}</p>
-              )}
-              {jogoErro && (
-                <p style={{ color: "#8b0000", marginTop: "8px", fontSize: "13px" }}>{jogoErro}</p>
-              )}
-            </div>
-          </div>
+          
 
           <div className="btn-row">
+            <button className="btn btn-criar-jogo" onClick={handleCriarJogo}>
+              Criar Jogo
+            </button>
             <button className="btn btn-historico" onClick={handleHistoricoJogos}>
               Histórico de jogos
             </button>
