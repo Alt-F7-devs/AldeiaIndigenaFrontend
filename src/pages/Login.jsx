@@ -20,8 +20,16 @@ function Login() {
     try {
       const data = await loginProfessor(cpfProf, senhaProf);
       localStorage.setItem("tipo", data.tipo);
-      localStorage.setItem("id_professor", data.id); // ← Use 'data.id' agora
-      navigate("/professor");
+      // O backend autentica admin pelo mesmo endpoint: se as credenciais
+      // baterem com um admin, retorna tipo "ADMIN".
+      if (data.tipo === "ADMIN") {
+        localStorage.setItem("admin_login", cpfProf);
+        localStorage.setItem("id_admin", data.id);
+        navigate("/professor");
+      } else {
+        localStorage.setItem("id_professor", data.id);
+        navigate("/professor");
+      }
     } catch (err) {
       const mensagem = err.response?.data?.message || "Erro ao realizar login!";
       alert(mensagem);

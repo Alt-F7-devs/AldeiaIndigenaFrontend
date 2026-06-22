@@ -45,6 +45,35 @@ export async function logout() {
   }
 }
 
+// ─── CADASTRO DE USUÁRIOS ─────────────────────────────────────────────────────
+
+/* POST /admin — Cria um novo administrador (AdminRequestDTO: { login, senha }) */
+export async function criarAdmin(data) {
+  const csrfToken = await getCsrfToken();
+  const res = await api.post("/admin", data, {
+    headers: { "X-XSRF-TOKEN": csrfToken }
+  });
+  return res.data;
+}
+
+/* POST /aluno — Cria um novo aluno (AlunoRequestDTO: { nome, cgm, senha, admin_login }) */
+export async function criarAluno(data) {
+  const csrfToken = await getCsrfToken();
+  const res = await api.post("/aluno", data, {
+    headers: { "X-XSRF-TOKEN": csrfToken }
+  });
+  return res.data;
+}
+
+/* POST /professor — Cria um novo professor (ProfessorRequestDTO: { nome, cpf, senha, admin_login }) */
+export async function criarProfessor(data) {
+  const csrfToken = await getCsrfToken();
+  const res = await api.post("/professor", data, {
+    headers: { "X-XSRF-TOKEN": csrfToken }
+  });
+  return res.data;
+}
+
 // ─── ALUNO ────────────────────────────────────────────────────────────────────
 
 /* GET /aluno — Lista todos os alunos */

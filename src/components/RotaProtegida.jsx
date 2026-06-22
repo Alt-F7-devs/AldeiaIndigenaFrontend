@@ -7,7 +7,9 @@ function RotaProtegida({ children, tipo }) {
     return <Navigate to="/login" />;
   }
 
-  if (tipo && tipoSalvo !== tipo) {
+  const tiposPermitidos = Array.isArray(tipo) ? tipo : [tipo];
+
+  if (tipo && !tiposPermitidos.includes(tipoSalvo)) {
     return <Navigate to="/login" />;
   }
 
