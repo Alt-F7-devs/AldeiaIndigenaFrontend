@@ -136,6 +136,7 @@
 
 .rp-col--nome   { flex: 3; }
 .rp-col--id     { flex: 2; }
+.rp-col--sala   { flex: 1.5; text-align: center; }
 .rp-col--num    { flex: 1.5; text-align: center; }
 .rp-col--status { flex: 1.5; text-align: center; }
 

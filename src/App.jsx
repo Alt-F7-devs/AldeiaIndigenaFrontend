@@ -47,7 +47,7 @@ function App() {
         <Route path="/editar-jogo/:jogoId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><CriarEditarJogo /></RotaProtegida>} />
         <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><ListaAluno /></RotaProtegida>} />
         <Route path="/sala-professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><SalaProfessor /></RotaProtegida>} />
-        <Route path="/relatoriopresenca" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><RelatorioPresenca /></RotaProtegida>} />
+        <Route path="/relatoriopresenca" element={<RotaProtegida tipo="ADMIN"><RelatorioPresenca /></RotaProtegida>} />
 
       </Routes>
     </BrowserRouter>
