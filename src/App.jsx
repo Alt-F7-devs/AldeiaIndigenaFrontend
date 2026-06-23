@@ -7,6 +7,7 @@ import BibliotecaJogos from "./pages/BibliotecaJogos";
 import ConquistasAluno from "./pages/ConquistasAluno";
 import GerenciaSala from "./pages/GerenciaSala";
 import Historico from "./pages/HistoricoAtv";
+import CriarEditarJogo from "./pages/CriarEditarJogo";
 import ListaAluno from "./pages/ListaAluno";
 import SalaAluno from "./pages/SalaAluno";
 import SalaProfessor from "./pages/SalaProfessor";
@@ -37,12 +38,16 @@ function App() {
         <Route path="/sala-aluno" element={<RotaProtegida tipo="ALUNO"><SalaAluno /></RotaProtegida>} />
 
         {/* Rotas do Professor */}
-        <Route path="/professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><HomeProfessor /></RotaProtegida>} />
-        <Route path="/gerencia/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><GerenciaSala /></RotaProtegida>} />
-        <Route path="/historico" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><Historico /></RotaProtegida>} />
-        <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><ListaAluno /></RotaProtegida>} />
-        <Route path="/sala-professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><SalaProfessor /></RotaProtegida>} />
-        <Route path="/relatoriopresenca" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><RelatorioPresenca /></RotaProtegida>} />
+        <Route path="/professor" element={<RotaProtegida tipo="PROFESSOR"><HomeProfessor /></RotaProtegida>} />
+        <Route path="/gerencia/:salaId" element={<RotaProtegida tipo="PROFESSOR"><GerenciaSala /></RotaProtegida>} />
+        <Route path="/historico" element={<RotaProtegida tipo="PROFESSOR"><Historico /></RotaProtegida>} />
+        <Route path="/criar-jogo" element={<RotaProtegida tipo="PROFESSOR"><CriarEditarJogo /></RotaProtegida>} />
+        <Route path="/criar-jogo/:salaId" element={<RotaProtegida tipo="PROFESSOR"><CriarEditarJogo /></RotaProtegida>} />
+        <Route path="/editar-jogo/:jogoId/:salaId" element={<RotaProtegida tipo="PROFESSOR"><CriarEditarJogo /></RotaProtegida>} />
+        <Route path="/editar-jogo/:jogoId" element={<RotaProtegida tipo="PROFESSOR"><CriarEditarJogo /></RotaProtegida>} />
+        <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo="PROFESSOR"><ListaAluno /></RotaProtegida>} />
+        <Route path="/sala-professor" element={<RotaProtegida tipo="PROFESSOR"><SalaProfessor /></RotaProtegida>} />
+        <Route path="/relatoriopresenca" element={<RotaProtegida tipo="PROFESSOR"><RelatorioPresenca /></RotaProtegida>} />
 
       </Routes>
     </BrowserRouter>
