@@ -24,22 +24,27 @@
 
 
 }
+
 .header-faixa-wrapper {
   position: fixed;
-  top: 1px;
+  top: 80px;
   left: 0;
   width: 100%;
-  z-index: 1; /* atrás dos itens do header que têm z-index maior */
+  height: 35px;
+
+  background-image: url("../img/grafismo.svg");
+  background-repeat: repeat-x;
+  background-size: auto 35px;
+  background-position: center;
+
+  z-index: 1;
 }
 
-
-.header-faixa {
+.faixa-tribal {
   width: 100%;
-  height: 14px;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
-
 
 .header-icon {
   width: 24px;
@@ -103,13 +108,15 @@
 
 /* grupo direita */
 .header-direita {
-  position: relative;
-  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
-
+.header-sair {
+  white-space: nowrap;
+  padding: 10px 20px;
+  font-size: 16px;
+}
 
 /* botão sair */
 .header-sair {
@@ -168,4 +175,8 @@
   width: 100%;
   height: 20px;
   z-index: 9999;
+}
+
+.header-spacer {
+  height: 110px;
 }

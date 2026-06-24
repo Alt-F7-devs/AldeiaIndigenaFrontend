@@ -1,5 +1,3 @@
-
-
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import logo from "../img/logo.svg";
@@ -7,15 +5,15 @@ import bg from "../img/folhagem.png";
 import "./Header.css";
 import home from "../img/casa.png";
 import user from "../img/do-utilizador.png";
-import grafismo from "../img/grafismo.svg";
 
-
-function Header() {
+function Header({
+  textoBotao = "Sair",
+  rotaBotao = "/login"
+}) {
   const navigate = useNavigate();
   const [hidden, setHidden] = useState(false);
   const [hovered, setHovered] = useState(false);
   const lastScrollY = useRef(0);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,14 +26,11 @@ function Header() {
       lastScrollY.current = currentY;
     };
 
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   const isVisible = !hidden || hovered;
-
 
   return (
     <>
@@ -45,7 +40,6 @@ function Header() {
         onMouseLeave={() => setHovered(false)}
       />
 
-
       <header
         className={`header ${!isVisible ? "header--hidden" : ""}`}
         onMouseEnter={() => setHovered(true)}
@@ -53,11 +47,9 @@ function Header() {
       >
         <img src={bg} alt="Fundo" className="header-bg" />
 
-
         <button className="header-btn header-home" onClick={() => navigate("/professor")}>
           <img src={home} alt="home" className="header-icon" />
         </button>
-
 
         <img
           src={logo}
@@ -65,10 +57,9 @@ function Header() {
           className={`header-logo ${!isVisible ? "header-logo--hidden" : ""}`}
         />
 
-
         <div className="header-direita">
-          <button className="header-btn header-sair" onClick={() => navigate("/login")}>
-            Sair
+          <button className="header-btn header-sair" onClick={() => navigate(rotaBotao)}>
+            {textoBotao}
           </button>
           <button className="header-btn header-usuario" onClick={() => navigate("/professor")}>
             <img src={user} alt="user" className="header-icon" />
@@ -76,13 +67,11 @@ function Header() {
         </div>
       </header>
 
+      <div className={`header-faixa-wrapper ${!isVisible ? "header-faixa-wrapper--hidden" : ""}`} />
 
-      <div className={`header-faixa-wrapper ${!isVisible ? "header-faixa-wrapper--hidden" : ""}`}>
-       <img src={grafismo} alt="" className="faixa-tribal" />
-      </div>
+      <div className="header-spacer" />
     </>
   );
 }
-
 
 export default Header;

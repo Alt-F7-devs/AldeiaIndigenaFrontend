@@ -322,7 +322,7 @@
 /* TÍTULO */
 .hp-mural-titulo {
   position: absolute;
-  top: -28px;
+  top: -15px;
   left: 50%;
   transform: translateX(-50%);
   background: #d7be98;
@@ -382,7 +382,7 @@
   margin-top: 10px;
   font-size: 12px;
   text-align: center;
-  background: #2f6fed;
+  background: #1A5276;
   color: white;
   padding: 5px;
   border-radius: 8px;

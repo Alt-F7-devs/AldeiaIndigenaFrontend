@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "./ConquistasAluno.css";
 
 function ConquistasAluno() {
@@ -29,6 +30,8 @@ function ConquistasAluno() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }

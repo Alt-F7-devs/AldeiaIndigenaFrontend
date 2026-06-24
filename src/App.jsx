@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RotaProtegida from "./components/RotaProtegida";
 import Login from "./pages/Login";
 import HomeAluno from "./pages/HomeAluno";
 import HomeProfessor from "./pages/HomeProfessor";
@@ -22,33 +21,33 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
+      <Route path="/" element={<Login />} />
 
-        {/* Rotas de Cadastro de usuários */}
-        <Route path="/cadastro" element={<RotaProtegida tipo="ADMIN"><SelecaoCadastro /></RotaProtegida>} />
-        <Route path="/cadastro/admin" element={<RotaProtegida tipo="ADMIN"><CadastroAdmin /></RotaProtegida>} />
-        <Route path="/cadastro/aluno" element={<RotaProtegida tipo="ADMIN"><CadastroAluno /></RotaProtegida>} />
-        <Route path="/cadastro/professor" element={<RotaProtegida tipo="ADMIN"><CadastroProfessor /></RotaProtegida>} />
+        {/* Cadastro */}
+        <Route path="/cadastro" element={<SelecaoCadastro />} />
+        <Route path="/cadastro/admin" element={<CadastroAdmin />} />
+        <Route path="/cadastro/aluno" element={<CadastroAluno />} />
+        <Route path="/cadastro/professor" element={<CadastroProfessor />} />
 
-        {/* Rotas do Aluno */}
-        <Route path="/aluno" element={<RotaProtegida tipo="ALUNO"><HomeAluno /></RotaProtegida>} />
-        <Route path="/jogos" element={<RotaProtegida tipo="ALUNO"><BibliotecaJogos /></RotaProtegida>} />
-        <Route path="/conquistas" element={<RotaProtegida tipo="ALUNO"><ConquistasAluno /></RotaProtegida>} />
-        <Route path="/sala-aluno" element={<RotaProtegida tipo="ALUNO"><SalaAluno /></RotaProtegida>} />
+        {/* Aluno */}
+        <Route path="/" element={<HomeAluno />} />
+        <Route path="/jogos" element={<BibliotecaJogos />} />
+        <Route path="/conquistas" element={<ConquistasAluno />} />
+        <Route path="/sala-aluno" element={<SalaAluno />} />
 
-        {/* Rotas do Professor */}
-        <Route path="/professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><HomeProfessor /></RotaProtegida>} />
-        <Route path="/gerencia/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><GerenciaSala /></RotaProtegida>} />
-        <Route path="/historico" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><Historico /></RotaProtegida>} />
-        <Route path="/criar-jogo" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><CriarEditarJogo /></RotaProtegida>} />
-        <Route path="/criar-jogo/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><CriarEditarJogo /></RotaProtegida>} />
-        <Route path="/editar-jogo/:jogoId/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><CriarEditarJogo /></RotaProtegida>} />
-        <Route path="/editar-jogo/:jogoId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><CriarEditarJogo /></RotaProtegida>} />
-        <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><ListaAluno /></RotaProtegida>} />
-        <Route path="/sala-professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><SalaProfessor /></RotaProtegida>} />
-        <Route path="/relatoriopresenca" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><RelatorioPresenca /></RotaProtegida>} />
-
+        {/* Professor */}
+        <Route path="/professor" element={<HomeProfessor />} />
+        <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
+        <Route path="/historico" element={<Historico />} />
+        <Route path="/criar-jogo" element={<CriarEditarJogo />} />
+        <Route path="/criar-jogo/:salaId" element={<CriarEditarJogo />} />
+        <Route path="/editar-jogo/:jogoId/:salaId" element={<CriarEditarJogo />} />
+        <Route path="/editar-jogo/:jogoId" element={<CriarEditarJogo />} />
+        <Route path="/lista-aluno/:salaId" element={<ListaAluno />} />
+        <Route path="/sala-professor" element={<SalaProfessor />} />
+        <Route path="/relatoriopresenca" element={<RelatorioPresenca />} />
+        <Route path="/adicionar-aviso" element={<AdicionarAviso />} />
       </Routes>
     </BrowserRouter>
   );
