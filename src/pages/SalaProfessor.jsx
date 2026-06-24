@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SalaProfessor.css";
-import Header from "../components/Header";
+import Header from "../components/Header_professor";
 import { listarSalas, listarSalasPorProfessor, listarAlunosDaSala } from "../services/api";
 
 function SalaProfessor() {

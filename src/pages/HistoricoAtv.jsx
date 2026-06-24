@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../components/Header_aluno";
 import "./HistoricoAtv.css";
 import { listarJogosResumo, listarJogosResumoPorSala } from "../services/api";
 

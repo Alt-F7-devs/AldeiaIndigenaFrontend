@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../components/Header_aluno";
 import Footer from "../components/Footer";
 import grafismo from "../img/grafismo.svg";
 import userIcon from "../img/do-utilizador.png";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "../components/Header";
+import Header from "../components/Header_aluno";
 import Footer from "../components/Footer";
 import { criarAluno } from "../services/api";
 import "./Cadastro.css";

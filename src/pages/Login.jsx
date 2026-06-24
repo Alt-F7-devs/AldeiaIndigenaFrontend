@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "../components/Header";
+import Header from "../components/Header_aluno";
 import { useNavigate } from "react-router-dom";
 import { loginProfessor, loginAluno } from "../services/api";
 import './Login.css';

@@ -1,10 +1,8 @@
 import "./HomeProfessor.css";
-import Header from "../components/Header";
+import Header from "../components/Header_professor.jsx";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
-
-
 
 
 const CURIOSIDADES = [

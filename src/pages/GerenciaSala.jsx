@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./GerenciaSala.css";
-import Header from "../components/Header";
+import Header from "../components/Header_aluno";
 import {
   adicionarJogoSala,
   adicionarAlunoSala,

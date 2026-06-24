@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ListaAluno.css";
-import Header from "../components/Header";
+import Header from "../components/Header_aluno";
 import Footer from "../components/Footer";
 import { listarAlunosDaSala } from "../services/api";
 
