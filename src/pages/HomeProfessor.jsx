@@ -113,6 +113,14 @@ function HomeProfessor() {
               Cadastrar usuários
             </button>
           )}
+          {ehAdmin && (
+            <button
+              className="hp-btn-salas hp-btn-relatorios"
+              onClick={() => navigate("/relatoriopresenca")}
+            >
+              Relatórios
+            </button>
+          )}
         </div>
 
         <div className="hp-disp-sec">

@@ -169,6 +169,13 @@
   background: #3E7A08;
 }
 
+.hp-btn-relatorios {
+  background: #1F5673;
+}
+
+
+/* DISPONIBILIDADE */
+
 .hp-disp-sec {
   display: flex;
   flex-direction: column;

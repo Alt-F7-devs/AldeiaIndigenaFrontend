@@ -261,6 +261,17 @@ export async function listarPresencasJogo(idJogo) {
   return res.data;
 }
 
+ feature/integracao-relatorio
+/* GET /presencas/frequencia/relatorio — Relatório de frequência de todos os alunos
+   Retorna: { nome, cgm, idSala, numSala, presencas, totalJogos, percentual, status } */
+export async function listarRelatorioFrequencia() {
+  const res = await api.get("/presencas/frequencia/relatorio");
+  return res.data;
+}
+
+/* DELETE /presenca/:id — Remove a presença de um aluno em um jogo específico */
+
+
 export async function deletarPresenca(cgm, idJogo) {
   const csrfToken = await getCsrfToken();
 

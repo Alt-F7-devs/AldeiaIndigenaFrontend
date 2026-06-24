@@ -22,7 +22,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-      <Route path="/" element={<Login />} />
 
         {/* Cadastro */}
         <Route path="/cadastro" element={<SelecaoCadastro />} />
@@ -31,7 +30,7 @@ function App() {
         <Route path="/cadastro/professor" element={<CadastroProfessor />} />
 
         {/* Aluno */}
-        <Route path="/" element={<HomeAluno />} />
+        <Route path="/aluno" element={<HomeAluno />} />
         <Route path="/jogos" element={<BibliotecaJogos />} />
         <Route path="/conquistas" element={<ConquistasAluno />} />
         <Route path="/sala-aluno" element={<SalaAluno />} />
