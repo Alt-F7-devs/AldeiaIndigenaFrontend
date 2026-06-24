@@ -1,0 +1,349 @@
+.criar-editar-jogo-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f0e6d2 0%, #e8dcc4 100%);
+}
+
+.cea-main {
+  flex: 1;
+  padding: 2rem 1rem;
+}
+
+.cea-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cea-titulo {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2d5016;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Card da Atividade ────────────────────────────────────────────── */
+
+.cea-card {
+  background: #fff8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-left: 6px solid #2d5016;
+}
+
+/* ── Formulário ────────────────────────────────────────────────────── */
+
+.cea-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2d5016;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  padding: 0.75rem 1rem;
+  border: 2px solid #d4c5b0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #fefdfb;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #2d5016;
+  box-shadow: 0 0 8px rgba(45, 80, 22, 0.15);
+  background-color: #fff;
+}
+
+.form-input:disabled,
+.form-textarea:disabled,
+.form-select:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Mensagens de Erro e Sucesso ────────────────────────────────────── */
+
+.form-erro {
+  padding: 1rem;
+  background-color: #ffe6e6;
+  border-left: 4px solid #cc0000;
+  color: #8b0000;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.form-sucesso {
+  padding: 1rem;
+  background-color: #e6ffe6;
+  border-left: 4px solid #2d5016;
+  color: #2d5016;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Botões ────────────────────────────────────────────────────────── */
+
+.form-botoes {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-salvar {
+  background: linear-gradient(135deg, #2d5016 0%, #1f3610 100%);
+  color: #fff;
+  flex: 1;
+}
+
+.btn-salvar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(45, 80, 22, 0.3);
+}
+
+.btn-cancelar {
+  background: linear-gradient(135deg, #8b7d7d 0%, #6d6060 100%);
+  color: #fff;
+  flex: 1;
+}
+
+.btn-cancelar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 125, 125, 0.3);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Presenças ────────────────────────────────────────────────────────── */
+
+.cea-presencas {
+  border-left-color: #c17d3a;
+}
+
+.cea-presencas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #d4c5b0;
+}
+
+.cea-presencas-header h2 {
+  font-size: 1.5rem;
+  color: #2d5016;
+  margin: 0;
+}
+
+.presencas-info {
+  background: #f0e6d2;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #c17d3a;
+}
+
+.carregando {
+  text-align: center;
+  color: #2d5016;
+  font-style: italic;
+  padding: 2rem;
+}
+
+.sem-alunos {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 2rem;
+}
+
+/* ── Grid de Presenças ────────────────────────────────────────────────── */
+
+.presencas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .presencas-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.presenca-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fefdfb;
+  border: 2px solid #d4c5b0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.presenca-item:hover {
+  border-color: #2d5016;
+  box-shadow: 0 4px 10px rgba(45, 80, 22, 0.1);
+  transform: translateY(-2px);
+}
+
+.presenca-item.presente {
+  background: #e6ffe6;
+  border-color: #2d5016;
+}
+
+.presenca-item.ausente:hover {
+  background: #ffe6e6;
+  border-color: #cc0000;
+}
+
+.presenca-checkbox {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #d4c5b0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.presenca-item.presente .presenca-checkbox {
+  background: #2d5016;
+  border-color: #2d5016;
+}
+
+.checkmark {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.presenca-info {
+  flex: 1;
+}
+
+.presenca-nome {
+  font-weight: 600;
+  color: #2d5016;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.presenca-id {
+  font-size: 0.8rem;
+  color: #999;
+  margin: 0.25rem 0 0 0;
+}
+
+/* ── Responsividade ────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .cea-titulo {
+    font-size: 2rem;
+  }
+
+  .cea-card {
+    padding: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-botoes {
+    flex-direction: column;
+  }
+}
+
+/* ── Faixa Tribal ────────────────────────────────────────────────────────── */
+
+.faixa-tribal {
+  height: 30px;
+  background: linear-gradient(
+    90deg,
+    #2d5016 0%,
+    #c17d3a 50%,
+    #2d5016 100%
+  );
+  margin: 2rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.faixa-bottom {
+  margin-top: auto;
+  margin-bottom: 0;
+}

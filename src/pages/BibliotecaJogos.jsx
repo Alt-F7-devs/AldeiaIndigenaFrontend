@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
+import Header from "../components/Header_aluno";
 import "./BibliotecaJogos.css";
 import Footer from "../components/Footer";
 

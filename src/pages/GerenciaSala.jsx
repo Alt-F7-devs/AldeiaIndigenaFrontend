@@ -1,13 +1,107 @@
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./GerenciaSala.css";
-import Header from "../components/Header";
-import { useParams } from "react-router-dom";
+import Header from "../components/Header_aluno";
+import {
+  adicionarJogoSala,
+  adicionarAlunoSala,
+} from "../services/api";
 
 function GerenciaSala() {
   const { salaId } = useParams();
+  const navigate = useNavigate();
+
+  // ── Estado: Jogo ────────────────────────────────
+  const [tituloJogo, setTituloJogo] = useState("");
+  const [dataJogo, setDataJogo] = useState("");
+  const [numeroJogo, setNumeroJogo] = useState("");
+  const [jogoMsg, setJogoMsg] = useState(null);
+  const [jogoErro, setJogoErro] = useState(null);
+  const [jogoCarregando, setJogoCarregando] = useState(false);
+
+  // ── Estado: Aluno ─────────────────────────────────────────
+  const [nomeAluno, setNomeAluno] = useState("");
+  const [idAluno, setIdAluno] = useState("");
+  const [alunoMsg, setAlunoMsg] = useState(null);
+  const [alunoErro, setAlunoErro] = useState(null);
+  const [alunoCarregando, setAlunoCarregando] = useState(false);
+
+  // ── Handlers: Jogo ───────────────────────────────────
+  async function handleAdicionarJogo() {
+  if (!numeroJogo.trim()) {
+    setJogoErro("Informe o número do jogo.");
+    return;
+  }
+  
+  setJogoCarregando(true);
+  setJogoMsg(null);
+  setJogoErro(null);
+  
+  try {
+    console.log("Enviando jogo:", numeroJogo);
+    // ← Inverta a ordem aqui
+    const res = await adicionarJogoSala(Number(salaId), Number(numeroJogo));
+    setJogoMsg(`Jogo "${res.nome}" vinculado com sucesso!`);
+    setTituloJogo("");
+    setDataJogo("");
+    setNumeroJogo("");
+  } catch (error) {
+    console.error("Erro ao adicionar jogo:", error.response?.data);
+    setJogoErro("Erro ao vincular jogo. Verifique o número e tente novamente.");
+  } finally {
+    setJogoCarregando(false);
+  }
+}
+
+  function handleDescartarJogo() {
+    setTituloJogo("");
+    setDataJogo("");
+    setNumeroJogo("");
+    setJogoMsg(null);
+    setJogoErro(null);
+  }
+
+  // ── Handlers: Aluno ───────────────────────────────────────
+  async function handleAdicionarAluno() {
+    if (!idAluno.trim()) {
+      setAlunoErro("Informe o CGM do aluno.");
+      return;
+    }
+    setAlunoCarregando(true);
+    setAlunoMsg(null);
+    setAlunoErro(null);
+    try {
+      const res = await adicionarAlunoSala(Number(salaId), Number(idAluno));
+      setAlunoMsg(`Aluno "${res.nome}" adicionado com sucesso!`);
+      setNomeAluno("");
+      setIdAluno("");
+    } catch {
+      setAlunoErro("Erro ao adicionar aluno. Verifique o ID e tente novamente.");
+    } finally {
+      setAlunoCarregando(false);
+    }
+  }
+
+  function handleExcluirAluno() {
+    setNomeAluno("");
+    setIdAluno("");
+    setAlunoMsg(null);
+    setAlunoErro(null);
+  }
+
+  function handleListarAlunos() {
+    navigate(`/lista-aluno/${salaId}`);
+  }
+  function handleHistoricoJogos() {
+    navigate(`/historico?salaId=${salaId}`);
+  }
+  function handleCriarJogo() {
+    navigate(`/criar-jogo/${salaId}`);
+  }
 
   return (
     <>
- <Header />
+      <Header />
     
       <div className="gerencia-container">
  
@@ -17,43 +111,58 @@ function GerenciaSala() {
 
         <div className="cards-wrapper">
 
-          {/* ANEXAR ATIVIDADE */}
-          <div className="card">
-            <div className="card-header">Anexar atividade</div>
-            <div className="card-body">
-              <div className="two-col">
-                <div className="left-col">
-                  <input className="inp" placeholder="Título da atividade" />
-                  <input className="inp" placeholder="Data da criação" />
-                  <input className="inp" placeholder="Numero da atividade" />
-                </div>
-                <div className="right-col">
-                  <div className="upload-box">Selecionar Jogo</div>
-                  <button className="btn btn-descartar">Descartar 🗑</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* ANEXAR JOGO */}
+          
 
           <div className="btn-row">
-            <button className="btn btn-historico">Histórico de atividades</button>
+            <button className="btn btn-criar-jogo" onClick={handleCriarJogo}>
+              Criar Jogo
+            </button>
+            <button className="btn btn-historico" onClick={handleHistoricoJogos}>
+              Histórico de jogos
+            </button>
           </div>
 
           {/* GERENCIAMENTO DE ALUNOS */}
           <div className="card">
             <div className="card-header">Gerenciamento de alunos</div>
             <div className="card-body">
-              <input className="inp inp-full" placeholder="Nome do aluno" />
               <div className="aluno-row">
-                <input className="inp" placeholder="identificador" />
-                <button className="btn btn-adicionar">Adicionar</button>
-                <button className="btn btn-excluir">Excluir</button>
+                <input 
+                  className="inp" 
+                  placeholder="CGM"
+                  type="number"
+                  min="1"
+                  value={idAluno}
+                  onChange={(e) => setIdAluno(e.target.value)}
+                />
+                <button 
+                  className="btn btn-adicionar"
+                  onClick={handleAdicionarAluno}
+                  disabled={alunoCarregando}
+                >
+                  {alunoCarregando ? "Adicionando..." : "Adicionar"}
+                </button>
+                <button 
+                  className="btn btn-excluir"
+                  onClick={handleExcluirAluno}
+                >
+                  Excluir
+                </button>
               </div>
+              {alunoMsg && (
+                <p style={{ color: "#3b6e1f", marginTop: "8px", fontSize: "13px" }}>{alunoMsg}</p>
+              )}
+              {alunoErro && (
+                <p style={{ color: "#8b0000", marginTop: "8px", fontSize: "13px" }}>{alunoErro}</p>
+              )}
             </div>
           </div>
 
           <div className="btn-row">
-            <button className="btn btn-listar">Listar alunos</button>
+            <button className="btn btn-listar" onClick={handleListarAlunos}>
+              Listar alunos
+            </button>
           </div>
 
         </div>

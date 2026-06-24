@@ -1,8 +1,9 @@
 .hp-page {
   background: #E3C9A5;
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 140px;
 }
+
 
 .hp-faixa {
   width: 100%;
@@ -11,52 +12,56 @@
   display: block;
 }
 
+
 /* CURIOSIDADES */
 .hp-faixa-curiosidades {
   display: flex;
   align-items: center;
   width: 100%;
+  overflow: hidden;
+  height: 40px;
 }
 
-.hp-grafismo {
-  flex: 1;
-  height: 120px;
-  object-fit: cover;
-  display: block;
-}
 
 .hp-curio-tab {
   background: #2a5a6a;
   color: #fff;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   padding: 8px 28px;
   white-space: nowrap;
   flex-shrink: 0;
   border-radius: 10px;
+  margin-top: 0px;
+
+
 }
+
 
 .hp-curio-box {
   background: #2a6a7a;
   width: 100%;
   padding: 28px 30px;
   display: flex;
-  gap: 30px;
+  gap: 35px;
   align-items: center;
   min-height: 250px;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  margin-top: 10px;
 }
+
 
 .hp-curio-cards {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   flex-shrink: 0;
-  padding-left: 80px;
+  padding-left: 60px;
   overflow: visible;
 }
+
 
 .hp-curio-img {
   background: #d9d9d9;
@@ -67,27 +72,32 @@
   transform-style: preserve-3d;
 }
 
+
 .hp-curio-img--grande {
-  width: 200px;
-  height: 150px;
+  width: 250px;
+  height: 180px;
   transform: perspective(600px) rotateY(15deg) rotateX(5deg);
 }
 
+
 .hp-curio-img--pequeno {
-  width: 160px;
-  height: 120px;
+  width: 180px;
+  height: 140px;
   transform: perspective(600px) rotateY(-15deg) rotateX(5deg);
 }
+
 
 .hp-curio-img--grande:hover {
   transform: perspective(600px) rotateY(-8deg) rotateX(-5deg) translateY(-8px);
   box-shadow: 8px 16px 30px rgba(0, 0, 0, 0.3);
 }
 
+
 .hp-curio-img--pequeno:hover {
   transform: perspective(600px) rotateY(8deg) rotateX(-5deg) translateY(-8px);
   box-shadow: -8px 16px 30px rgba(0, 0, 0, 0.3);
 }
+
 
 .hp-curio-conteudo {
   flex: 1;
@@ -95,6 +105,7 @@
   min-height: 100px;
   overflow: hidden;
 }
+
 
 .hp-curio-texto {
   color: #fff;
@@ -104,18 +115,20 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 4;
+  right: 0;
   opacity: 0;
   transform: translateX(30px);
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
 }
 
+
 .hp-curio-texto--ativo {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
 }
+
 
 .hp-curio-dots {
   position: absolute;
@@ -124,6 +137,7 @@
   display: flex;
   gap: 10px;
 }
+
 
 .hp-dot {
   width: 8px;
@@ -136,17 +150,22 @@
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
+
 .hp-dot--ativo {
   background: #fff;
   transform: scale(1.3);
 }
 
+
 /* SALAS */
 .hp-salas-sec {
   display: flex;
   justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
   padding: 20px;
 }
+
 
 .hp-btn-salas {
   background: #8b0000;
@@ -161,6 +180,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
+
+.hp-btn-cadastro {
+  background: #3E7A08;
+}
+
+
 /* DISPONIBILIDADE */
 .hp-disp-sec {
   display: flex;
@@ -169,98 +194,123 @@
   gap: 20px;
 }
 
+
 .hp-disp-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+
 .hp-btn-disp {
   background: #3b6e1f;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 11px 22px;
-  font-size: 13px;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  background-image: url("/img/folhagem.png");
+  background-blend-mode: multiply;
+  background-size: cover;
 }
+
 
 .hp-moeda {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-
-  background-size: cover;
-  background-position: center;
+  border: 4px solid #3b6e1f;
+  background-color: #e8c97a;
+  padding: 4px;
+  object-fit: contain;
 }
+
 
 .hp-sala-card {
   width: 100%;
   background: #f5ecd7;
-  border: 2.5px solid #3b6e1f;
-  border-radius: 14px;
+  border: 3px solid #3b6e1f;
+  border-radius: 50px;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   overflow: hidden;
 }
 
+
 .hp-sala-esq {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 20px;
+  padding: 10px 20px;
   flex: 1;
 }
 
+
 .hp-avatar {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  border: 2px solid #3b6e1f;
-  background: #f5ecd7;
+  background: #3b6e1f;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #3b6e1f;
-  font-size: 20px;
   flex-shrink: 0;
 }
 
+
 .hp-sala-nome {
   font-size: 15px;
-  color: #555;
-  font-weight: 500;
+  color: #3b6e1f;
+  font-weight: 600;
 }
+
 
 .hp-sala-btns {
   display: flex;
   align-items: stretch;
+  gap: 6px;
+  padding: 8px 10px;
 }
+
 
 .hp-btn-nao {
   background: #8b0000;
   color: #fff;
   border: none;
-  border-radius: 0;
-  padding: 0 30px;
-  font-size: 18px;
+  border-radius: 10px;
+  padding: 0 24px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  gap: 12px;
 }
+
+
+.hp-btn-nao.hp-btn--ativo {
+  background: #6e0000;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+}
+
 
 .hp-btn-sim {
   background: #3b6e1f;
   color: #fff;
   border: none;
-  border-radius: 0 12px 12px 0;
-  padding: 0 28px;
+  border-radius: 10px;
+  padding: 0 24px;
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
 }
+
+
+.hp-btn-sim.hp-btn--ativo {
+  background: #2a5015;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+}
+
 
 /* MURAL */
 .hp-mural-sec {
@@ -269,6 +319,7 @@
   align-items: center;
   padding: 30px 20px;
 }
+
 
 .hp-mural-outer {
   background: #3b6e1f;
@@ -283,6 +334,7 @@
   background-position: center;
   background-blend-mode: multiply;
 }
+
 
 .hp-nav-btn {
   position: absolute;
@@ -301,16 +353,26 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
+  transition: opacity 0.2s;
 }
+
+
+.hp-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
 
 .hp-nav-left { left: 8px; }
 .hp-nav-right { right: 8px; }
+
 
 .hp-mural-inner {
   background: #c8a87a;
   border-radius: 10px;
   padding: 14px 40px;
 }
+
 
 .hp-mural-titulo {
   text-align: center;
@@ -323,11 +385,13 @@
   margin-bottom: 14px;
 }
 
+
 .hp-mural-cards {
   display: flex;
   gap: 12px;
   justify-content: center;
 }
+
 
 .hp-mural-card {
   width: 120px;
@@ -336,6 +400,7 @@
   border-radius: 10px;
 }
 
+
 .hp-aviso-row {
   width: 100%;
   max-width: 480px;
@@ -343,6 +408,7 @@
   justify-content: flex-end;
   margin-top: 10px;
 }
+
 
 .hp-btn-aviso {
   background: #2a7a8a;
