@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import "./Footer.css";
 
-
 function Footer() {
   const [visible, setVisible] = useState(false);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,18 +11,13 @@ function Footer() {
       setVisible(scrolledToBottom);
     };
 
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   return (
-    <div className={`footer-faixa-wrapper ${visible ? "footer--visible" : ""}`}>
-      <img src="/img/grafismo.png" alt="" className="faixa-tribal" />
-    </div>
+    <div className={`faixa-tribal-wrapper ${visible ? "footer--visible" : ""}`} />
   );
 }
-
 
 export default Footer;

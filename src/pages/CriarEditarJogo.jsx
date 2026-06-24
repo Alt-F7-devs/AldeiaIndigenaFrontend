@@ -150,17 +150,19 @@ function CriarEditarJogo() {
     <div className="criar-editar-jogo-page">
       <Header />
 
-      <div className="faixa-tribal" />
+    
 
       <main className="cea-main">
         <div className="cea-container">
-          <h1 className="cea-titulo">
-            {isEditando ? "Editar Jogo" : "Criar Novo Jogo"}
-          </h1>
+      
+            
 
           {/* Formulário do Jogo */}
           <div className="cea-card">
-            <div className="cea-form">
+  <div className="cea-card-header">
+    {isEditando ? "Editar Jogo" : "Criar Novo Jogo"}
+  </div>
+  <div className="cea-form">
               <div className="form-group">
                 <label>Nome do Jogo *</label>
                 <input

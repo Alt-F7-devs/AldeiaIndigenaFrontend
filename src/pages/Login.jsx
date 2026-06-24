@@ -55,7 +55,10 @@ function Login() {
 
   return (
     <>
-      <Header />
+  <Header
+  textoBotao="Entrar como Administrador"
+  rotaBotao="/cadastro/admin"
+/>
 
       <div className="wrapper">
         <div className="container">

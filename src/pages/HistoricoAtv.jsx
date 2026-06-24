@@ -65,8 +65,6 @@ function HistoricoAtv() {
     <div className="historico-page">
       <Header />
 
-      <div className="faixa-tribal" />
-
       <main className="historico-main">
         <div className="historico-titulo-wrapper">
           <span className="historico-titulo">
@@ -82,8 +80,6 @@ function HistoricoAtv() {
             </button>
           </div>
         )}
-
-        
 
         <div className="historico-card">
           <div className="tabela-header">
@@ -118,8 +114,6 @@ function HistoricoAtv() {
           </div>
         </div>
       </main>
-
-      <div className="faixa-tribal faixa-bottom" />
     </div>
   );
 }
