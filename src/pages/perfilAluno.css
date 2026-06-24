@@ -1,0 +1,238 @@
+:root {
+  --up-bg-page:      #D4B896;
+  --up-bg-card:      #F5ECD8;
+  --up-bg-field:     #EAD9BB;
+  --up-border:       #C8A96E;
+  --up-border-focus: #8B4513;
+
+  --up-avatar-bg:    #8B4513;
+  --up-avatar-text:  #F5ECD8;
+  --up-avatar-ring:  #C8A96E;
+
+  --up-text-label:     #7A5C38;
+  --up-text-muted:     #A0845A;
+  --up-text-cancel:    #7A5C38;
+
+  --up-green:          #3A6B35;
+  --up-green-text:     #F5ECD8;
+
+  --up-brown-dark:     #4A2C0A;
+}
+
+/* ---- Layout ---- */
+.up-page {
+  min-height: calc(100px); 
+  background: var(--up-bg-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 170px 1rem 5.8rem 1rem; 
+  font-family: sans-serif;
+}
+.up-card {
+  background: var(--up-bg-card);
+  border-radius: 16px;
+  padding: 1.25rem 1.75rem 1.5rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ---- Avatar ---- */
+.up-avatar-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.up-avatar-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--up-avatar-ring);
+  padding: 3px;
+}
+
+.up-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--up-avatar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--up-avatar-text);
+  overflow: hidden;
+}
+
+.up-avatar-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.up-cam-btn {
+  position: absolute;
+  bottom: 0;
+  right: -2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--up-border);
+  border: 2px solid var(--up-bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 11px;
+  transition: background 0.15s;
+}
+
+.up-cam-btn:hover { background: #b0905a; }
+
+/* ---- Badge ---- */
+.up-badge {
+  background: var(--up-green);
+  color: #d6f0c8;
+  font-size: 11px;
+  padding: 2px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* ---- Divider ---- */
+.up-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--up-border);
+  opacity: 0.5;
+}
+
+/* ---- Campos ---- */
+.up-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.up-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.up-label {
+  font-size: 10px;
+  color: var(--up-text-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.up-field-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--up-bg-field);
+  border: 1.5px solid var(--up-border);
+  border-radius: 8px;
+  padding: 0 10px;
+  transition: border-color 0.15s;
+}
+
+.up-field-row:focus-within { border-color: var(--up-border-focus); }
+
+.up-icon { font-size: 14px; flex-shrink: 0; }
+
+.up-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+  font-size: 13px;
+  color: var(--up-brown-dark);
+  font-family: inherit;
+  outline: none;
+}
+
+.up-input::placeholder { color: var(--up-text-muted); }
+
+/* ---- Botão olho ---- */
+.up-eye-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.15s;
+}
+
+.up-eye-btn:hover { opacity: 0.7; }
+
+/* ---- Ações ---- */
+.up-actions {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+}
+
+.up-btn-cancel {
+  flex: 1;
+  padding: 8px;
+  border: 1.5px solid var(--up-border);
+  background: transparent;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--up-text-cancel);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.up-btn-cancel:hover { background: var(--up-bg-field); }
+
+.up-btn-save {
+  flex: 2;
+  padding: 8px;
+  border: none;
+  background: var(--up-green);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--up-green-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+
+.up-btn-save:hover { opacity: 0.85; }
+
+/* ---- Toast ---- */
+.up-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--up-brown-dark);
+  color: var(--up-bg-card);
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.up-toast--show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

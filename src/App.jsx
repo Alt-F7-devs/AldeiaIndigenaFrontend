@@ -17,6 +17,8 @@ import CadastroAdmin from "./pages/CadastroAdmin";
 import CadastroAluno from "./pages/CadastroAluno";
 import CadastroProfessor from "./pages/CadastroProfessor";
 import SelecaoCadastro from "./pages/SelecaoCadastro";
+import UserProfile from "./pages/perfilprof";
+import UserProfileAluno from "./pages/perfilAluno"
 
 function App() {
   return (
@@ -32,12 +34,14 @@ function App() {
         <Route path="/cadastro/professor" element={<RotaProtegida tipo="ADMIN"><CadastroProfessor /></RotaProtegida>} />
 
         {/* Rotas do Aluno */}
+	      <Route path="/perfilAluno" element={<RotaProtegida tipo="ALUNO"><UserProfileAluno /></RotaProtegida>} />
         <Route path="/aluno" element={<RotaProtegida tipo="ALUNO"><HomeAluno /></RotaProtegida>} />
         <Route path="/jogos" element={<RotaProtegida tipo="ALUNO"><BibliotecaJogos /></RotaProtegida>} />
         <Route path="/conquistas" element={<RotaProtegida tipo="ALUNO"><ConquistasAluno /></RotaProtegida>} />
         <Route path="/sala-aluno" element={<RotaProtegida tipo="ALUNO"><SalaAluno /></RotaProtegida>} />
 
         {/* Rotas do Professor */}
+  	    <Route path="/perfil" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><UserProfileProf /></RotaProtegida>} />
         <Route path="/professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><HomeProfessor /></RotaProtegida>} />
         <Route path="/gerencia/:salaId" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><GerenciaSala /></RotaProtegida>} />
         <Route path="/historico" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><Historico /></RotaProtegida>} />

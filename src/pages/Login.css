@@ -5,30 +5,29 @@
   font-family: Arial, sans-serif;
 }
 
-body {
-  background: #E3C9A5;
-  margin: 0;
-}
-
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(120vh - 100px);
+  /* compensa o header fixo de 80px + logo que desce até ~140px */
+  min-height: calc(100vh - 140px);
+  margin-top: 140px;
   padding: 20px;
 }
 
 .container {
   display: flex;
-  width: 800x;
+  flex-direction: row;
+  width: 100%;
+  max-width: 800px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   background: white;
 }
 
-/* Lados */
-.left, .right {
+.left,
+.right {
   width: 50%;
   padding: 60px 60px 90px 60px;
 }
@@ -43,7 +42,6 @@ body {
   color: #5a2b15;
 }
 
-/* Título */
 h2 {
   text-align: center;
   margin-bottom: 30px;
@@ -51,7 +49,6 @@ h2 {
   font-family: 'Itim', cursive;
 }
 
-/* Inputs */
 .input-group {
   margin-bottom: 15px;
 }
@@ -67,7 +64,6 @@ input {
   font-family: 'Itim', cursive;
 }
 
-/* Links */
 .link {
   font-size: 12px;
   margin: 10px 0;
@@ -86,11 +82,11 @@ input {
 }
 
 .link-professor:hover {
-  color: #712A13;
+  color: #712a13;
 }
 
 .link-aluno {
-  color: #712A13;
+  color: #712a13;
   font-family: 'Itim', cursive;
   font-size: small;
   display: block;
@@ -102,10 +98,9 @@ input {
   color: #3b6f13;
 }
 
-/* Botões */
 .btn-professor {
-  background-color: #712A13;
-  color: #E3C9A5;
+  background-color: #712a13;
+  color: #e3c9a5;
   padding: 10px;
   border-radius: 15px;
   border: none;
@@ -119,10 +114,10 @@ input {
 }
 
 .btn-professor:hover {
-  color: #712A13;
-  background-color: #E3C9A5;
+  color: #712a13;
+  background-color: #e3c9a5;
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-aluno {
@@ -144,10 +139,56 @@ input {
   color: #3b6f13;
   background-color: #80cd45;
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-professor:active,
 .btn-aluno:active {
   transform: scale(0.95);
+}
+
+/* ===== RESPONSIVIDADE MOBILE ===== */
+@media (max-width: 600px) {
+  .wrapper {
+    /* no mobile a logo sobressai menos, 120px é suficiente */
+    margin-top: 120px;
+    min-height: calc(100vh - 120px);
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .container {
+    flex-direction: column;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+    padding: 28px 20px 36px 20px;
+  }
+
+  .right {
+    border-top: 1px solid #e0d0c0;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+
+  input {
+    padding: 12px 10px;
+    font-size: 16px; /* evita zoom automático no iOS */
+  }
+
+  .btn-professor,
+  .btn-aluno {
+    width: 90%;
+    padding: 12px;
+    font-size: 1rem;
+    margin: 16px auto;
+  }
 }

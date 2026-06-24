@@ -37,7 +37,7 @@ function Header() {
           <button className="header-btn header-sair" onClick={handleLogout}>
             Sair
           </button>
-          <button className="header-btn header-usuario" onClick={() => navigate("/professor")}>
+          <button className="header-btn header-usuario" onClick={() => navigate("/perfil")}>
             <img src={user} alt="user" className="header-icon" />
           </button>
         </div>
