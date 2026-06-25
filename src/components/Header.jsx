@@ -7,7 +7,10 @@ import home from "../img/casa.png";
 import user from "../img/do-utilizador.png";
 import { logout } from "../services/api";
 
-function Header() {
+function Header({
+  textoBotao = "Sair",
+  rotaBotao = "/"
+}) {
   const navigate = useNavigate();
   const [mostrarPerfil, setMostrarPerfil] = useState(false);
   const [hidden, setHidden] = useState(false);
