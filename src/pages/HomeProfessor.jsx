@@ -16,6 +16,11 @@ function HomeProfessor() {
   const navigate = useNavigate();
   const ehAdmin = localStorage.getItem("tipo") === "ADMIN";
 
+  // nome e matéria do professor logado — ajuste as chaves conforme seu login
+  const profNome = localStorage.getItem("nome") || "Nome";
+  const profMateria = localStorage.getItem("materia") || "Matéria";
+  const profChave = `${profNome} - ${profMateria}`;
+
   const [slide, setSlide] = useState(0);
   const [disponivel, setDisponivel] = useState(null);
   const [avisos, setAvisos] = useState([]);
@@ -26,12 +31,32 @@ function HomeProfessor() {
     setAvisos(listarAvisos());
   }, []);
 
+  // carrega o status salvo ao abrir a tela
+  useEffect(() => {
+    const dispMap = JSON.parse(localStorage.getItem("disponibilidade")) || {};
+    if (dispMap[profChave]) setDisponivel(dispMap[profChave]);
+  }, [profChave]);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setSlide((prev) => (prev + 1) % CURIOSIDADES.length);
     }, 4000);
     return () => clearInterval(timer);
   }, []);
+
+  // grava (ou limpa) a disponibilidade no localStorage
+  function definirDisponibilidade(valor) {
+    const novo = disponivel === valor ? null : valor;
+    setDisponivel(novo);
+
+    const dispMap = JSON.parse(localStorage.getItem("disponibilidade")) || {};
+    if (novo === null) {
+      delete dispMap[profChave];
+    } else {
+      dispMap[profChave] = novo;
+    }
+    localStorage.setItem("disponibilidade", JSON.stringify(dispMap));
+  }
 
   const handleMuralPrev = () => { if (muralIndex > 0) setMuralIndex(muralIndex - 1); };
   const handleMuralNext = () => { if (muralIndex < avisos.length - 3) setMuralIndex(muralIndex + 1); };
@@ -135,11 +160,11 @@ function HomeProfessor() {
                   <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
                 </svg>
               </div>
-              <span className="hp-sala-nome">Nome - Matéria</span>
+              <span className="hp-sala-nome">{profChave}</span>
             </div>
             <div className="hp-sala-btns">
-              <button className={`hp-btn-nao ${disponivel === "nao" ? "hp-btn--ativo" : ""}`} onClick={() => setDisponivel(disponivel === "nao" ? null : "nao")}>Não</button>
-              <button className={`hp-btn-sim ${disponivel === "sim" ? "hp-btn--ativo" : ""}`} onClick={() => setDisponivel(disponivel === "sim" ? null : "sim")}>Sim</button>
+              <button className={`hp-btn-nao ${disponivel === "nao" ? "hp-btn--ativo" : ""}`} onClick={() => definirDisponibilidade("nao")}>Não</button>
+              <button className={`hp-btn-sim ${disponivel === "sim" ? "hp-btn--ativo" : ""}`} onClick={() => definirDisponibilidade("sim")}>Sim</button>
             </div>
           </div>
         </div>

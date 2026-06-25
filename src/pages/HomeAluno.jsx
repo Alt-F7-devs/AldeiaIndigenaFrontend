@@ -7,15 +7,21 @@ import userIcon from "../img/do-utilizador.png";
 import logo from "../img/logo.svg";
 import "./HomeAluno.css";
 
-const professores = [
+const professoresBase = [
   { id: 1, nome: "Nome", materia: "Matéria", status: "indisponivel" },
   { id: 2, nome: "Nome", materia: "Matéria", status: "disponivel" },
   { id: 3, nome: "Nome", materia: "Matéria", status: "disponivel" },
 ];
 
+const CURIOSIDADES = [
+  { texto: "texto esclarecendo duvidas e curiosidades sobre temas relevantes ou sobre o uso do sistema" },
+  { texto: "outra curiosidade interessante sobre o sistema ou sobre temas educacionais relevantes" },
+  { texto: "mais uma curiosidade para enriquecer o conhecimento dos professores e alunos" },
+];
+
 const TribalDivider = () => (
   <div className="ha-tribal">
-    <img src={grafismo} alt="" className="ha-tribal-img" />
+   
   </div>
 );
 
@@ -23,10 +29,46 @@ export default function HomeAluno() {
   const navigate = useNavigate();
   const [avisos, setAvisos] = useState([]);
   const [index, setIndex] = useState(0);
+  const [slide, setSlide] = useState(0);
+  const [professores, setProfessores] = useState(professoresBase);
 
   useEffect(() => {
     const dados = JSON.parse(localStorage.getItem("avisos")) || [];
     setAvisos(dados);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSlide((prev) => (prev + 1) % CURIOSIDADES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // lê a disponibilidade salva pelos professores e atualiza os cards
+  useEffect(() => {
+    const aplicarDisponibilidade = () => {
+      const dispMap = JSON.parse(localStorage.getItem("disponibilidade")) || {};
+      setProfessores(
+        professoresBase.map((p) => {
+          const chave = `${p.nome} - ${p.materia}`;
+          if (dispMap[chave] === "sim") return { ...p, status: "disponivel" };
+          if (dispMap[chave] === "nao") return { ...p, status: "indisponivel" };
+          return p;
+        })
+      );
+    };
+
+    aplicarDisponibilidade(); // ao abrir
+
+    // atualiza quando o professor mudar em outra aba/janela
+    window.addEventListener("storage", aplicarDisponibilidade);
+    // atualiza também na mesma aba (a cada 2s)
+    const intervalo = setInterval(aplicarDisponibilidade, 2000);
+
+    return () => {
+      window.removeEventListener("storage", aplicarDisponibilidade);
+      clearInterval(intervalo);
+    };
   }, []);
 
   const next = () => { if (index + 3 < avisos.length) setIndex((prev) => prev + 1); };
@@ -40,20 +82,30 @@ export default function HomeAluno() {
       <div className="ha-page">
 
         <section className="ha-curiosidades">
-          <TribalDivider />
-          <div className="ha-curio-label-wrap">
-            <span className="ha-curio-label">Curiosidades</span>
+          <div className="hp-faixa-curiosidades">
+            <img className="hp-grafismo" src="/img/grafismo.svg" alt="" />
+            <div className="hp-curio-tab">Curiosidades</div>
+            <img className="hp-grafismo" src="/img/grafismo.svg" alt="" />
           </div>
-          <div className="ha-curio-body">
-            <div className="ha-curio-cards">
-              <div className="ha-curio-card ha-curio-card--esq" />
-              <div className="ha-curio-card ha-curio-card--dir" />
+
+          <div className="hp-curio-box">
+            <div className="hp-curio-cards">
+              <div className="hp-curio-img hp-curio-img--grande" />
+              <div className="hp-curio-img hp-curio-img--pequeno" />
             </div>
-            <p className="ha-curio-texto">
-              Texto sobre curiosidades do sistema educacional.
-            </p>
+            <div className="hp-curio-conteudo">
+              {CURIOSIDADES.map((item, i) => (
+                <p key={i} className={`hp-curio-texto ${i === slide ? "hp-curio-texto--ativo" : ""}`}>
+                  {item.texto}
+                </p>
+              ))}
+            </div>
+            <div className="hp-curio-dots">
+              {CURIOSIDADES.map((_, i) => (
+                <button key={i} className={`hp-dot ${i === slide ? "hp-dot--ativo" : ""}`} onClick={() => setSlide(i)} />
+              ))}
+            </div>
           </div>
-          <TribalDivider />
         </section>
 
         <section className="ha-menu">
