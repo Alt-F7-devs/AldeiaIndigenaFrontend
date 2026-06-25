@@ -109,9 +109,6 @@ export default function HomeAluno() {
         </section>
 
         <section className="ha-menu">
-          <button className="ha-menu-btn ha-menu-btn--salas" onClick={() => navigate("/sala-aluno")}>
-            Minhas Salas
-          </button>
           <button className="ha-menu-btn ha-menu-btn--conquistas" onClick={() => navigate("/conquistas")}>
             Minhas Conquistas
           </button>
