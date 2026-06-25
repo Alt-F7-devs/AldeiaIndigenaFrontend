@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import { listarPresencasDoAluno } from "../services/api";
+import Footer from "../components/Footer";
+import { listarPresencasDoAluno } from "../services/api"; 
 import "./ConquistasAluno.css";
 
 const CORES = ["vermelho", "azul", "marrom", "verde"];
@@ -68,6 +69,8 @@ function ConquistasAluno() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }

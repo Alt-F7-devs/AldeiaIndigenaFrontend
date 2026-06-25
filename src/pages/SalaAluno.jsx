@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "./SalaAluno.css";
 
 function SalaAluno() {
@@ -78,8 +79,8 @@ function SalaAluno() {
         </main>
 
         <div className="sala-aluno-strip sala-aluno-strip--bottom" aria-hidden="true" />
-        <div className="sala-aluno-footer-bar" aria-hidden="true" />
-
+       
+        <Footer />
       </div>
     </>
   );

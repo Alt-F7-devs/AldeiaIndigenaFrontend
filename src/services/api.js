@@ -6,10 +6,13 @@ const api = axios.create({
 });
 
 async function getCsrfToken() {
-  const res = await api.get("/csrf-token");
-  return res.data.token;
+  try {
+    const res = await api.get("/csrf-token");
+    return res.data.token;
+  } catch {
+    return "mock-token";
+  }
 }
-
 // ─── LOGIN ────────────────────────────────────────────────────────────────────
 
 /* POST /auth/login/professor — Login como professor */
@@ -185,7 +188,6 @@ export async function listarJogosSala() {
   return res.data;
 }
 
-/* GET /sala/jogos/:id — Busca jogo de sala por ID */
 export async function buscarJogoPorIdSala(id) {
   const res = await api.get(`/sala/jogos/${id}`);
   return res.data;
@@ -239,9 +241,18 @@ export async function deletarJogo(id) {
   });
 }
 
-// ─── PRESENÇAS ────────────────────────────────────────────────────────────────
+export async function listarJogosResumo() {
+  const res = await api.get("/jogos/resumo");
+  return res.data;
+}
 
-/* POST /presenca — Registra presença de um aluno em um jogo específico */
+export async function listarJogosResumoPorSala(idSala) {
+  const res = await api.get(`/jogos/resumo/sala/${idSala}`);
+  return res.data;
+}
+
+// ─── PRESENÇAS ───────────────────────────────────────────────────────────────
+
 export async function registrarPresenca(cgm, idJogo) {
   const csrfToken = await getCsrfToken();
 
@@ -254,32 +265,44 @@ export async function registrarPresenca(cgm, idJogo) {
   );
 }
 
-/* GET /presencas/jogo/:idJogo — Lista os IDs dos alunos presentes em um jogo */
 export async function listarPresencasJogo(idJogo) {
   const res = await api.get(`/presencas/jogo/${idJogo}`);
   return res.data;
 }
 
+/* GET /presencas/frequencia/relatorio — Relatório de frequência de todos os alunos
+   Retorna: { nome, cgm, idSala, numSala, presencas, totalJogos, percentual, status } */
+export async function listarRelatorioFrequencia() {
+  const res = await api.get("/presencas/frequencia/relatorio");
+  return res.data;
+}
+
 /* DELETE /presenca/:id — Remove a presença de um aluno em um jogo específico */
+
+
 export async function deletarPresenca(cgm, idJogo) {
   const csrfToken = await getCsrfToken();
 
-  await api.delete(
-    `/presencas/${cgm}/jogo/${idJogo}`,
-    {
-      headers: {
-        "X-XSRF-TOKEN": csrfToken
-      }
+  await api.delete(`/presencas/${cgm}/jogo/${idJogo}`, {
+    headers: {
+      "X-XSRF-TOKEN": csrfToken
     }
-  );
+  });
 }
 
-export async function listarJogosResumo() {
-  const res = await api.get("/jogos/resumo");
-  return res.data;
+// ─── AVISOS ──────────────────────────────────────────────────────────────────
+
+const AVISOS_STORAGE_KEY = "avisos";
+
+export function listarAvisos() {
+  return JSON.parse(localStorage.getItem(AVISOS_STORAGE_KEY)) || [];
 }
 
-export async function listarJogosResumoPorSala(idSala) {
-  const res = await api.get(`/jogos/resumo/sala/${idSala}`);
-  return res.data;
+export function adicionarAviso(aviso) {
+  const avisos = listarAvisos();
+  const novoAviso = { id: Date.now(), ...aviso };
+  avisos.push(novoAviso);
+  localStorage.setItem(AVISOS_STORAGE_KEY, JSON.stringify(avisos));
+  return novoAviso;
 }
+
