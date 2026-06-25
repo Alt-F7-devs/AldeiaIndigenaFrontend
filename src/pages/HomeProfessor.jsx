@@ -1,41 +1,45 @@
-import "./HomeProfessor.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import userIcon from "../img/do-utilizador.png";
 import logo from "../img/logo.svg";
-import { listarAvisos } from "../services/api";
+import emailjs from "@emailjs/browser";
+import "./HomeAluno.css";
 
-const CURIOSIDADES = [
-  { texto: "texto esclarecendo duvidas e curiosidades sobre temas relevantes ou sobre o uso do sistema" },
-  { texto: "outra curiosidade interessante sobre o sistema ou sobre temas educacionais relevantes" },
-  { texto: "mais uma curiosidade para enriquecer o conhecimento dos professores e alunos" },
+emailjs.init("WVBOMIdj0VNBcoAwE");
+
+const professoresBase = [
+  { id: 1, nome: "Professor André", materia: "Matéria", status: "indisponivel", email: "andre@email.com" },
+  { id: 2, nome: "Professor Marcelo", materia: "Matéria", status: "disponivel", email: "marcelo@email.com" },
+  { id: 3, nome: "Professor Adriano", materia: "Matéria", status: "disponivel", email: "adriano@email.com" },
 ];
 
-function HomeProfessor() {
+const CURIOSIDADES = [
+  { texto: "Sabia que você pode ganhar conquistas no sistema? Cada atividade concluída te aproxima de um novo troféu! Continue se dedicando e colecione todas as suas conquistas." },
+  { texto: "Fique por dentro de tudo! Seu professor pode deixar avisos importantes no Mural de Avisos. Acesse sua página inicial sempre que quiser ver as novidades da sua escola." },
+  { texto: "Cada sala do sistema representa uma matéria real da sua escola. Dentro dela você encontra atividades, materiais e pode entrar em contato com seu professor quando precisar de ajuda." },
+];
+
+export default function HomeAluno() {
   const navigate = useNavigate();
-  const ehAdmin = localStorage.getItem("tipo") === "ADMIN";
-
-  // nome e matéria do professor logado — ajuste as chaves conforme seu login
-  const profNome = localStorage.getItem("nome") || "Nome";
-  const profMateria = localStorage.getItem("materia") || "Matéria";
-  const profChave = `${profNome} - ${profMateria}`;
-
-  const [slide, setSlide] = useState(0);
-  const [disponivel, setDisponivel] = useState(null);
   const [avisos, setAvisos] = useState([]);
-  const [muralIndex, setMuralIndex] = useState(0);
-  const [popupAberto, setPopupAberto] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [slide, setSlide] = useState(0);
+  const [professores, setProfessores] = useState(professoresBase);
+
+  const [popupDuvida, setPopupDuvida] = useState(false);
+  const [profSelecionado, setProfSelecionado] = useState(null);
+  const [alunoNomeInput, setAlunoNomeInput] = useState("");
+  const [sala, setSala] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const [enviando, setEnviando] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState("");
 
   useEffect(() => {
-    setAvisos(listarAvisos());
+    const dados = JSON.parse(localStorage.getItem("avisos")) || [];
+    setAvisos(dados);
   }, []);
-
-  // carrega o status salvo ao abrir a tela
-  useEffect(() => {
-    const dispMap = JSON.parse(localStorage.getItem("disponibilidade")) || {};
-    if (dispMap[profChave]) setDisponivel(dispMap[profChave]);
-  }, [profChave]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -44,144 +48,209 @@ function HomeProfessor() {
     return () => clearInterval(timer);
   }, []);
 
-  // grava (ou limpa) a disponibilidade no localStorage
-  function definirDisponibilidade(valor) {
-    const novo = disponivel === valor ? null : valor;
-    setDisponivel(novo);
+  useEffect(() => {
+    const aplicarDisponibilidade = () => {
+      const dispMap = JSON.parse(localStorage.getItem("disponibilidade")) || {};
+      setProfessores(
+        professoresBase.map((p) => {
+          const chave = `${p.nome} - ${p.materia}`;
+          if (dispMap[chave] === "sim") return { ...p, status: "disponivel" };
+          if (dispMap[chave] === "nao") return { ...p, status: "indisponivel" };
+          return p;
+        })
+      );
+    };
 
-    const dispMap = JSON.parse(localStorage.getItem("disponibilidade")) || {};
-    if (novo === null) {
-      delete dispMap[profChave];
-    } else {
-      dispMap[profChave] = novo;
-    }
-    localStorage.setItem("disponibilidade", JSON.stringify(dispMap));
+    aplicarDisponibilidade();
+    window.addEventListener("storage", aplicarDisponibilidade);
+    const intervalo = setInterval(aplicarDisponibilidade, 2000);
+
+    return () => {
+      window.removeEventListener("storage", aplicarDisponibilidade);
+      clearInterval(intervalo);
+    };
+  }, []);
+
+  const next = () => { if (index + 3 < avisos.length) setIndex((prev) => prev + 1); };
+  const prev = () => { if (index > 0) setIndex((prev) => prev - 1); };
+  const visible = avisos.slice(index, index + 3);
+
+  function abrirPopup(prof) {
+    if (prof.status !== "disponivel") return;
+    setProfSelecionado(prof);
+    setMensagem("");
+    setAlunoNomeInput("");
+    setSala("");
+    setFeedbackMsg("");
+    setPopupDuvida(true);
   }
 
-  const handleMuralPrev = () => { if (muralIndex > 0) setMuralIndex(muralIndex - 1); };
-  const handleMuralNext = () => { if (muralIndex < avisos.length - 3) setMuralIndex(muralIndex + 1); };
-  const avisosVisiveis = avisos.slice(muralIndex, muralIndex + 3);
+  function fecharPopup() {
+    setPopupDuvida(false);
+    setProfSelecionado(null);
+    setMensagem("");
+    setAlunoNomeInput("");
+    setSala("");
+    setFeedbackMsg("");
+  }
 
-  function excluirAviso(id) {
-    const novosAvisos = avisos.filter((a) => a.id !== id);
-    localStorage.setItem("avisos", JSON.stringify(novosAvisos));
-    setAvisos(novosAvisos);
-    setMuralIndex(0);
+  async function enviarDuvida() {
+    if (!alunoNomeInput.trim() || !sala.trim() || !mensagem.trim()) {
+      setFeedbackMsg("Preencha todos os campos antes de enviar.");
+      return;
+    }
+
+    setEnviando(true);
+    setFeedbackMsg("");
+
+    try {
+      await emailjs.send("service_q8v9gbc", "template_te52c0i", {
+        aluno_nome: alunoNomeInput,
+        sala: sala,
+        professor_nome: `${profSelecionado.nome} - ${profSelecionado.materia}`,
+        professor_email: profSelecionado.email,
+        mensagem: mensagem,
+      });
+      setFeedbackMsg("✅ Dúvida enviada com sucesso!");
+      setTimeout(() => fecharPopup(), 2000);
+    } catch (err) {
+      setFeedbackMsg("❌ Erro ao enviar. Tente novamente.");
+    } finally {
+      setEnviando(false);
+    }
   }
 
   return (
     <>
       <Header />
 
-      {popupAberto && (
-        <div className="ha-modal-overlay" onClick={() => setPopupAberto(false)}>
-          <div className="hp-popup" onClick={(e) => e.stopPropagation()}>
-            <div className="hp-popup-header">
-              <span>Gerenciar Avisos</span>
-              <button className="ha-modal-close" onClick={() => setPopupAberto(false)}>✕</button>
+      {popupDuvida && profSelecionado && (
+        <div className="ha-modal-overlay" onClick={fecharPopup}>
+          <div className="ha-duvida-popup" onClick={(e) => e.stopPropagation()}>
+            <div className="ha-duvida-header">
+              <span>Enviar dúvida</span>
+              <button className="ha-modal-close" onClick={fecharPopup}>✕</button>
             </div>
-            <div className="hp-popup-lista">
-              {avisos.length === 0 ? (
-                <p className="hp-popup-vazio">Nenhum aviso publicado ainda.</p>
-              ) : (
-                avisos.map((aviso) => (
-                  <div key={aviso.id} className="hp-popup-item">
-                    {aviso.imagem && (
-                      <img src={aviso.imagem} alt={aviso.titulo} className="hp-popup-img" />
-                    )}
-                    <div className="hp-popup-info">
-                      <span className="hp-popup-titulo">{aviso.titulo}</span>
-                      <p className="hp-popup-desc">{aviso.descricao}</p>
-                      <small>{aviso.data ? new Date(aviso.data).toLocaleDateString("pt-BR") : ""}</small>
-                    </div>
-                    <button className="hp-popup-excluir" onClick={() => excluirAviso(aviso.id)}>🗑</button>
-                  </div>
-                ))
+            <div className="ha-duvida-body">
+              <p className="ha-duvida-para">
+                Para: <strong>{profSelecionado.nome} — {profSelecionado.materia}</strong>
+              </p>
+              <input
+                className="ha-duvida-input"
+                type="text"
+                placeholder="Seu nome"
+                value={alunoNomeInput}
+                onChange={(e) => setAlunoNomeInput(e.target.value)}
+              />
+              <input
+                className="ha-duvida-input"
+                type="text"
+                placeholder="Sua sala"
+                value={sala}
+                onChange={(e) => setSala(e.target.value)}
+              />
+              <textarea
+                className="ha-duvida-textarea"
+                placeholder="Escreva sua dúvida aqui..."
+                value={mensagem}
+                onChange={(e) => setMensagem(e.target.value)}
+                rows={5}
+              />
+              {feedbackMsg && (
+                <p className="ha-duvida-feedback">{feedbackMsg}</p>
               )}
+              <button
+                className="ha-duvida-btn-enviar"
+                onClick={enviarDuvida}
+                disabled={enviando}
+              >
+                {enviando ? "Enviando..." : "Enviar dúvida"}
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      <div className="hp-page">
-        <div className="hp-faixa-curiosidades">
-          <img className="hp-grafismo" src="/img/grafismo.svg" alt="" />
-          <div className="hp-curio-tab">Curiosidades</div>
-          <img className="hp-grafismo" src="/img/grafismo.svg" alt="" />
-        </div>
+      <div className="ha-page">
 
-        <div className="hp-curio-box">
-          <div className="hp-curio-cards">
-            <div className="hp-curio-img hp-curio-img--grande" />
-            <div className="hp-curio-img hp-curio-img--pequeno" />
+        <section className="ha-curiosidades">
+          <div className="hp-faixa-curiosidades">
+            <img className="hp-grafismo" src="/img/grafismo.svg" alt="" />
+            <div className="hp-curio-tab">Curiosidades</div>
+            <img className="hp-grafismo" src="/img/grafismo.svg" alt="" />
           </div>
-          <div className="hp-curio-conteudo">
-            {CURIOSIDADES.map((item, i) => (
-              <p key={i} className={`hp-curio-texto ${i === slide ? "hp-curio-texto--ativo" : ""}`}>
-                {item.texto}
-              </p>
-            ))}
+          <div className="hp-curio-box">
+            <div className="hp-curio-cards">
+              <div className="hp-curio-img hp-curio-img--grande" />
+              <div className="hp-curio-img hp-curio-img--pequeno" />
+            </div>
+            <div className="hp-curio-conteudo">
+              {CURIOSIDADES.map((item, i) => (
+                <p key={i} className={`hp-curio-texto ${i === slide ? "hp-curio-texto--ativo" : ""}`}>
+                  {item.texto}
+                </p>
+              ))}
+            </div>
+            <div className="hp-curio-dots">
+              {CURIOSIDADES.map((_, i) => (
+                <button key={i} className={`hp-dot ${i === slide ? "hp-dot--ativo" : ""}`} onClick={() => setSlide(i)} />
+              ))}
+            </div>
           </div>
-          <div className="hp-curio-dots">
-            {CURIOSIDADES.map((_, i) => (
-              <button key={i} className={`hp-dot ${i === slide ? "hp-dot--ativo" : ""}`} onClick={() => setSlide(i)} />
-            ))}
-          </div>
-        </div>
+        </section>
 
-        <div className="hp-salas-sec">
-          <button className="hp-btn-salas" onClick={() => navigate("/sala-professor")}>
-            Salas de aula
+        <section className="ha-menu">
+          <button className="ha-menu-btn ha-menu-btn--salas" onClick={() => navigate("/sala-aluno")}>
+            Minhas Salas
           </button>
-          {ehAdmin && (
-            <button className="hp-btn-salas hp-btn-cadastro" onClick={() => navigate("/cadastro")}>
-              Cadastrar usuários
-            </button>
-          )}
-          {ehAdmin && (
-            <button
-              className="hp-btn-salas hp-btn-relatorios"
-              onClick={() => navigate("/relatoriopresenca")}
-            >
-              Relatórios
-            </button>
-          )}
-        </div>
+          <button className="ha-menu-btn ha-menu-btn--conquistas" onClick={() => navigate("/conquistas")}>
+            Minhas Conquistas
+          </button>
+        </section>
 
-        <div className="hp-disp-sec">
-          <div className="hp-disp-top">
-            <button className="hp-btn-disp">Estou disponível?</button>
-            <img className="hp-moeda" src={logo} alt="Logo" />
+        <section className="ha-professores">
+          <div className="ha-prof-header">
+            <span className="ha-prof-label">
+              <span>Fale com um professor</span>
+            </span>
+            <div className="ha-prof-logo">
+              <img src={logo} alt="" className="ha-prof-logo-img" />
+            </div>
           </div>
-          <div className="hp-sala-card">
-            <div className="hp-sala-esq">
-              <div className="hp-avatar">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="22px" height="22px">
-                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-                </svg>
+          <div className="ha-prof-lista">
+            {professores.map((p) => (
+              <div
+                key={p.id}
+                className={`ha-prof-card ${p.status === "disponivel" ? "ha-prof-card--clicavel" : ""}`}
+                onClick={() => abrirPopup(p)}
+              >
+                <div className="ha-prof-card-left">
+                  <img src={userIcon} className="ha-prof-icon" alt="" />
+                  <span>{p.nome} - {p.materia}</span>
+                </div>
+                <span className={p.status === "disponivel" ? "ha-prof-status ha-prof-status--disp" : "ha-prof-status ha-prof-status--indisp"}>
+                  {p.status === "disponivel" ? "Disponível" : "Indisponível"}
+                </span>
               </div>
-              <span className="hp-sala-nome">{profChave}</span>
-            </div>
-            <div className="hp-sala-btns">
-              <button className={`hp-btn-nao ${disponivel === "nao" ? "hp-btn--ativo" : ""}`} onClick={() => definirDisponibilidade("nao")}>Não</button>
-              <button className={`hp-btn-sim ${disponivel === "sim" ? "hp-btn--ativo" : ""}`} onClick={() => definirDisponibilidade("sim")}>Sim</button>
-            </div>
+            ))}
           </div>
-        </div>
+        </section>
 
-        <div className="hp-mural-sec">
+        <section className="hp-mural-sec">
           <div className="hp-mural-outer">
-            <button className="hp-nav-btn hp-nav-left" onClick={handleMuralPrev} disabled={muralIndex === 0}>&#8592;</button>
-            <button className="hp-nav-btn hp-nav-right" onClick={handleMuralNext} disabled={muralIndex >= avisos.length - 3}>&#8594;</button>
             <div className="hp-mural-inner">
               <div className="hp-mural-titulo">Mural de avisos</div>
+              <button className="hp-nav-btn hp-nav-left" onClick={prev} disabled={index === 0}>&#8592;</button>
+              <button className="hp-nav-btn hp-nav-right" onClick={next} disabled={index + 3 >= avisos.length}>&#8594;</button>
               <div className="hp-mural-cards">
-                {avisosVisiveis.length === 0 ? (
+                {visible.length === 0 ? (
                   <p style={{ textAlign: "center", width: "100%" }}>Nenhum aviso publicado ainda.</p>
                 ) : (
-                  avisosVisiveis.map((aviso) => (
+                  visible.map((aviso) => (
                     <div key={aviso.id} className="hp-mural-card">
-                      {aviso.imagem && <img src={aviso.imagem} alt={aviso.titulo} className="hp-mural-img" />}
+                      {aviso.imagem && (
+                        <img src={aviso.imagem} alt="imagem do aviso" className="hp-mural-img" />
+                      )}
                       <p>{aviso.descricao}</p>
                       <span>{aviso.titulo}</span>
                       <small>{aviso.data ? new Date(aviso.data).toLocaleDateString("pt-BR") : ""}</small>
@@ -191,21 +260,11 @@ function HomeProfessor() {
               </div>
             </div>
           </div>
+        </section>
 
-          <div className="hp-aviso-row">
-            <button className="hp-btn-gerenciar" onClick={() => setPopupAberto(true)}>
-              Gerenciar Avisos
-            </button>
-            <button className="hp-btn-aviso" onClick={() => navigate("/adicionar-aviso")}>
-              Adicionar Aviso
-            </button>
-          </div>
-        </div>
       </div>
 
       <Footer />
     </>
   );
 }
-
-export default HomeProfessor;
