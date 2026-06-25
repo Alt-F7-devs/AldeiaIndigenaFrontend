@@ -1,0 +1,249 @@
+.criar-editar-jogo-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #E3C9A5;
+  font-family: 'Itim', cursive;
+}
+
+.cea-main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 80px 16px 60px;
+}
+
+.cea-container {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cea-titulo {
+  text-align: center;
+  font-size: 2rem;
+  color: #3b6e1f;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* ── Card ── */
+.cea-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+}
+
+.cea-card-header {
+  background: #3b6e1f;
+  color: #F4E8D0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 14px 24px;
+}
+
+.cea-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #3b6e1f;
+}
+
+.form-input {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  background: #D9D9D9;
+  font-size: 1rem;
+  font-family: 'Itim', cursive;
+  color: #444;
+  transition: box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 110, 31, 0.3);
+}
+
+.form-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-erro {
+  padding: 10px 16px;
+  background: #ffe6e6;
+  border-left: 4px solid #8b0000;
+  color: #8b0000;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.form-sucesso {
+  padding: 10px 16px;
+  background: #e6ffe6;
+  border-left: 4px solid #3b6e1f;
+  color: #3b6e1f;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.form-botoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Itim', cursive;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+}
+
+.btn:active:not(:disabled) { transform: scale(0.97); }
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-salvar {
+  background: #3b6e1f;
+  color: #fff;
+}
+
+.btn-cancelar {
+  background: #8b0000;
+  color: #fff;
+}
+
+/* ── Presenças ── */
+.cea-presencas .cea-card-header {
+  background: #145f78;
+}
+
+.cea-presencas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 2px solid #E3C9A5;
+}
+
+.cea-presencas-header h2 {
+  font-size: 1.1rem;
+  color: #145f78;
+  margin: 0;
+}
+
+.presencas-info {
+  background: #E3C9A5;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #145f78;
+}
+
+.carregando, .sem-alunos {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  padding: 24px;
+}
+
+.presencas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  padding: 20px 24px 24px;
+}
+
+.presenca-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f5ecd7;
+  border: 2px solid #D9D9D9;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.presenca-item:hover { border-color: #3b6e1f; }
+
+.presenca-item.presente {
+  background: #e6ffe6;
+  border-color: #3b6e1f;
+}
+
+.presenca-checkbox {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #D9D9D9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.presenca-item.presente .presenca-checkbox {
+  background: #3b6e1f;
+  border-color: #3b6e1f;
+}
+
+.checkmark { color: #fff; font-size: 1rem; font-weight: bold; }
+
+.presenca-nome {
+  font-weight: bold;
+  color: #3b6e1f;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.presenca-id {
+  font-size: 0.78rem;
+  color: #999;
+  margin: 2px 0 0 0;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 600px) {
+  .form-botoes { flex-direction: column; }
+  .cea-titulo { font-size: 1.5rem; }
+  .presencas-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,166 @@
+/* ===== PAGE LAYOUT ===== */
+.sala-aluno-page {
+  min-height: 100vh;
+  background-color: #D4B896;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+/* ===== BORDER STRIP ===== */
+
+
+.sala-aluno-footer-bar {
+  width: 100%;
+  height: 18px;
+  background-color: #3B7113;
+}
+
+.sala-aluno-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+/* ===== CARD ===== */
+.sala-aluno-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 620px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+  margin-bottom: 0;
+}
+
+
+.sala-aluno-card__header {
+  background-color: #3B7113;
+  padding: 14px 22px;
+}
+
+.sala-aluno-card__title {
+  color: #ffffff;
+  font-family: 'Itim', cursive;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sala-aluno-card__body {
+  padding: 28px 24px 32px;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+/* ===== LEFT COLUMN ===== */
+.sala-aluno-col--info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.sala-aluno-field {
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  padding: 10px 18px;
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  color: #555;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== RIGHT COLUMN ===== */
+.sala-aluno-col--cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.sala-aluno-cover {
+  width: 160px;
+  height: 160px;
+  border: 3px solid #3B7113;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  overflow: hidden;
+}
+
+.sala-aluno-cover__placeholder {
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+}
+
+.sala-aluno-cover__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== BUTTON ===== */
+.sala-aluno-btn--acessar {
+  background-color: #3B7113;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 22px;
+  font-family: 'Itim', cursive;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.sala-aluno-btn--acessar:hover {
+  background-color: #2f5c0f;
+}
+
+.sala-aluno-btn--acessar:active {
+  background-color: #254a0c;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 520px) {
+  .sala-aluno-card__body {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .sala-aluno-col--info {
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .sala-aluno-col--cover {
+    width: 100%;
+    align-items: center;
+  }
+
+  .sala-aluno-cover {
+    width: 100%;
+    max-width: 240px;
+    height: 200px;
+  }
+
+  .sala-aluno-btn--acessar {
+    max-width: 240px;
+  }
+}

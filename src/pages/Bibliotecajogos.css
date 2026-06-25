@@ -1,24 +1,20 @@
-
-
 .jogospage {
   min-height: 100vh;
   background-color: #E3C9A5;
   display: flex;
   flex-direction: column;
   font-family: 'Itim', cursive;
-  padding-top: 0;
+  padding: 20px 16px 60px;
 }
 
-
 .biblioteca-titulo {
-  margin-top: 120px; /* ← empurra só o conteúdo, não o header */
   font-family: 'Itim', cursive;
   font-size: 16px;
   color: #fff;
-  background-color: var(--cor-Verde, #3B7113);
+  background-color: #3B7113;
   display: inline-block;
   padding: 5px 14px;
-  border-radius: var(--border-radius, 15px);
+  border-radius: 15px;
   margin-bottom: 12px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   align-self: flex-start;
@@ -26,14 +22,14 @@
 
 .biblioteca-container {
   background-color: #5a8a2a;
-  border-radius: var(--border-radius, 15px);
+  border-radius: 15px;
   padding: 16px;
   width: 95%;
   box-sizing: border-box;
   box-shadow: inset 0 3px 8px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.3);
   border: 3px solid #4a7020;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
+  flex: 1;
 }
 
 .biblioteca-grid {
@@ -44,7 +40,7 @@
 
 .jogo-card {
   background-color: #d4c9a8;
-  border-radius: var(--border-radius, 15px);
+  border-radius: 15px;
   overflow: hidden;
   border: 2px solid #b8a880;
   cursor: pointer;
@@ -94,14 +90,12 @@
   min-height: 52px;
 }
 
-.jogo-texto {
-  flex: 1;
-}
+.jogo-texto { flex: 1; }
 
 .jogo-nome {
   font-family: 'Itim', cursive;
   font-size: 15px;
-  color: var(--cor-Verde, #3B7113);
+  color: #3B7113;
   font-weight: normal;
   margin: 0 0 2px 0;
   line-height: 1.2;
@@ -110,7 +104,7 @@
 .jogo-descricao {
   font-family: 'Itim', cursive;
   font-size: 13px;
-  color: var(--cor-Verde, #3B7113);
+  color: #3B7113;
   margin: 0;
   line-height: 1.2;
 }
@@ -119,7 +113,7 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background-color: var(--cor-Verde, #3B7113);
+  background-color: #3B7113;
   border: none;
   cursor: pointer;
   display: flex;
@@ -132,8 +126,7 @@
   font-size: 18px;
   font-weight: bold;
   line-height: 1;
-  padding: 0;
-  padding-bottom: 1px;
+  padding: 0 0 1px 0;
 }
 
 .jogo-botao-add:hover {
@@ -141,6 +134,13 @@
   transform: scale(1.1);
 }
 
-.jogo-botao-add:active {
-  transform: scale(0.95);
+.jogo-botao-add:active { transform: scale(0.95); }
+
+/* ── Responsivo ── */
+@media (max-width: 600px) {
+  .biblioteca-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .jogo-imagem { height: 160px; }
 }

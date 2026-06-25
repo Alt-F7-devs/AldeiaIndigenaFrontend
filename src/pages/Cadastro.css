@@ -1,0 +1,140 @@
+:root {
+  --cad-verde-escuro: #3E7A08;
+  --cad-verde-claro: #6BAA28;
+  --cad-bege: #E3C9A5;
+  --cad-marrom: #712A13;
+  --cad-areia: #F4E8D0;
+  --cad-input-bg: #D9D9D9;
+  --cad-transition: 0.25s ease;
+}
+
+.cad-page {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--cad-bege);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 70px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Nunito', sans-serif;
+}
+
+.cad-card {
+  width: 100%;
+  max-width: 550px;
+  background: #fff;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.15);
+}
+
+.cad-card-header {
+  background: var(--cad-verde-escuro);
+  padding: 18px 28px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.cad-card-title {
+  color: var(--cad-areia);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+.cad-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 32px 32px;
+}
+
+.cad-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cad-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cad-marrom);
+  padding-left: 4px;
+}
+
+.cad-input {
+  width: 100%;
+  height: 44px;
+  background: var(--cad-input-bg);
+  border: none;
+  border-radius: 14px;
+  padding: 0 16px;
+  font-size: 0.95rem;
+  color: #333;
+  font-family: inherit;
+  transition: box-shadow var(--cad-transition);
+}
+
+.cad-input::placeholder { color: #888; }
+
+.cad-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(62, 122, 8, 0.3);
+}
+
+.cad-hint {
+  font-size: 0.72rem;
+  color: #777;
+  padding-left: 4px;
+}
+
+.cad-msg {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 4px;
+}
+
+.cad-msg--erro { color: #8B2F12; }
+.cad-msg--sucesso { color: var(--cad-verde-escuro); }
+
+.cad-btn {
+  margin-top: 8px;
+  align-self: center;
+  background: var(--cad-verde-escuro);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 11px 44px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: transform var(--cad-transition), box-shadow var(--cad-transition), background-color var(--cad-transition);
+}
+
+.cad-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(62, 122, 8, 0.4);
+  background: #4a8f0a;
+}
+
+.cad-btn:active { transform: scale(0.97); }
+
+.cad-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 600px) {
+  .cad-card { border-radius: 16px; }
+  .cad-card-body { padding: 20px 18px 24px; }
+  .cad-card-title { font-size: 1.25rem; }
+  .cad-btn { width: 100%; }
+}

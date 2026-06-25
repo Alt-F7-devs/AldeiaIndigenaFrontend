@@ -1,35 +1,73 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import Header from "../components/Header";
+import RelatorioPresencaPDF from "./RelatorioPresencaPDF";
+import { listarRelatorioFrequencia } from "../services/api";
 import "./RelatorioPresenca.css";
 
-const MOCK_ALUNOS = [
-  { id: "001", nome: "Ana Souza",     presencas: 18, faltas: 2, total: 20 },
-  { id: "002", nome: "Bruno Lima",    presencas: 15, faltas: 5, total: 20 },
-  { id: "003", nome: "Carla Mendes",  presencas: 20, faltas: 0, total: 20 },
-  { id: "004", nome: "Diego Ramos",   presencas: 10, faltas: 10, total: 20 },
-  { id: "006", nome: "Eduarda Neves", presencas: 17, faltas: 3, total: 20 },
-  { id: "007", nome: "Gustavo lima", presencas: 2, faltas: 18, total: 20 },
-  { id: "008", nome: "Jailson Mendes", presencas: 1, faltas: 19, total: 20 },
-  { id: "009", nome: "Breno Felipe", presencas: 0, faltas: 20, total: 20 },
-  { id: "010", nome: "Rodolfo gomes", presencas: 15, faltas: 5, total: 20 },
-];
-
-function StatusBadge({ pct }) {
-  if (pct >= 75) return <span className="rp-badge rp-badge--ok">Regular</span>;
-  if (pct >= 50) return <span className="rp-badge rp-badge--atencao">Atenção</span>;
+function StatusBadge({ status }) {
+  if (status === "REGULAR")
+    return <span className="rp-badge rp-badge--ok">Regular</span>;
+  if (status === "ALERTA")
+    return <span className="rp-badge rp-badge--atencao">Alerta</span>;
   return <span className="rp-badge rp-badge--reprovado">Reprovado</span>;
 }
 
 function RelatorioPresenca() {
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const salaId = searchParams.get("salaId");
+
+  const [alunos, setAlunos] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
   const [busca, setBusca] = useState("");
 
-  const filtrados = MOCK_ALUNOS.filter(
-    (a) =>
-      a.nome.toLowerCase().includes(busca.toLowerCase()) ||
-      a.id.includes(busca)
-  );
+  useEffect(() => {
+    let ativo = true;
+
+    async function carregarRelatorio() {
+      try {
+        setCarregando(true);
+        setErro(null);
+
+        const dados = await listarRelatorioFrequencia();
+        const lista = Array.isArray(dados) ? dados : [];
+
+        // Filtra pela sala vinda do Histórico (?salaId=), se houver
+        const filtradosPorSala = salaId
+          ? lista.filter((a) => String(a.idSala) === String(salaId))
+          : lista;
+
+        if (ativo) setAlunos(filtradosPorSala);
+      } catch (err) {
+        console.error("Erro ao carregar relatório de presença:", err);
+        if (ativo) {
+          setErro("Erro ao carregar relatório de presença");
+          setAlunos([]);
+        }
+      } finally {
+        if (ativo) setCarregando(false);
+      }
+    }
+
+    carregarRelatorio();
+    return () => {
+      ativo = false;
+    };
+  }, [salaId]);
+
+  // Rótulo da sala para título/PDF (numSala da primeira linha)
+  const salaLabel = salaId ? alunos[0]?.numSala ?? salaId : null;
+
+  const filtrados = useMemo(() => {
+    const termo = busca.toLowerCase();
+    return alunos.filter(
+      (a) =>
+        a.nome?.toLowerCase().includes(termo) ||
+        String(a.cgm ?? "").includes(busca)
+    );
+  }, [alunos, busca]);
 
   return (
     <>
@@ -38,18 +76,21 @@ function RelatorioPresenca() {
       <main className="rp-main">
         {/* Título da página */}
         <div className="rp-titulo-wrapper">
-          <span className="rp-titulo">Relatório de Presença</span>
+          <span className="rp-titulo">
+            {salaLabel
+              ? `Relatório de Presença — Sala ${salaLabel}`
+              : "Relatório de Presença"}
+          </span>
         </div>
 
         {/* Card principal */}
         <div className="rp-card">
-
           {/* Barra de busca */}
           <div className="rp-busca-wrapper">
             <input
               className="rp-busca"
               type="text"
-              placeholder="Buscar aluno ou identificador..."
+              placeholder="Buscar aluno ou CGM..."
               value={busca}
               onChange={(e) => setBusca(e.target.value)}
             />
@@ -60,7 +101,8 @@ function RelatorioPresenca() {
             {/* Cabeçalho */}
             <div className="rp-row rp-row--header">
               <span className="rp-col rp-col--nome">Nome do aluno</span>
-              <span className="rp-col rp-col--id">Identificador</span>
+              <span className="rp-col rp-col--id">CGM</span>
+              <span className="rp-col rp-col--sala">Sala</span>
               <span className="rp-col rp-col--num">Presenças</span>
               <span className="rp-col rp-col--num">Faltas</span>
               <span className="rp-col rp-col--num">% Freq.</span>
@@ -68,20 +110,31 @@ function RelatorioPresenca() {
             </div>
 
             {/* Linhas */}
-            {filtrados.length === 0 ? (
+            {carregando ? (
+              <p className="rp-vazio">Carregando relatório...</p>
+            ) : erro ? (
+              <p className="rp-vazio">{erro}</p>
+            ) : filtrados.length === 0 ? (
               <p className="rp-vazio">Nenhum aluno encontrado.</p>
             ) : (
               filtrados.map((aluno) => {
-                const pct = Math.round((aluno.presencas / aluno.total) * 100);
+                const faltas = Math.max(
+                  0,
+                  (aluno.totalJogos ?? 0) - (aluno.presencas ?? 0)
+                );
+                const pct = Math.round(aluno.percentual ?? 0);
                 return (
-                  <div key={aluno.id} className="rp-row rp-row--data">
+                  <div key={aluno.cgm} className="rp-row rp-row--data">
                     <span className="rp-col rp-col--nome">{aluno.nome}</span>
-                    <span className="rp-col rp-col--id">{aluno.id}</span>
+                    <span className="rp-col rp-col--id">{aluno.cgm}</span>
+                    <span className="rp-col rp-col--sala">
+                      {aluno.numSala ?? "—"}
+                    </span>
                     <span className="rp-col rp-col--num">{aluno.presencas}</span>
-                    <span className="rp-col rp-col--num">{aluno.faltas}</span>
+                    <span className="rp-col rp-col--num">{faltas}</span>
                     <span className="rp-col rp-col--num">{pct}%</span>
                     <span className="rp-col rp-col--status">
-                      <StatusBadge pct={pct} />
+                      <StatusBadge status={aluno.status} />
                     </span>
                   </div>
                 );
@@ -94,11 +147,30 @@ function RelatorioPresenca() {
             <span className="rp-rodape-info">
               Total de alunos: <strong>{filtrados.length}</strong>
             </span>
-            <button className="rp-btn-exportar" onClick={() => alert("Exportar PDF")}>
-              Exportar
-            </button>
-          </div>
 
+            {filtrados.length > 0 ? (
+              <PDFDownloadLink
+                className="rp-btn-exportar"
+                document={
+                  <RelatorioPresencaPDF
+                    linhas={filtrados}
+                    salaLabel={salaLabel}
+                  />
+                }
+                fileName={`relatorio-presenca${
+                  salaId ? `-sala-${salaLabel}` : ""
+                }.pdf`}
+              >
+                {({ loading }) =>
+                  loading ? "Gerando PDF..." : "Exportar PDF"
+                }
+              </PDFDownloadLink>
+            ) : (
+              <button className="rp-btn-exportar" disabled>
+                Exportar PDF
+              </button>
+            )}
+          </div>
         </div>
       </main>
     </>
