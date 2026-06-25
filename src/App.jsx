@@ -16,6 +16,7 @@ import CadastroAdmin from "./pages/CadastroAdmin";
 import CadastroAluno from "./pages/CadastroAluno";
 import CadastroProfessor from "./pages/CadastroProfessor";
 import SelecaoCadastro from "./pages/SelecaoCadastro";
+import RotaProtegida from "./components/RotaProtegida";
 
 function App() {
   return (
@@ -23,30 +24,32 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
 
+        {/* Relatório de presença */}
+        <Route path="/relatoriopresenca" element={<RotaProtegida tipo="ADMIN"><RelatorioPresenca /></RotaProtegida>} />
+
         {/* Cadastro */}
-        <Route path="/cadastro" element={<SelecaoCadastro />} />
-        <Route path="/cadastro/admin" element={<CadastroAdmin />} />
-        <Route path="/cadastro/aluno" element={<CadastroAluno />} />
-        <Route path="/cadastro/professor" element={<CadastroProfessor />} />
+        <Route path="/cadastro" element={<RotaProtegida tipo="ADMIN"><SelecaoCadastro /></RotaProtegida>} />
+        <Route path="/cadastro/admin" element={<RotaProtegida tipo="ADMIN"><CadastroAdmin /></RotaProtegida>} />
+        <Route path="/cadastro/aluno" element={<RotaProtegida tipo="ADMIN"><CadastroAluno /></RotaProtegida>} />
+        <Route path="/cadastro/professor" element={<RotaProtegida tipo="ADMIN"><CadastroProfessor /></RotaProtegida>} />
 
         {/* Aluno */}
-        <Route path="/aluno" element={<HomeAluno />} />
-        <Route path="/jogos" element={<BibliotecaJogos />} />
-        <Route path="/conquistas" element={<ConquistasAluno />} />
-        <Route path="/sala-aluno" element={<SalaAluno />} />
+        <Route path="/aluno" element={<RotaProtegida tipo="ALUNO"><HomeAluno /></RotaProtegida>} />
+        <Route path="/jogos" element={<RotaProtegida tipo="ALUNO"><BibliotecaJogos /></RotaProtegida>} />
+        <Route path="/conquistas" element={<RotaProtegida tipo="ALUNO"><ConquistasAluno /></RotaProtegida>} />
+        <Route path="/sala-aluno" element={<RotaProtegida tipo="ALUNO"><SalaAluno /></RotaProtegida>} />
 
         {/* Professor */}
-        <Route path="/professor" element={<HomeProfessor />} />
-        <Route path="/gerencia/:salaId" element={<GerenciaSala />} />
-        <Route path="/historico" element={<Historico />} />
-        <Route path="/criar-jogo" element={<CriarEditarJogo />} />
-        <Route path="/criar-jogo/:salaId" element={<CriarEditarJogo />} />
-        <Route path="/editar-jogo/:jogoId/:salaId" element={<CriarEditarJogo />} />
-        <Route path="/editar-jogo/:jogoId" element={<CriarEditarJogo />} />
-        <Route path="/lista-aluno/:salaId" element={<ListaAluno />} />
-        <Route path="/sala-professor" element={<SalaProfessor />} />
-        <Route path="/relatoriopresenca" element={<RelatorioPresenca />} />
-        <Route path="/adicionar-aviso" element={<AdicionarAviso />} />
+        <Route path="/professor" element={<RotaProtegida tipo={["PROFESSOR", "ADMIN"]}><HomeProfessor /></RotaProtegida>} />
+        <Route path="/gerencia/:salaId" element={<RotaProtegida tipo="PROFESSOR"><GerenciaSala /></RotaProtegida>} />
+        <Route path="/historico" element={<RotaProtegida tipo="PROFESSOR"><Historico /></RotaProtegida>} />
+        <Route path="/criar-jogo" element={<RotaProtegida tipo="PROFESSOR"><CriarEditarJogo /></RotaProtegida>} />
+        <Route path="/criar-jogo/:salaId" element={<RotaProtegida tipo="PROFESSOR"><CriarEditarJogo /></RotaProtegida>} />
+        <Route path="/editar-jogo/:jogoId/:salaId" element={<RotaProtegida tipo="PROFESSOR"><CriarEditarJogo /></RotaProtegida>} />
+        <Route path="/editar-jogo/:jogoId" element={<RotaProtegida tipo="PROFESSOR"><CriarEditarJogo /></RotaProtegida>} />
+        <Route path="/lista-aluno/:salaId" element={<RotaProtegida tipo="PROFESSOR"><ListaAluno /></RotaProtegida>} />
+        <Route path="/sala-professor" element={<RotaProtegida tipo="PROFESSOR"><SalaProfessor /></RotaProtegida>} />
+        <Route path="/adicionar-aviso" element={<RotaProtegida tipo="PROFESSOR"><AdicionarAviso /></RotaProtegida>} />
       </Routes>
     </BrowserRouter>
   );
