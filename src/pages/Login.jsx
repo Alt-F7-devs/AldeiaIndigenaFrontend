@@ -52,6 +52,31 @@ function Login() {
       alert(mensagem);
     }
   }
+  async function entrarProfessor() {
+    // ...
+    const data = await loginProfessor(cpfProf, senhaProf);
+    localStorage.setItem("tipo", data.tipo);
+    localStorage.setItem("nome", data.nome);
+    localStorage.setItem("identificador", data.identificador);
+    if (data.tipo === "ADMIN") {
+        localStorage.setItem("admin_login", cpfProf);
+        localStorage.setItem("id_admin", data.id);
+    } else {
+        localStorage.setItem("id_professor", data.id);
+    }
+    navigate("/professor");
+}
+
+async function entrarAluno() {
+    // ...
+    const data = await loginAluno(cgmAluno, senhaAluno);
+    localStorage.setItem("tipo", data.tipo);
+    localStorage.setItem("nome", data.nome);
+    localStorage.setItem("identificador", data.identificador);
+    localStorage.setItem("cgm", cgmAluno);
+    localStorage.setItem("id_aluno", data.id);
+    navigate("/aluno");
+}
 
   return (
     <>
@@ -78,6 +103,8 @@ function Login() {
             />
             <button className="btn-professor" onClick={entrarProfessor}>Entrar</button>
           </div>
+
+          
 
           <div className="right">
             <h2>Entrar como Aluno</h2>
