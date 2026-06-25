@@ -1,7 +1,7 @@
 .hp-page {
   background: #E3C9A5;
   min-height: 100vh;
-  padding-top: 10px;
+  padding-top: 50px;
 }
 
 .hp-faixa {
@@ -35,7 +35,7 @@
   white-space: nowrap;
   flex-shrink: 0;
   border-radius: 10px;
-  margin-top: 40px;
+  margin-top: 0; /* ← corrigido */
 }
 
 .hp-curio-box {
@@ -173,7 +173,23 @@
   background: #1F5673;
 }
 
+.hp-curio-img--grande {
+  width: 250px;
+  height: 180px;
+  transform: perspective(600px) rotateY(15deg) rotateX(5deg);
+  background-image: url("../img/trofeu.jpg");
+  background-size: cover;
+  background-position: center;
+}
 
+.hp-curio-img--pequeno {
+  width: 180px;
+  height: 140px;
+  transform: perspective(600px) rotateY(-15deg) rotateX(5deg);
+  background-image: url("../img/livros.jpg");
+  background-size: cover;
+  background-position: center;
+}
 /* DISPONIBILIDADE */
 
 .hp-disp-sec {
@@ -192,22 +208,43 @@
 .hp-btn-disp {
   background: #3b6e1f;
   color: #fff;
-  border: none;
-  border-radius: 0 15px 15px 0;
+  border-radius: 0 10px 10px 0;
   padding: 14px 35px;
   font-size: 16px;
   font-weight: bold;
-  cursor: pointer;
-  background-image: url("/img/folhagem.png");
-  background-size: cover;
-  background-position: center;
+  cursor: default; /* ← não é clicável */
   margin-left: -15px;
   box-shadow: 4px 4px 8px rgba(0,0,0,0.25);
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  display: inline-block; /* ← era button, agora é div */
+}
+
+
+
+.hp-btn-disp span {
+  position: relative;
+  z-index: 2; /* texto na frente */
+}
+
+.hp-btn-disp::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/folhagem.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hp-moeda {
-  width: 65px;
-  height: 65px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: 4px solid #3b6e1f;
   background-color: #e8c97a;
